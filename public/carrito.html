@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - ShipNest</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">ShipNest</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+
+        <div class="header-icons">
+            <a href="#" class="header-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </header>
+
+    <section class="cart-section">
+        <h2>Your Cart</h2>
+
+        <!-- Aquí se mostrará el carrito -->
+        <div id="cart-container"></div>
+
+        <!-- Total -->
+        <div class="cart-total-box">
+            <h3>Total:</h3>
+            <p id="cart-total">$0.00</p>
+        </div>
+
+        <!-- Botón de pago -->
+        <button class="pay-btn" id="pay-button">Proceed to Payment</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
