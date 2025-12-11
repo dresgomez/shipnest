@@ -1,113 +1,193 @@
-/* ------------------------
-   PRODUCTS (Dummy Example)
---------------------------- */
+// -------------------------
+// 🔥 CARGA DE PRODUCTOS
+// -------------------------
 
 const products = [
     {
         id: 1,
         name: "Smart Watch Pro",
-        price: 49.99,
-        image: "https://via.placeholder.com/200"
+        price: 2999,
+        image: "img/reloj.jpg"
     },
     {
         id: 2,
         name: "Wireless Earbuds",
-        price: 29.99,
-        image: "https://via.placeholder.com/200"
+        price: 1999,
+        image: "img/earbuds.jpg"
     },
     {
         id: 3,
-        name: "LED Desk Lamp",
-        price: 19.99,
-        image: "https://via.placeholder.com/200"
+        name: "4K Action Camera",
+        price: 4999,
+        image: "img/camara.jpg"
     }
 ];
 
-/* ------------------------
-   Render Products
---------------------------- */
-const productsContainer = document.getElementById("products-container");
 
-if (productsContainer) {
-    products.forEach(product => {
-        productsContainer.innerHTML += `
-            <div class="product-card">
-                <img src="${product.image}">
-                <h3>${product.name}</h3>
-                <p>$${product.price}</p>
-                <button class="add-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
-            </div>
-        `;
-    });
+// -------------------------
+// 🔥 CARRITO (LOCALSTORAGE)
+// -------------------------
+
+function loadCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
-/* ------------------------
-   CART SYSTEM
---------------------------- */
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function saveCart() {
+function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
+function updateCartCount() {
+    const cart = loadCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = document.querySelector(".cart-count");
+    if (cartCount) cartCount.textContent = count;
+}
 
-    const exists = cart.find(item => item.id === id);
-    if (exists) {
-        exists.quantity++;
+function addToCart(productId) {
+    const cart = loadCart();
+    const product = products.find(p => p.id === productId);
+
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity += 1;
     } else {
         cart.push({ ...product, quantity: 1 });
     }
 
-    saveCart();
+    saveCart(cart);
     updateCartCount();
-    alert("Added to cart!");
+    alert("Product added to cart!");
 }
 
-function updateCartCount() {
-    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-    const badge = document.querySelector(".cart-count");
 
-    if (badge) badge.textContent = count;
+// -------------------------
+// 🔥 MOSTRAR PRODUCTOS EN index.html
+// -------------------------
+
+function renderProducts() {
+    const container = document.getElementById("products-container");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    products.forEach(p => {
+        container.innerHTML += `
+        <div class="product-card">
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p class="price">$${(p.price / 100).toFixed(2)}</p>
+            <button class="add-btn" onclick="addToCart(${p.id})">
+                Add to Cart
+            </button>
+        </div>
+        `;
+    });
 }
 
-updateCartCount();
 
-/* ------------------------
-   CART PAGE RENDER
---------------------------- */
-
-const cartContainer = document.getElementById("cart-container");
-
-if (cartContainer) {
-    renderCart();
-}
+// -------------------------
+// 🔥 MOSTRAR CARRITO EN carrito.html
+// -------------------------
 
 function renderCart() {
-    cartContainer.innerHTML = "";
+    const container = document.getElementById("cart-container");
+    const totalText = document.getElementById("cart-total");
+
+    if (!container || !totalText) return;
+
+    const cart = loadCart();
+
+    container.innerHTML = "";
+
+    let total = 0;
 
     cart.forEach((item, index) => {
-        cartContainer.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.image}">
-                <div class="cart-info">
-                    <h3>${item.name}</h3>
-                    <p>$${item.price} x ${item.quantity}</p>
-                </div>
-                <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        container.innerHTML += `
+        <div class="cart-item">
+            <img src="${item.image}">
+            <div>
+                <h3>${item.name}</h3>
+                <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
+                <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
+                <button onclick="removeItem(${index})">Remove</button>
             </div>
+        </div>
         `;
     });
 
-    document.getElementById("cart-total").textContent =
-        "$" + cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+    totalText.textContent = "$" + (total / 100).toFixed(2);
 }
 
 function removeItem(index) {
+    const cart = loadCart();
     cart.splice(index, 1);
-    saveCart();
+    saveCart(cart);
     renderCart();
     updateCartCount();
 }
+
+
+// -------------------------
+// 🔥 STRIPE CHECKOUT
+// -------------------------
+
+async function checkout() {
+    const cart = loadCart();
+
+    if (cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+    }
+
+    const items = cart.map(item => ({
+        name: item.name,
+        unit_amount: item.price,
+        currency: "usd",
+        quantity: item.quantity
+    }));
+
+    try {
+        const res = await fetch("http://localhost:3000/api/checkout/create-checkout-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                items,
+                successUrl: window.location.origin + "/success.html",
+                cancelUrl: window.location.origin + "/cancel.html"
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            alert("Server error: no checkout URL.");
+        }
+
+    } catch (err) {
+        alert("Connection error with server.");
+        console.error(err);
+    }
+}
+
+
+// -------------------------
+// 🔥 INICIALIZACIÓN
+// -------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();   // index.html
+    renderCart();       // carrito.html
+    updateCartCount();  // ambos
+
+    const payBtn = document.getElementById("pay-button");
+    if (payBtn) {
+        payBtn.addEventListener("click", checkout);
+    }
+});
