@@ -151,40 +151,33 @@ async function checkout() {
         quantity: item.quantity
     }));
 
-    try {
-        const res = await fetch("http://localhost:3000/api/checkout/create-checkout-session", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                items,
-                successUrl: window.location.origin + "/success.html",
-                cancelUrl: window.location.origin + "/cancel.html"
-            })
-        });
+try {
+  const res = await fetch("/api/checkout/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items
+    })
+  });
 
-        const data = await res.json();
+  const data = await res.json();
 
-        if (data.url) {
-            window.location.href = data.url;
-        } else {
-            alert("Server error: no checkout URL.");
-        }
-
-    } catch (err) {
-        alert("Connection error with server.");
-        console.error(err);
-    }
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert("Error iniciando el pago");
+  }
+} catch (err) {
+  console.error("Checkout error:", err);
 }
-
-
+}
 // -------------------------
 // 🔥 INICIALIZACIÓN
 // -------------------------
-
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts();   // index.html
-    renderCart();       // carrito.html
-    updateCartCount();  // ambos
+    renderProducts();
+    renderCart();
+    updateCartCount();
 
     const payBtn = document.getElementById("pay-button");
     if (payBtn) {
