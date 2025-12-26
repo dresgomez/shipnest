@@ -137,6 +137,7 @@ function removeItem(index) {
 // -------------------------
 
 async function checkout() {
+     alert("Checkout function called");
     const cart = loadCart();
 
     if (cart.length === 0) {
