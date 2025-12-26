@@ -160,8 +160,11 @@ try {
       items
     })
   });
+  
+  console.log("Response status:", res.status);
 
-  const data = await res.json();
+const data = await res.json();
+console.log("Stripe response:", data);
 
   if (data.url) {
     window.location.href = data.url;
