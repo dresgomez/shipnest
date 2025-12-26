@@ -1,11 +1,10 @@
-import Stripe from "stripe";
+const Stripe = require("stripe");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Método no permitido" });
-  }
+module.exports = async function handler(req, res) {
+
+console.log("STRIPE KEY EXISTS:", !!process.env.STRIPE_SECRET_KEY);
 
   try {
     const { items } = req.body;
@@ -27,7 +26,7 @@ export default async function handler(req, res) {
           product_data: {
             name: item.name,
           },
-          unit_amount: item.unit_amount,
+       unit_amount: item.unit_amount,
         },
         quantity: item.quantity,
       })),

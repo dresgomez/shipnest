@@ -137,7 +137,6 @@ function removeItem(index) {
 // -------------------------
 
 async function checkout() {
-     alert("Checkout function called");
     const cart = loadCart();
 
     if (cart.length === 0) {
@@ -146,11 +145,11 @@ async function checkout() {
     }
 
     const items = cart.map(item => ({
-        name: item.name,
-        unit_amount: item.price,
-        currency: "usd",
-        quantity: item.quantity
-    }));
+  name: item.name,
+  price: item.price, // precio normal
+  quantity: item.quantity
+}));
+
 
 try {
   const res = await fetch("/api/checkout/create-checkout-session", {
