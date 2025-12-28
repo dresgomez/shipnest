@@ -1,8 +1,8 @@
-const Stripe = require("stripe");
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método no permitido" });
   }
@@ -21,23 +21,16 @@ module.exports = async function handler(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
-line_items: items.map(item => {
-  if (!item.unit_amount || typeof item.unit_amount !== "number") {
-    throw new Error("unit_amount inválido");
-  }
-
-  return {
-    price_data: {
-      currency: item.currency || "usd",
-      product_data: {
-        name: item.name || "Producto"
-      },
-      unit_amount: item.unit_amount
-    },
-    quantity: item.quantity || 1
-  };
-}),
-
+      line_items: items.map(item => ({
+        price_data: {
+          currency: item.currency || "usd",
+          product_data: {
+            name: item.name
+          },
+          unit_amount: item.unit_amount
+        },
+        quantity: item.quantity || 1
+      })),
       success_url: `${baseUrl}/success.html`,
       cancel_url: `${baseUrl}/cancel.html`
     });
@@ -48,4 +41,4 @@ line_items: items.map(item => {
     console.error("Stripe error:", err);
     return res.status(500).json({ error: "Error creando sesión de pago" });
   }
-};
+}
