@@ -144,9 +144,10 @@ async function checkout() {
         return;
     }
 
-    const items = cart.map(item => ({
+   const items = cart.map(item => ({
   name: item.name,
-  price: item.price, // precio normal
+ unit_amount: item.price,
+  currency: "usd",
   quantity: item.quantity
 }));
 
@@ -164,8 +165,16 @@ try {
   
   console.log("Response status:", res.status);
 
-const data = await res.json();
-console.log("Stripe response:", data);
+const text = await res.text();
+console.log("Stripe response:", text);
+
+let data;
+try {
+  data = JSON.parse(text);
+} catch {
+  throw new Error("Respuesta no JSON del servidor");
+}
+
 
   if (data.url) {
     window.location.href = data.url;
