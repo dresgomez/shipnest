@@ -150,6 +150,8 @@ async function checkout() {
   quantity: item.quantity
 }));
 
+console.log("Items enviados a Stripe:", items);
+
 
 try {
   const res = await fetch("/api/checkout/create-checkout-session", {
