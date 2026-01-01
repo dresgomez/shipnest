@@ -98,8 +98,15 @@ function renderCart() {
     if (!container || !totalText) return;
 
     const cart = loadCart();
-
     container.innerHTML = "";
+
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <p class="empty-cart">🛒 Your cart is empty</p>
+        `;
+        totalText.textContent = "$0.00";
+        return;
+    }
 
     let total = 0;
 
@@ -114,7 +121,7 @@ function renderCart() {
                 <h3>${item.name}</h3>
                 <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
                 <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
-                <button onclick="removeItem(${index})">Remove</button>
+              <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
             </div>
         </div>
         `;
@@ -123,14 +130,15 @@ function renderCart() {
     totalText.textContent = "$" + (total / 100).toFixed(2);
 }
 
-function removeItem(index) {
+ function removeItem(index) {
+    if (!confirm("Remove this item from cart?")) return;
+
     const cart = loadCart();
     cart.splice(index, 1);
     saveCart(cart);
     renderCart();
     updateCartCount();
 }
-
 
 // -------------------------
 // 🔥 STRIPE CHECKOUT
