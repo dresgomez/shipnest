@@ -78,7 +78,29 @@ function renderProducts() {
             <img src="${p.image}" alt="${p.name}">
             <h3>${p.name}</h3>
             <p class="price">$${(p.price / 100).toFixed(2)}</p>
-            <button class="add-btn" onclick="addToCart(${p.id})">
+           function addToCart(productId, btn) {
+    const cart = loadCart();
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    saveCart(cart);
+    updateCartCount();
+
+    // UX feedback
+    btn.textContent = "✔ Added";
+    btn.disabled = true;
+    setTimeout(() => {
+        btn.textContent = "Add to Cart";
+        btn.disabled = false;
+    }, 1000);
+}
                 Add to Cart
             </button>
         </div>
@@ -160,29 +182,27 @@ async function checkout() {
 }));
 
 console.log("Items enviados a Stripe:", items);
+}
 
-
+/*
 try {
   const res = await fetch("/api/checkout/create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      items
-    })
+    body: JSON.stringify({ items })
   });
-  
+
   console.log("Response status:", res.status);
 
-const text = await res.text();
-console.log("Stripe response:", text);
+  const text = await res.text();
+  console.log("Stripe response:", text);
 
-let data;
-try {
-  data = JSON.parse(text);
-} catch {
-  throw new Error("Respuesta no JSON del servidor");
-}
-
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error("Respuesta no JSON del servidor");
+  }
 
   if (data.url) {
     window.location.href = data.url;
@@ -192,7 +212,8 @@ try {
 } catch (err) {
   console.error("Checkout error:", err);
 }
-}
+*/
+
 // -------------------------
 // 🔥 INICIALIZACIÓN
 // -------------------------

@@ -24,7 +24,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <div class="message-box">
@@ -36,6 +35,9 @@
 <script>
   // Vaciar carrito después del pago exitoso
   localStorage.removeItem("cart");
+</script>
+<script>
+    history.replaceState(null, "", location.href);
 </script>
 
 </body>
