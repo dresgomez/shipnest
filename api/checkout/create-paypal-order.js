@@ -4,44 +4,34 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
+if (!process.env.PAYPAL_CLIENT_ID || !process.env.PAYPAL_CLIENT_SECRET) {
+  return res.status(500).json({
+    error: "PayPal env vars missing"
+  });
+}
 
   try {
-    const { total } = req.body;
+    const { items, total } = req.body;
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ error: "Cart is empty" });
+    }
 
     if (!total) {
-      return res.status(400).json({ error: "Total is required" });
+      return res.status(400).json({ error: "Total missing" });
     }
 
     const auth = Buffer.from(
-      `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
+      process.env.PAYPAL_CLIENT_ID + ":" + process.env.PAYPAL_SECRET
     ).toString("base64");
 
-    const tokenResponse = await fetch(
-      "https://api-m.sandbox.paypal.com/v1/oauth2/token",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${auth}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "grant_type=client_credentials",
-      }
-    );
-
-    const tokenData = await tokenResponse.json();
-
-    if (!tokenData.access_token) {
-      console.error("PayPal token error:", tokenData);
-      return res.status(500).json({ error: "PayPal auth failed" });
-    }
-
-    const orderResponse = await fetch(
+    const response = await fetch(
       "https://api-m.sandbox.paypal.com/v2/checkout/orders",
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${tokenData.access_token}`,
           "Content-Type": "application/json",
+          Authorization: `Basic ${auth}`
         },
         body: JSON.stringify({
           intent: "CAPTURE",
@@ -49,25 +39,25 @@ export default async function handler(req, res) {
             {
               amount: {
                 currency_code: "BRL",
-                value: total.toFixed(2),
-              },
-            },
-          ],
-        }),
+                value: total
+              }
+            }
+          ]
+        })
       }
     );
 
-    const orderData = await orderResponse.json();
+    const data = await response.json();
 
-    if (!orderData.id) {
-      console.error("PayPal order error:", orderData);
-      return res.status(500).json({ error: "Order creation failed" });
+    if (!response.ok) {
+      console.error("PayPal API error:", data);
+      return res.status(500).json({ error: "PayPal order creation failed" });
     }
 
-    res.status(200).json({ id: orderData.id });
+    return res.status(200).json({ id: data.id });
 
-  } catch (error) {
-    console.error("Server error:", error);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    console.error("Server error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 }
