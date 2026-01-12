@@ -203,3 +203,48 @@ document.addEventListener("DOMContentLoaded", () => {
         payBtn.addEventListener("click", checkout);
     }
 });
+// -------------------------
+// 🔥 PAYPAL BUTTON
+// -------------------------
+
+if (typeof paypal !== "undefined") {
+  paypal.Buttons({
+    createOrder: async () => {
+      const cart = loadCart();
+
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+
+      const res = await fetch("/api/checkout/create-paypal-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cart,
+          total: (total / 100).toFixed(2)
+        })
+      });
+
+      const data = await res.json();
+
+      if (!data.id) {
+        throw new Error("No PayPal order ID returned");
+      }
+
+      return data.id;
+    },
+
+    onApprove: async (data) => {
+      alert("Pago aprobado 🎉");
+      localStorage.removeItem("cart");
+      updateCartCount();
+      renderCart();
+    },
+
+    onError: (err) => {
+      console.error("PayPal error:", err);
+      alert("Error con PayPal");
+    }
+  }).render("#paypal-button-container");
+}

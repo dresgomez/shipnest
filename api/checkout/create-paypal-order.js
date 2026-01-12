@@ -1,29 +1,17 @@
+import fetch from "node-fetch";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const { items } = req.body;
+    const { total } = req.body;
 
-    if (!items || items.length === 0) {
-      return res.status(400).json({ error: "Carrito vacío" });
+    if (!total) {
+      return res.status(400).json({ error: "Total is required" });
     }
 
-    // 🔐 Recalcular total en el servidor
-    let total = 0;
-
-    for (const item of items) {
-      if (!item.price || !item.quantity) {
-        return res.status(400).json({ error: "Item inválido" });
-      }
-      total += item.price * item.quantity;
-    }
-
-    // Convertir de centavos a reales
-    const totalBRL = (total / 100).toFixed(2);
-
-    // 1. Obtener access token
     const auth = Buffer.from(
       `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
     ).toString("base64");
@@ -42,7 +30,11 @@ export default async function handler(req, res) {
 
     const tokenData = await tokenResponse.json();
 
-    // 2. Crear orden PayPal
+    if (!tokenData.access_token) {
+      console.error("PayPal token error:", tokenData);
+      return res.status(500).json({ error: "PayPal auth failed" });
+    }
+
     const orderResponse = await fetch(
       "https://api-m.sandbox.paypal.com/v2/checkout/orders",
       {
@@ -57,7 +49,7 @@ export default async function handler(req, res) {
             {
               amount: {
                 currency_code: "BRL",
-                value: totalBRL,
+                value: total.toFixed(2),
               },
             },
           ],
@@ -67,10 +59,15 @@ export default async function handler(req, res) {
 
     const orderData = await orderResponse.json();
 
-    return res.status(200).json({ id: orderData.id });
+    if (!orderData.id) {
+      console.error("PayPal order error:", orderData);
+      return res.status(500).json({ error: "Order creation failed" });
+    }
+
+    res.status(200).json({ id: orderData.id });
 
   } catch (error) {
-    console.error("PayPal error:", error);
-    return res.status(500).json({ error: "Error creating PayPal order" });
+    console.error("Server error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
