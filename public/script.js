@@ -78,37 +78,13 @@ function renderProducts() {
             <img src="${p.image}" alt="${p.name}">
             <h3>${p.name}</h3>
             <p class="price">$${(p.price / 100).toFixed(2)}</p>
-           function addToCart(productId, btn) {
-    const cart = loadCart();
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const existing = cart.find(item => item.id === productId);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-
-    saveCart(cart);
-    updateCartCount();
-
-    // UX feedback
-    btn.textContent = "✔ Added";
-    btn.disabled = true;
-    setTimeout(() => {
-        btn.textContent = "Add to Cart";
-        btn.disabled = false;
-    }, 1000);
-}
+            <button onclick="addToCart(${p.id})">
                 Add to Cart
             </button>
         </div>
         `;
     });
 }
-
-
 // -------------------------
 // 🔥 MOSTRAR CARRITO EN carrito.html
 // -------------------------
