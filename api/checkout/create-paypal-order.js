@@ -4,7 +4,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { items, total } = req.body;
+    const { items } = req.body;
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ error: "Carrito vacío" });
+    }
+
+    // 🔐 Recalcular total en el servidor
+    let total = 0;
+
+    for (const item of items) {
+      if (!item.price || !item.quantity) {
+        return res.status(400).json({ error: "Item inválido" });
+      }
+      total += item.price * item.quantity;
+    }
+
+    // Convertir de centavos a reales
+    const totalBRL = (total / 100).toFixed(2);
 
     // 1. Obtener access token
     const auth = Buffer.from(
@@ -25,7 +42,7 @@ export default async function handler(req, res) {
 
     const tokenData = await tokenResponse.json();
 
-    // 2. Crear orden
+    // 2. Crear orden PayPal
     const orderResponse = await fetch(
       "https://api-m.sandbox.paypal.com/v2/checkout/orders",
       {
@@ -40,7 +57,7 @@ export default async function handler(req, res) {
             {
               amount: {
                 currency_code: "BRL",
-                value: total,
+                value: totalBRL,
               },
             },
           ],
@@ -50,9 +67,10 @@ export default async function handler(req, res) {
 
     const orderData = await orderResponse.json();
 
-    res.status(200).json({ id: orderData.id });
+    return res.status(200).json({ id: orderData.id });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error creating PayPal order" });
+    console.error("PayPal error:", error);
+    return res.status(500).json({ error: "Error creating PayPal order" });
   }
 }
