@@ -1,3 +1,8 @@
+console.log("ENV CHECK", {
+  hasId: !!process.env.PAYPAL_CLIENT_ID,
+  hasSecret: !!process.env.PAYPAL_CLIENT_SECRET
+});
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
