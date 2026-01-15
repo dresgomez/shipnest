@@ -211,6 +211,8 @@ if (typeof paypal !== "undefined") {
   paypal.Buttons({
     createOrder: async () => {
       const cart = loadCart();
+      
+  console.log("🧪 CART ENVIADO A PAYPAL:", cart);
 
       const total = cart.reduce(
         (sum, item) => sum + item.price * item.quantity,
