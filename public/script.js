@@ -211,7 +211,7 @@ if (typeof paypal !== "undefined") {
   paypal.Buttons({
     createOrder: async () => {
       const cart = loadCart();
-      
+
   console.log("🧪 CART ENVIADO A PAYPAL:", cart);
 
       const total = cart.reduce(
@@ -228,13 +228,15 @@ if (typeof paypal !== "undefined") {
         })
       });
 
-      const data = await res.json();
+     const data = await res.json();
+console.log("🔥 PayPal backend response:", data);
 
-      if (!data.id) {
-        throw new Error("No PayPal order ID returned");
-      }
+if (!data.id) {
+  alert("Backend error: " + JSON.stringify(data));
+  throw new Error("No PayPal order ID returned");
+}
 
-      return data.id;
+return data.id;
     },
 
     onApprove: async (data) => {
