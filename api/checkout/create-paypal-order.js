@@ -1,9 +1,9 @@
 export default async function handler(req, res) {
-  try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method not allowed" });
-    }
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
+  try {
     const { items } = req.body;
 
     if (!items || items.length === 0) {
@@ -18,7 +18,9 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "PayPal env vars missing" });
     }
 
-    const auth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+    const auth = Buffer.from(
+      `${clientId}:${clientSecret}`
+    ).toString("base64");
 
     // 1️⃣ Obtener access token
     const tokenRes = await fetch(
@@ -40,7 +42,13 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Failed to get PayPal token" });
     }
 
-    // 2️⃣ Crear orden
+    // 2️⃣ Calcular total (centavos → reales)
+    const total = items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    // 3️⃣ Crear orden PayPal
     const orderRes = await fetch(
       "https://api-m.sandbox.paypal.com/v2/checkout/orders",
       {
@@ -55,10 +63,7 @@ export default async function handler(req, res) {
             {
               amount: {
                 currency_code: "BRL",
-                value: items.reduce(
-                  (sum, i) => sum + i.price * i.quantity,
-                  0
-                ).toFixed(2),
+                value: (total / 100).toFixed(2),
               },
             },
           ],
