@@ -239,38 +239,34 @@ if (!data.id) {
 return data.id;
     },
 
-  onApprove: async (data) => {
+onApprove: async (data) => {
   try {
     const res = await fetch("/api/checkout/capture-paypal-order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        orderID: data.orderID
-      })
+      body: JSON.stringify({ orderID: data.orderID })
     });
 
     const result = await res.json();
+    console.log("CAPTURE RESULT:", result);
 
-    if (result.status === "COMPLETED") {
-      alert("✅ Pago completado con éxito");
+    const capture =
+      result?.purchase_units?.[0]?.payments?.captures?.[0];
+
+    if (capture && capture.status === "COMPLETED") {
+      alert("Pago recibido con éxito 🎉");
+
       localStorage.removeItem("cart");
       updateCartCount();
       renderCart();
     } else {
-      alert("⚠️ El pago no se completó");
-      console.error(result);
+      alert("Pago autorizado pero no capturado. Intenta nuevamente.");
     }
 
   } catch (err) {
-    console.error("PayPal capture error:", err);
-    alert("Error capturando el pago");
+    console.error("Capture error:", err);
+    alert("Error procesando el pago. No se realizó el cobro.");
   }
 },
-
-
-    onError: (err) => {
-      console.error("PayPal error:", err);
-      alert("Error con PayPal");
-    }
   }).render("#paypal-button-container");
 }
