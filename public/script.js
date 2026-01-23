@@ -36,6 +36,11 @@ function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+function getSelectedItems() {
+  const cart = loadCart();
+  return cart.filter(item => item.selected);
+}
+
 function updateCartCount() {
     const cart = loadCart();
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -108,22 +113,33 @@ function renderCart() {
 
     let total = 0;
 
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+  cart.forEach((item, index) => {
+  const itemTotal = item.price * item.quantity;
 
-        container.innerHTML += `
-        <div class="cart-item">
-            <img src="${item.image}">
-            <div>
-                <h3>${item.name}</h3>
-                <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
-                <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
-              <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-            </div>
-        </div>
-        `;
-    });
+  if (item.selected) {
+    total += itemTotal;
+  }
+
+  container.innerHTML += `
+    <div class="cart-item">
+      <input 
+        type="checkbox"
+        ${item.selected ? "checked" : ""}
+        onchange="toggleSelect(${index})"
+      />
+
+      <img src="${item.image}">
+      <div>
+        <h3>${item.name}</h3>
+        <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
+        <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
+        <button class="remove-btn" onclick="removeItem(${index})">
+          Remove
+        </button>
+      </div>
+    </div>
+  `;
+});
 
     totalText.textContent = "$" + (total / 100).toFixed(2);
 }
@@ -136,6 +152,12 @@ function renderCart() {
     saveCart(cart);
     renderCart();
     updateCartCount();
+}
+function toggleSelect(index) {
+  const cart = loadCart();
+  cart[index].selected = !cart[index].selected;
+  saveCart(cart);
+  renderCart();
 }
 
 // -------------------------
@@ -210,21 +232,26 @@ document.addEventListener("DOMContentLoaded", () => {
 if (typeof paypal !== "undefined") {
   paypal.Buttons({
     createOrder: async () => {
-      const cart = loadCart();
+    const selectedItems = getSelectedItems();
 
-  console.log("🧪 CART ENVIADO A PAYPAL:", cart);
+if (selectedItems.length === 0) {
+  alert("Please select at least one product to proceed to payment.");
+  throw new Error("No items selected");
+}
 
-      const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
+console.log("🧪 ITEMS ENVIADOS A PAYPAL:", selectedItems);
+
+const total = selectedItems.reduce(
+  (sum, item) => sum + item.price * item.quantity,
+  0
+);
 
       const res = await fetch("/api/checkout/create-paypal-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cart,
-          total: (total / 100).toFixed(2)
+  body: JSON.stringify({
+  items: selectedItems,
+  total: (total / 100).toFixed(2)
         })
       });
 
@@ -253,16 +280,18 @@ onApprove: async (data) => {
     const capture =
       result?.purchase_units?.[0]?.payments?.captures?.[0];
 
-    if (capture && capture.status === "COMPLETED") {
-      alert("Pago recibido con éxito 🎉");
+if (capture && capture.status === "COMPLETED") {
+  alert("Pago recibido con éxito 🎉");
 
-      localStorage.removeItem("cart");
-      updateCartCount();
-      renderCart();
-    } else {
-      alert("Pago autorizado pero no capturado. Intenta nuevamente.");
-    }
+  const cart = loadCart();
+  const remaining = cart.filter(item => !item.selected);
 
+  saveCart(remaining);
+  updateCartCount();
+  renderCart();
+} else {
+  alert("Pago autorizado pero no capturado. Intenta nuevamente.");
+}
   } catch (err) {
     console.error("Capture error:", err);
     alert("Error procesando el pago. No se realizó el cobro.");
