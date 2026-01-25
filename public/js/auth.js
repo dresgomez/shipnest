@@ -1,20 +1,20 @@
 // js/auth.js
 
-export function getUserMode() {
+function getUserMode() {
   return localStorage.getItem("user_mode"); // "guest" | "user"
 }
 
-export function setGuest() {
+function setGuest() {
   localStorage.setItem("user_mode", "guest");
   window.location.href = "store.html";
 }
 
-export function logout() {
+function logout() {
   localStorage.removeItem("user_mode");
   window.location.href = "index.html";
 }
 
-export function requireAuth() {
+function requireAuth() {
   const mode = getUserMode();
 
   if (!mode || mode === "guest") {
@@ -25,3 +25,9 @@ export function requireAuth() {
 
   return true;
 }
+
+// 👇 Exposición global (MUY IMPORTANTE)
+window.getUserMode = getUserMode;
+window.setGuest = setGuest;
+window.logout = logout;
+window.requireAuth = requireAuth;
