@@ -1,11 +1,9 @@
 // js/cart.js
-
 const CART_KEY = "cart";
 
 // =======================
 // Storage
 // =======================
-
 function loadCart() {
   return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
@@ -15,9 +13,8 @@ function saveCart(cart) {
 }
 
 // =======================
-// Cart helpers
+// Helpers
 // =======================
-
 function updateCartCount() {
   const count = loadCart().reduce((sum, item) => sum + item.quantity, 0);
   const el = document.querySelector(".cart-count");
@@ -29,9 +26,8 @@ function getSelectedItems() {
 }
 
 // =======================
-// Cart actions
+// Actions
 // =======================
-
 function addToCart(product) {
   const cart = loadCart();
   const existing = cart.find(item => item.id === product.id);
@@ -48,7 +44,6 @@ function addToCart(product) {
 
 function removeItem(index) {
   if (!confirm("Remove this item from cart?")) return;
-
   const cart = loadCart();
   cart.splice(index, 1);
   saveCart(cart);
@@ -66,7 +61,6 @@ function toggleSelect(index) {
 // =======================
 // UI
 // =======================
-
 function renderCart() {
   const container = document.getElementById("cart-container");
   const totalText = document.getElementById("cart-total");
@@ -99,9 +93,7 @@ function renderCart() {
           <h3>${item.name}</h3>
           <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
           <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
-          <button class="remove-btn" onclick="removeItem(${index})">
-            Remove
-          </button>
+          <button onclick="removeItem(${index})">Remove</button>
         </div>
       </div>
     `;
@@ -109,3 +101,13 @@ function renderCart() {
 
   totalText.textContent = "$" + (total / 100).toFixed(2);
 }
+
+// =======================
+// Global exposure
+// =======================
+window.addToCart = addToCart;
+window.removeItem = removeItem;
+window.toggleSelect = toggleSelect;
+window.renderCart = renderCart;
+window.updateCartCount = updateCartCount;
+window.getSelectedItems = getSelectedItems;
