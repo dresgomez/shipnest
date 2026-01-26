@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Aigo</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- JS base -->
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/auth.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Aigo</div>
+  <nav>
+    <a href="carrito.html">Back to cart</a>
+  </nav>
+</header>
+
+<section class="checkout-section">
+  <h2>Checkout</h2>
+
+  <!-- Productos seleccionados -->
+  <div id="checkout-items"></div>
+
+  <!-- Total -->
+  <div class="checkout-total">
+    <h3>Total:</h3>
+    <p id="checkout-total">$0.00</p>
+  </div>
+
+  <!-- Botones de pago (vacíos por ahora) -->
+  <button class="pay-btn" id="stripe-pay">Pay with Card</button>
+
+  <div id="paypal-button-container" style="margin-top: 20px;"></div>
+</section>
+
+</body>
+</html>
