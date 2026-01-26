@@ -2,7 +2,7 @@
 // Productos
 // =======================
 
-const products = [
+window.products = [
   {
     id: 1,
     name: "Smart Watch Pro",
@@ -39,8 +39,9 @@ function renderProducts() {
         <img src="${p.image}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p class="price">$${(p.price / 100).toFixed(2)}</p>
-        <button onclick='addToCart(${JSON.stringify(p)})'>
-          Add to Cart
+     <button onclick="addToCartById(${p.id})">
+  Add to Cart
+</button>
         </button>
       </div>
     `;

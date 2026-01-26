@@ -28,6 +28,7 @@ function getSelectedItems() {
 // =======================
 // Actions
 // =======================
+
 function addToCart(product) {
   const cart = loadCart();
   const existing = cart.find(item => item.id === product.id);
@@ -42,6 +43,16 @@ function addToCart(product) {
   updateCartCount();
 }
 
+function addToCartById(id) {
+  const product = window.products.find(p => p.id === id);
+  if (!product) return;
+
+  addToCart(product);
+}
+
+// =======================
+// Exposición global
+// =======================
 function removeItem(index) {
   if (!confirm("Remove this item from cart?")) return;
   const cart = loadCart();
