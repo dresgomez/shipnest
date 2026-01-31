@@ -115,14 +115,47 @@ document.addEventListener("DOMContentLoaded", () => {
 // -------------------------
 // 🔥 PAYPAL BUTTON
 // -------------------------
+const statusDiv = document.getElementById("payment-status");
+
+function mostrarCargando() {
+  statusDiv.textContent = "⏳ Procesando pago, por favor espera...";
+  statusDiv.style.color = "#555";
+}
+
+function mostrarExito() {
+  statusDiv.innerHTML = `
+    ✅ <strong>Pago realizado con éxito</strong><br>
+    Gracias por tu compra. En breve puedes volver a la tienda.
+  `;
+
+  statusDiv.innerHTML += `
+    <div style="margin-top:12px;">
+      <a href="index.html" style="text-decoration:underline;">
+        Volver a la tienda
+      </a>
+    </div>
+  `;
+
+  statusDiv.style.color = "green";
+}
+
+function mostrarError() {
+  statusDiv.textContent = "❌ El pago fue cancelado o ocurrió un error.";
+  statusDiv.style.color = "red";
+}
 
 if (typeof paypal !== "undefined") {
   paypal.Buttons({
+  onClick: function () {
+  mostrarCargando();
+  statusDiv.textContent = "⏳ Redirigiendo a PayPal...";
+},
+
     createOrder: async () => {
     const selectedItems = getSelectedItems();
-
 if (selectedItems.length === 0) {
-  alert("Please select at least one product to proceed to payment.");
+  mostrarError();
+  statusDiv.textContent = "❌ No hay productos seleccionados para pagar.";
   throw new Error("No items selected");
 }
 
@@ -146,12 +179,18 @@ const total = selectedItems.reduce(
 console.log("🔥 PayPal backend response:", data);
 
 if (!data.id) {
-  alert("Backend error: " + JSON.stringify(data));
+  mostrarError();
+  statusDiv.textContent = "❌ Error al iniciar el pago. Intenta nuevamente.";
   throw new Error("No PayPal order ID returned");
 }
 
 return data.id;
     },
+onError: function (err) {
+  console.error("PayPal error:", err);
+  mostrarError();
+  statusDiv.textContent = "❌ Ocurrió un error con PayPal. Intenta nuevamente.";
+},
 
 onApprove: async (data) => {
   try {
@@ -168,7 +207,9 @@ onApprove: async (data) => {
       result?.purchase_units?.[0]?.payments?.captures?.[0];
 
 if (capture && capture.status === "COMPLETED") {
-  alert("Pago recibido con éxito 🎉");
+  mostrarExito();
+
+document.querySelector("#paypal-button-container").style.pointerEvents = "none";
 
   const cart = loadCart();
   const remaining = cart.filter(item => !item.selected);
@@ -177,11 +218,11 @@ if (capture && capture.status === "COMPLETED") {
   updateCartCount();
   renderCart();
 } else {
-  alert("Pago autorizado pero no capturado. Intenta nuevamente.");
+    mostrarError();
 }
   } catch (err) {
     console.error("Capture error:", err);
-    alert("Error procesando el pago. No se realizó el cobro.");
+      mostrarError();
   }
 },
   }).render("#paypal-button-container");
