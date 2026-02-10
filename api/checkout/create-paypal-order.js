@@ -7,25 +7,34 @@ export default async function handler(req, res) {
   hasId: !!process.env.PAYPAL_CLIENT_ID,
   hasSecret: !!process.env.PAYPAL_CLIENT_SECRET
 });
+try {
+  const { items } = req.body;
 
-  try {
-    const { items } = req.body;
+  // ✅ Validación fuerte del carrito
+  if (!items || !Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: "Invalid items" });
+  }
 
-    if (!items || items.length === 0) {
-      return res.status(400).json({ error: "Cart empty" });
+  for (const item of items) {
+    if (!item.quantity || item.quantity <= 0) {
+      return res.status(400).json({ error: "Invalid item quantity" });
     }
+  }
 
-    const clientId = process.env.PAYPAL_CLIENT_ID;
-    const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
 
-    if (!clientId || !clientSecret) {
-      console.error("❌ Missing PayPal env vars");
-      return res.status(500).json({ error: "PayPal env vars missing" });
-    }
+  if (!clientId || !clientSecret) {
+    console.error("❌ Missing PayPal env vars");
+    return res.status(500).json({ error: "PayPal env vars missing" });
+  }
 
-    const auth = Buffer.from(
-      `${clientId}:${clientSecret}`
-    ).toString("base64");
+  const auth = Buffer.from(
+    `${clientId}:${clientSecret}`
+  ).toString("base64");
+
+  // ... sigue el flujo
+
 
     // 1️⃣ Obtener access token
     const tokenRes = await fetch(

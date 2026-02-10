@@ -1,4 +1,10 @@
 export default async function handler(req, res) {
+
+  // 🔐 1. Validar método
+  if (req.method !== "POST") {
+    return res.status(405).end();
+  }
+
   try {
     const { orderID } = req.body;
 
@@ -23,6 +29,15 @@ export default async function handler(req, res) {
 
     console.log("🔴 RAW PAYPAL CAPTURE RESPONSE:", result);
 
+    // 🔐 2. VALIDACIÓN REAL DEL PAGO
+    const capture =
+      result?.purchase_units?.[0]?.payments?.captures?.[0];
+
+    if (!capture || capture.status !== "COMPLETED") {
+      return res.status(400).json({ error: "Payment not completed" });
+    }
+
+    // ✅ Solo aquí el pago es válido
     return res.status(200).json(result);
 
   } catch (err) {
