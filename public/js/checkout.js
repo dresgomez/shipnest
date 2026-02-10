@@ -1,8 +1,43 @@
 // js/checkout.js
 
+let paymentLocked = false;
+
+// 🔒 BLOQUEAR UI
+function lockPaymentUI(message = "Procesando pago...") {
+  paymentLocked = true;
+
+  const overlay = document.createElement("div");
+  overlay.id = "payment-overlay";
+  overlay.innerHTML = `
+    <div class="payment-box">
+      <div class="spinner"></div>
+      <p>${message}</p>
+      <small>No cierres ni recargues esta página</small>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+// 🔓 DESBLOQUEAR UI
+function unlockPaymentUI() {
+  paymentLocked = false;
+  const overlay = document.getElementById("payment-overlay");
+  if (overlay) overlay.remove();
+}
+
+// ⛔ evitar recarga mientras paga
+window.addEventListener("beforeunload", (e) => {
+  if (paymentLocked) {
+    e.preventDefault();
+    e.returnValue = "";
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const itemsContainer = document.getElementById("checkout-items");
   const totalText = document.getElementById("checkout-total");
+  const statusDiv = document.getElementById("payment-status");
 
   if (!itemsContainer || !totalText) return;
 
@@ -42,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // -------------------------
 // 🔥 PAYPAL BUTTON
 // -------------------------
-const statusDiv = document.getElementById("payment-status");
-
 function mostrarCargando() {
   statusDiv.textContent = "⏳ Procesando pago, por favor espera...";
   statusDiv.style.color = "#555";
@@ -69,9 +102,9 @@ function mostrarError() {
 
 if (typeof paypal !== "undefined") {
   paypal.Buttons({
-    onClick() {
-      mostrarCargando();
-      statusDiv.textContent = "⏳ Redirigiendo a PayPal...";
+   onClick() {
+  lockPaymentUI("Redirigiendo a PayPal...");
+  mostrarCargando();
     },
 
     createOrder: async () => {
@@ -110,8 +143,8 @@ if (typeof paypal !== "undefined") {
         body: JSON.stringify({ orderID: data.orderID })
       });
 
-      const result = await res.json();
-      const capture = result?.purchase_units?.[0]?.payments?.captures?.[0];
+    const result = await res.json();
+    const capture = result?.purchase_units?.[0]?.payments?.captures?.[0];
 
       if (capture?.status === "COMPLETED") {
         mostrarExito();
@@ -126,9 +159,10 @@ if (typeof paypal !== "undefined") {
       }
     },
 
-    onError(err) {
-      console.error(err);
-      mostrarError();
-    }
+   onError(err) {
+  console.error(err);
+  unlockPaymentUI();
+  mostrarError();
+}
   }).render("#paypal-button-container");
 }
