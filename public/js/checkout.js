@@ -33,11 +33,13 @@ window.addEventListener("beforeunload", (e) => {
   }
 });
 
+let statusDiv;
 
 document.addEventListener("DOMContentLoaded", () => {
   const itemsContainer = document.getElementById("checkout-items");
   const totalText = document.getElementById("checkout-total");
-  const statusDiv = document.getElementById("payment-status");
+
+   statusDiv = document.getElementById("payment-status");
 
   if (!itemsContainer || !totalText) return;
 
@@ -78,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🔥 PAYPAL BUTTON
 // -------------------------
 function mostrarCargando() {
+    if (!statusDiv) return;
   statusDiv.textContent = "⏳ Procesando pago, por favor espera...";
   statusDiv.style.color = "#555";
 }
@@ -137,26 +140,37 @@ if (typeof paypal !== "undefined") {
     },
 
     onApprove: async (data) => {
-      const res = await fetch("/api/checkout/capture-paypal-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderID: data.orderID })
-      });
+  lockPaymentUI("Confirmando pago con el banco...");
+
+  try {
+    const res = await fetch("/api/checkout/capture-paypal-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderID: data.orderID })
+    });
 
     const result = await res.json();
     const capture = result?.purchase_units?.[0]?.payments?.captures?.[0];
 
-      if (capture?.status === "COMPLETED") {
-        mostrarExito();
-        document.querySelector("#paypal-button-container").style.pointerEvents = "none";
+    if (capture?.status === "COMPLETED") {
+      unlockPaymentUI();
+      mostrarExito();
 
-        const cart = loadCart();
-        saveCart(cart.filter(item => !item.selected));
-        updateCartCount();
-        renderCart();
-      } else {
-        mostrarError();
-      }
+      document.querySelector("#paypal-button-container").style.pointerEvents = "none";
+
+      const cart = loadCart();
+      saveCart(cart.filter(item => !item.selected));
+      updateCartCount();
+      renderCart();
+
+    } else {
+      unlockPaymentUI();
+      mostrarError();
+    }
+  } catch (err) {
+    unlockPaymentUI();
+    mostrarError();
+  }
     },
 
    onError(err) {
