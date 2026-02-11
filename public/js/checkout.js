@@ -33,6 +33,15 @@ window.addEventListener("beforeunload", (e) => {
   }
 });
 
+// ⏱️ watchdog anti-softlock (GLOBAL)
+setTimeout(() => {
+  if (paymentLocked) {
+    console.warn("⚠️ Payment timeout reached");
+    unlockPaymentUI();
+    mostrarError();
+  }
+}, 20000);
+
 let statusDiv;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -139,7 +148,7 @@ if (typeof paypal !== "undefined") {
       return data.id;
     },
 
-    onApprove: async (data) => {
+  onApprove: async (data) => {
   lockPaymentUI("Confirmando pago con el banco...");
 
   try {
@@ -150,28 +159,33 @@ if (typeof paypal !== "undefined") {
     });
 
     const result = await res.json();
-    const capture = result?.purchase_units?.[0]?.payments?.captures?.[0];
+    console.log("CAPTURE RESULT:", result);
+
+    const capture =
+      result?.purchase_units?.[0]?.payments?.captures?.[0];
 
     if (capture?.status === "COMPLETED") {
-      unlockPaymentUI();
       mostrarExito();
 
-      document.querySelector("#paypal-button-container").style.pointerEvents = "none";
+      document.querySelector("#paypal-button-container")
+        .style.pointerEvents = "none";
 
       const cart = loadCart();
       saveCart(cart.filter(item => !item.selected));
       updateCartCount();
       renderCart();
-
     } else {
-      unlockPaymentUI();
       mostrarError();
     }
+
   } catch (err) {
-    unlockPaymentUI();
+    console.error("❌ Capture error:", err);
     mostrarError();
+  } finally {
+    // 🔓 pase lo que pase
+    unlockPaymentUI();
   }
-    },
+},
 
    onError(err) {
   console.error(err);
