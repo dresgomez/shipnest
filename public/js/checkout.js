@@ -161,10 +161,9 @@ if (typeof paypal !== "undefined") {
       return data.id;
     },
 
-  onApprove: async (data) => {
+ onApprove: async (data) => {
   paymentApproved = true;
   lockPaymentUI("Confirmando pago con el banco...");
-
 
   try {
     const res = await fetch("/api/checkout/capture-paypal-order", {
@@ -176,10 +175,7 @@ if (typeof paypal !== "undefined") {
     const result = await res.json();
     console.log("CAPTURE RESULT:", result);
 
-    const capture =
-      result?.purchase_units?.[0]?.payments?.captures?.[0];
-
-    if (capture?.status === "COMPLETED") {
+    if (result.status === "COMPLETED") {
       mostrarExito();
 
       document.querySelector("#paypal-button-container")
@@ -197,7 +193,7 @@ if (typeof paypal !== "undefined") {
     console.error("❌ Capture error:", err);
     mostrarError();
   } finally {
-     paymentApproved = false;
+    paymentApproved = false;
     unlockPaymentUI();
   }
 },
