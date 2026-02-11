@@ -1,10 +1,17 @@
 // js/checkout.js
 
 let paymentLocked = false;
+let paymentTimeout = null;
 
 // 🔒 BLOQUEAR UI
 function lockPaymentUI(message = "Procesando pago...") {
   paymentLocked = true;
+
+  // 🔁 limpiar timeout anterior si existe
+  if (paymentTimeout) {
+    clearTimeout(paymentTimeout);
+    paymentTimeout = null;
+  }
 
   const overlay = document.createElement("div");
   overlay.id = "payment-overlay";
@@ -15,15 +22,33 @@ function lockPaymentUI(message = "Procesando pago...") {
       <small>No cierres ni recargues esta página</small>
     </div>
   `;
+
   document.body.appendChild(overlay);
-}
+
+  // ⏱️ timeout de seguridad (POR INTENTO)
+ paymentTimeout = setTimeout(() => {
+  if (paymentLocked) {
+    console.warn("⚠️ Payment timeout");
+    unlockPaymentUI();
+    mostrarError();
+  }
+}, 20000);
+
+
 
 // 🔓 DESBLOQUEAR UI
 function unlockPaymentUI() {
   paymentLocked = false;
+
+  if (paymentTimeout) {
+    clearTimeout(paymentTimeout);
+    paymentTimeout = null;
+  }
+
   const overlay = document.getElementById("payment-overlay");
   if (overlay) overlay.remove();
 }
+
 
 // ⛔ evitar recarga mientras paga
 window.addEventListener("beforeunload", (e) => {
@@ -32,15 +57,6 @@ window.addEventListener("beforeunload", (e) => {
     e.returnValue = "";
   }
 });
-
-// ⏱️ watchdog anti-softlock (GLOBAL)
-setTimeout(() => {
-  if (paymentLocked) {
-    console.warn("⚠️ Payment timeout reached");
-    unlockPaymentUI();
-    mostrarError();
-  }
-}, 20000);
 
 let statusDiv;
 
