@@ -2,6 +2,7 @@
 
 let paymentLocked = false;
 let paymentTimeout = null;
+let paymentApproved = false;
 
 // 🔒 BLOQUEAR UI
 function lockPaymentUI(message = "Procesando pago...") {
@@ -25,16 +26,15 @@ function lockPaymentUI(message = "Procesando pago...") {
 
   document.body.appendChild(overlay);
 
-  // ⏱️ timeout de seguridad (POR INTENTO)
- paymentTimeout = setTimeout(() => {
-  if (paymentLocked) {
+paymentTimeout = setTimeout(() => {
+  if (paymentLocked && !paymentApproved) {
     console.warn("⚠️ Payment timeout");
     unlockPaymentUI();
     mostrarError();
   }
-}, 20000);
+}, 20000); // 20 segundos
 
-
+}
 
 // 🔓 DESBLOQUEAR UI
 function unlockPaymentUI() {
@@ -130,10 +130,7 @@ function mostrarError() {
 
 if (typeof paypal !== "undefined") {
   paypal.Buttons({
-   onClick() {
-  lockPaymentUI("Redirigiendo a PayPal...");
-  mostrarCargando();
-    },
+
 
     createOrder: async () => {
       const selectedItems = getSelectedItems();
@@ -165,7 +162,9 @@ if (typeof paypal !== "undefined") {
     },
 
   onApprove: async (data) => {
+  paymentApproved = true;
   lockPaymentUI("Confirmando pago con el banco...");
+
 
   try {
     const res = await fetch("/api/checkout/capture-paypal-order", {
@@ -198,7 +197,7 @@ if (typeof paypal !== "undefined") {
     console.error("❌ Capture error:", err);
     mostrarError();
   } finally {
-    // 🔓 pase lo que pase
+     paymentApproved = false;
     unlockPaymentUI();
   }
 },
