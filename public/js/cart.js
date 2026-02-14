@@ -93,7 +93,7 @@ function renderCart() {
     if (item.selected) total += itemTotal;
 
     container.innerHTML += `
-      <div class="cart-item">
+  <div class="cart-item ${item.selected ? "selected" : ""}">
         <input type="checkbox"
           ${item.selected ? "checked" : ""}
           onchange="toggleSelect(${index})"
@@ -110,6 +110,12 @@ function renderCart() {
   });
 
   totalText.textContent = "$" + (total / 100).toFixed(2);
+  
+const payBtn = document.getElementById("pay-button");
+if (payBtn) {
+  payBtn.disabled = total === 0;
+}
+
 }
 
 // =======================
