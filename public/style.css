@@ -229,10 +229,9 @@ footer .container {
   padding: 14px;
   border-radius: 12px;
 
-  /* 🔽 aquí está la clave */
-  background: #f3f6fa; /* blanco roto azulado, descansa la vista */
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background: rgba(30, 136, 229, 0.06); /* azul MUY suave */
+  
+  box-shadow: 0 4px 14px rgba(30,136,229,0.08);
   margin-bottom: 12px;
 
   transition:
@@ -240,6 +239,7 @@ footer .container {
     box-shadow 0.2s ease,
     background 0.2s ease;
 }
+
 
 /* Texto del producto */
 .cart-item h3 {
@@ -258,8 +258,9 @@ footer .container {
 
 /* Hover */
 .cart-item:hover {
-   transform: translateY(-2px);
+   background: #eef3fb;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
 }
 
 .cart-item.selected {
