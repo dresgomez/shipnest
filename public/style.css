@@ -54,6 +54,13 @@ nav a:hover {
   color: var(--accent);
 }
 
+/* contenedor del icono */
+.header-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+}
 
 .cart-link {
   position: relative;       /* 🔑 referencia del contador */
@@ -62,18 +69,19 @@ nav a:hover {
 }
 
 .cart-count {
-position: absolute;
-  top: -6px;
-  right: -8px;
+  position: absolute;
+  top: -6px;     /* sube */
+  right: -6px;   /* diagonal derecha */
   background: red;
   color: white;
   font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 50%;
+  padding: 3px 6px;
+  border-radius: 999px;
   min-width: 18px;
   text-align: center;
   line-height: 1;
-   font-weight: bold;
+  font-weight: bold;
+  pointer-events: none;
 }
 
 /* --- A-Z SECTION --- */
