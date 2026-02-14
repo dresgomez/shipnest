@@ -228,9 +228,13 @@ footer .container {
   gap: 12px;
   padding: 14px;
   border-radius: 12px;
-  background: #f5f9ff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+  /* 🔽 aquí está la clave */
+  background: #f3f6fa; /* blanco roto azulado, descansa la vista */
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   margin-bottom: 12px;
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -244,8 +248,7 @@ footer .container {
 }
 
 .cart-item p {
-  color: #1f2937;
-  opacity: 0.8;
+  color: #374151;
 }
 
 /* Precio destacado */
@@ -255,8 +258,8 @@ footer .container {
 
 /* Hover */
 .cart-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .cart-item.selected {
