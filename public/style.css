@@ -70,8 +70,8 @@ nav a:hover {
 
 .cart-count {
   position: absolute;
-  top: -6px;     /* sube */
-  right: -6px;   /* diagonal derecha */
+  top: -8px;     /* sube */
+  right: -10px;   /* diagonal derecha */
   background: red;
   color: white;
   font-size: 11px;
@@ -227,6 +227,12 @@ footer .container {
     background: var(--bg-card);
     color: var(--text-main);
 }
+
+.item-subtotal {
+  font-weight: bold;
+  margin-top: 4px;
+}
+
 
 .cart-total-box {
     background: var(--bg-card);
