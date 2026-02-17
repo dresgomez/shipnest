@@ -87,6 +87,10 @@ function toggleSelect(index) {
   renderCart();
 }
 
+function getSelectedItems() {
+  const cart = loadCart();
+  return cart.filter(item => item.selected === true);
+}
 // =======================
 // UI
 // =======================
