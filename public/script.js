@@ -37,15 +37,17 @@ function renderProducts() {
       <div class="product-card">
         <img src="${p.image}" alt="${p.name}">
         <h3>${p.name}</h3>
-        <p class="price">$${(p.price / 100).toFixed(2)}</p>
-        <button onclick='addToCart(${JSON.stringify(p)})'>
+        <p>$${(p.price / 100).toFixed(2)}</p>
+        <button 
+          class="add-cart-btn"
+          onclick='addToCart(${JSON.stringify(p)})'
+        >
           Add to Cart
         </button>
       </div>
     `;
   });
 }
-
 
 // -------------------------
 // 🔥 STRIPE CHECKOUT
