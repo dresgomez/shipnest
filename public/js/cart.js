@@ -28,19 +28,32 @@ function getSelectedItems() {
 // Actions
 // =======================
 
-function addToCart(product) {
+function addToCart(product, btn = null) {
   const cart = loadCart();
   const existing = cart.find(item => item.id === product.id);
 
   if (existing) {
     existing.quantity += 1;
   } else {
-    cart.push({ ...product, quantity: 1, selected: false });
+    cart.push({ ...product, quantity: 1, selected: true });
   }
 
   saveCart(cart);
   updateCartCount();
+
+  // 🎯 Feedback visual
+  if (btn) {
+    const originalText = btn.textContent;
+    btn.textContent = "✓ Added";
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 900);
+  }
 }
+
 
 function addToCartById(id) {
   const product = window.products.find(p => p.id === id);

@@ -39,7 +39,10 @@ function renderProducts() {
         <img src="${p.image}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p class="price">$${(p.price / 100).toFixed(2)}</p>
-     <button onclick="addToCartById(${p.id})">
+    <button 
+  class="add-cart-btn"
+  onclick='addToCart(${JSON.stringify(p)}, this)'
+>
   Add to Cart
 </button>
         </button>
