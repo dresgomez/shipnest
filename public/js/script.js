@@ -45,7 +45,6 @@ function renderProducts() {
 >
   Add to Cart
 </button>
-        </button>
       </div>
     `;
   });

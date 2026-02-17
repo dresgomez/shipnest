@@ -41,7 +41,7 @@ function addToCart(product, btn = null) {
   if (existing) {
     existing.quantity += 1;
   } else {
-    cart.push({ ...product, quantity: 1, selected: true });
+    cart.push({ ...product, quantity: 1, selected: false });
   }
 
   saveCart(cart);

@@ -259,6 +259,21 @@ footer .container {
     background 0.2s ease;
 }
 
+/* animación de entrada */
+.cart-item {
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Texto del producto */
 .cart-item h3 {
