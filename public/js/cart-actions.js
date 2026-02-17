@@ -12,6 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // 🔒 UX: bloquear botón
+    payBtn.disabled = true;
+    const originalText = payBtn.textContent;
+    payBtn.textContent = "Redirecting...";
+
+    // 💾 Guardar selección para checkout
+    localStorage.setItem(
+      "checkout_items",
+      JSON.stringify(selectedItems)
+    );
+
     // 🚀 Ir al checkout
     window.location.href = "checkout.html";
   });
