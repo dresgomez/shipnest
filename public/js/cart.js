@@ -15,14 +15,20 @@ function saveCart(cart) {
 // Helpers
 // =======================
 function updateCartCount() {
-  const count = loadCart().reduce((sum, item) => sum + item.quantity, 0);
-  const el = document.querySelector(".cart-count");
-  if (el) el.textContent = count;
+  const cart = loadCart();
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const badge = document.querySelector(".cart-count");
+  if (!badge) return;
+
+  badge.textContent = count;
+
+  // ✨ trigger animación
+  badge.classList.remove("bump");
+  void badge.offsetWidth; // reset animación
+  badge.classList.add("bump");
 }
 
-function getSelectedItems() {
-  return loadCart().filter(item => item.selected);
-}
 
 // =======================
 // Actions
