@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const payBtn = document.getElementById("pay-button");
   if (!payBtn) return;
 
-  payBtn.addEventListener("click", () => {
+  payBtn.addEventListener("click", async () => {
     const selectedItems = getSelectedItems();
 
     if (selectedItems.length === 0) {
@@ -15,15 +15,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🔒 UX: bloquear botón
     payBtn.disabled = true;
     const originalText = payBtn.textContent;
-    payBtn.textContent = "Redirecting...";
+    payBtn.textContent = "Processing...";
 
-    // 💾 Guardar selección para checkout
-    localStorage.setItem(
-      "checkout_items",
-      JSON.stringify(selectedItems)
-    );
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: selectedItems,
+          total: calculateSelectedTotal(),
+        }),
+      });
 
-    // 🚀 Ir al checkout
-    window.location.href = "checkout.html";
+      if (!res.ok) throw new Error("Checkout failed");
+
+      alert("Order created successfully");
+
+      clearCart();
+      renderCart();
+
+    } catch (err) {
+      alert("Something went wrong");
+      payBtn.disabled = false;
+      payBtn.textContent = originalText;
+    }
   });
 });

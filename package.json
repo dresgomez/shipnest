@@ -2,8 +2,10 @@
   "name": "aigo",
   "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
   "dependencies": {
-    "mongodb": "^7.1.0",
-    "stripe": "^20.0.0"
+    "mongodb": "^7.1.0"
   }
 }

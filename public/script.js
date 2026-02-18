@@ -49,57 +49,6 @@ function renderProducts() {
   });
 }
 
-// -------------------------
-// 🔥 STRIPE CHECKOUT
-// -------------------------
-
-async function checkout() {
-    const cart = loadCart();
-
-    if (cart.length === 0) {
-        alert("Cart is empty!");
-        return;
-    }
-
-   const items = cart.map(item => ({
-  name: item.name,
- unit_amount: item.price,
-  currency: "usd",
-  quantity: item.quantity
-}));
-
-console.log("Items enviados a Stripe:", items);
-}
-
-/*
-try {
-  const res = await fetch("/api/checkout/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items })
-  });
-
-  console.log("Response status:", res.status);
-
-  const text = await res.text();
-  console.log("Stripe response:", text);
-
-  let data;
-  try {
-    data = JSON.parse(text);
-  } catch {
-    throw new Error("Respuesta no JSON del servidor");
-  }
-
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert("Error iniciando el pago");
-  }
-} catch (err) {
-  console.error("Checkout error:", err);
-}
-*/
 
 // -------------------------
 // 🔥 INICIALIZACIÓN
