@@ -1,8 +1,9 @@
 {
-  "name": "shipnest",
+  "name": "aigo",
   "private": true,
   "type": "module",
   "dependencies": {
+    "mongodb": "^7.1.0",
     "stripe": "^20.0.0"
   }
 }
