@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!payBtn) return;
 
   payBtn.addEventListener("click", async () => {
+    console.log("🟡 PAY CLICK");
     const selectedItems = getSelectedItems();
 
     if (selectedItems.length === 0) {
