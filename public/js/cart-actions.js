@@ -1,5 +1,7 @@
 // js/cart-actions.js
 
+console.log("🟢 cart-actions.js cargado");
+
 document.addEventListener("DOMContentLoaded", () => {
   const payBtn = document.getElementById("pay-button");
   if (!payBtn) return;
