@@ -1,48 +1,30 @@
 // js/cart-actions.js
-
 console.log("TEST CART ACTIONS");
 
 document.addEventListener("DOMContentLoaded", () => {
   const payBtn = document.getElementById("pay-button");
   if (!payBtn) return;
 
-  payBtn.addEventListener("click", async () => {
+  payBtn.addEventListener("click", () => {
     console.log("🟡 PAY CLICK");
-    const selectedItems = getSelectedItems();
 
+    const selectedItems = getSelectedItems();
     if (selectedItems.length === 0) {
       alert("Please select at least one product to continue.");
       return;
     }
 
-    // 🔒 UX: bloquear botón
+    // 🔒 UX
     payBtn.disabled = true;
-    const originalText = payBtn.textContent;
-    payBtn.textContent = "Processing...";
+    payBtn.textContent = "Redirecting...";
 
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: selectedItems,
-          total: calculateSelectedTotal(),
-        }),
-      });
+    // 💾 Guardar para checkout
+    localStorage.setItem(
+      "checkout_items",
+      JSON.stringify(selectedItems)
+    );
 
-      if (!res.ok) throw new Error("Checkout failed");
-
-      alert("Order created successfully");
-
-      clearCart();
-      renderCart();
-
-    } catch (err) {
-      alert("Something went wrong");
-      payBtn.disabled = false;
-      payBtn.textContent = originalText;
-    }
+    // 🚀 Ir al checkout
+    window.location.href = "checkout.html";
   });
 });
