@@ -146,7 +146,7 @@ if (typeof paypal !== "undefined") {
         0
       );
 
-      const res = await fetch("/api/checkout/create-paypal-order", {
+      const res = await fetch("/api/checkout/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -166,7 +166,7 @@ if (typeof paypal !== "undefined") {
   lockPaymentUI("Confirmando pago con el banco...");
 
   try {
-    const res = await fetch("/api/checkout/capture-paypal-order", {
+    const res = await fetch("/api/checkout/capture", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ orderID: data.orderID })
