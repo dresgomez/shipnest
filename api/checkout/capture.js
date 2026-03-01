@@ -1,4 +1,5 @@
-import { getDb } from "../../lib/mongo.js";
+import { getDb } from "../../../lib/mongo.js";
+console.log("🟢 CAPTURE API LOADED");
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -50,8 +51,9 @@ export default async function handler(req, res) {
         details: result,
       });
     }
-    
+
     // 🧠 MongoDB — guardar orden
+    console.log("🟢 PAYMENT COMPLETED, SAVING TO MONGO");
 const db = await getDb();
 
 await db.collection("orders").insertOne({
