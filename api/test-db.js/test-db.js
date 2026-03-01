@@ -1,21 +1,20 @@
-import clientPromise from "../lib/mongo";
+import { getDb } from "../lib/mongo.js";
 
 export default async function handler(req, res) {
   try {
-    const client = await clientPromise;
-    const db = client.db("test");
+    const db = await getDb();
 
-    const collections = await db.listCollections().toArray();
+    const result = await db.collection("orders").insertOne({
+      test: true,
+      createdAt: new Date(),
+    });
 
-    res.status(200).json({
+    return res.status(200).json({
       ok: true,
-      collections: collections.map(c => c.name),
+      insertedId: result.insertedId,
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      ok: false,
-      error: "MongoDB connection failed",
-    });
+  } catch (err) {
+    console.error("❌ Mongo test error:", err);
+    return res.status(500).json({ ok: false });
   }
 }
