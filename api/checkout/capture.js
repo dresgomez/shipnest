@@ -1,3 +1,5 @@
+import { getDb } from "../../lib/mongo.js";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -48,6 +50,18 @@ export default async function handler(req, res) {
         details: result,
       });
     }
+    
+    // 🧠 MongoDB — guardar orden
+const db = await getDb();
+
+await db.collection("orders").insertOne({
+  orderID,
+  captureID: capture.id,
+  amount: capture.amount,
+  status: "paid",
+  provider: "paypal",
+  createdAt: new Date(),
+});
 
     // ✅ SOLO AQUÍ EL PAGO ES REAL
     return res.status(200).json({
