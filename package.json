@@ -6,6 +6,7 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "mongodb": "^7.1.0"
+    "mongodb": "^7.1.0",
+    "node-fetch": "^3.3.2"
   }
 }

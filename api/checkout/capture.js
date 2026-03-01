@@ -1,4 +1,5 @@
 import { getDb } from "../../../lib/mongo.js";
+import fetch from "node-fetch";
 console.log("🟢 CAPTURE API LOADED");
 
 export default async function handler(req, res) {
@@ -7,6 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
+     console.log("🟢 CAPTURE HANDLER STARTED");
     const { orderID } = req.body;
 
     // 🔐 Validación básica
