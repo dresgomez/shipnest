@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { getDb } from "../../lib/mongo.js";
 console.log("🟢 CAPTURE API LOADED");
 
 export default async function handler(req, res) {
@@ -52,7 +53,18 @@ export default async function handler(req, res) {
         details: result,
       });
     }
+    
+// 🧠 Guardar orden en Mongo
+const db = await getDb();
 
+await db.collection("orders").insertOne({
+  orderID,
+  captureID: capture.id,
+  amount: capture.amount,
+  status: "paid",
+  provider: "paypal",
+  createdAt: new Date(),
+});
 
     // ✅ SOLO AQUÍ EL PAGO ES REAL
     return res.status(200).json({
