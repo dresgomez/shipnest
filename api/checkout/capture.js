@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { getDb } from "../../lib/mongo.js";
+import { getDb } from "../../lib/mongodb.js";
 console.log("🟢 CAPTURE API LOADED");
 
 export default async function handler(req, res) {
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         details: result,
       });
     }
-    
+
 // 🧠 Guardar orden en Mongo
 const db = await getDb();
 
