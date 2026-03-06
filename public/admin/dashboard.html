@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aigo Admin</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<style>
+
+.admin-container{
+max-width:1100px;
+margin:auto;
+padding:40px;
+}
+
+.admin-title{
+font-size:2rem;
+margin-bottom:20px;
+color:var(--accent);
+}
+
+.orders-table{
+width:100%;
+border-collapse:collapse;
+background:var(--bg-card);
+border-radius:10px;
+overflow:hidden;
+}
+
+.orders-table th{
+background:#020617;
+padding:14px;
+text-align:left;
+}
+
+.orders-table td{
+padding:12px;
+border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.orders-table tr:hover{
+background:rgba(255,255,255,0.03);
+}
+
+</style>
+
+<script src="/admin/admin.js" defer></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">Aigo Admin</div>
+</header>
+
+<div class="admin-container">
+
+<h1 class="admin-title">Orders</h1>
+
+<table class="orders-table">
+
+<thead>
+<tr>
+<th>OrderID</th>
+<th>CaptureID</th>
+<th>Status</th>
+<th>Amount</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody id="orders"></tbody>
+
+</table>
+
+</div>
+
+</body>
+</html>
