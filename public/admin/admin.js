@@ -23,4 +23,43 @@ table.appendChild(row);
 
 }
 
+function setupProductForm(){
+
+const form = document.getElementById("productForm");
+
+if(!form) return;
+
+form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const product = {
+
+name: document.getElementById("name").value,
+price: document.getElementById("price").value,
+image: document.getElementById("image").value,
+category: document.getElementById("category").value,
+description: document.getElementById("description").value
+
+};
+
+await fetch("/api/products/create", {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify(product)
+
+});
+
+alert("Product created");
+
+});
+
+}
+
 loadOrders();
+setupProductForm();
