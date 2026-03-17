@@ -1,31 +1,36 @@
-async function loadProducts(){
+import { getDb } from "../../lib/mongodb.js";
 
-const res = await fetch("/api/products");
+export default async function handler(req, res){
 
-const data = await res.json();
+if(req.method !== "POST"){
+return res.status(405).json({error:"Method not allowed"});
+}
 
-const container =
-document.getElementById("products-container");
+try{
 
-container.innerHTML = "";
+const db = await getDb();
 
-data.products.forEach(product => {
+const product = req.body;
 
-const card = document.createElement("div");
+const newProduct = {
+name: product.name,
+price: product.price,
+image: product.image,
+category: product.category || "general",
+description: product.description || "",
+createdAt: new Date()
+};
 
-card.className = "product-card";
+await db.collection("products").insertOne(newProduct);
 
-card.innerHTML = `
-<img src="${product.image}">
-<h3>${product.name}</h3>
-<p>$${product.price}</p>
-<button class="add-cart-btn">Add to cart</button>
-`;
+res.status(200).json({success:true});
 
-container.appendChild(card);
+}catch(err){
 
-});
+console.error("Product create error:",err);
+
+res.status(500).json({error:"Failed to create product"});
 
 }
 
-loadProducts();
+}
