@@ -63,3 +63,17 @@ alert("Product created");
 
 loadOrders();
 setupProductForm();
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if(logoutBtn){
+
+logoutBtn.addEventListener("click", () => {
+
+localStorage.removeItem("admin_token");
+
+window.location.href = "/admin/login.html";
+
+});
+
+}

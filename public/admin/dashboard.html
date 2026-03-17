@@ -64,8 +64,57 @@ window.location.href = "/admin/login.html";
 <body>
 
 <header class="navbar">
+
 <div class="logo">Aigo Admin</div>
+
+<button id="logoutBtn" class="admin-logout">
+Logout
+</button>
+
 </header>
+
+<div class="admin-container">
+
+<h1 class="admin-title">Orders</h1>
+
+<h2>Add Product</h2>
+
+<form id="productForm">
+
+<input type="text" id="name" placeholder="Product name" required>
+
+<input type="number" id="price" placeholder="Price" required>
+
+<input type="text" id="image" placeholder="Image URL" required>
+
+<input type="text" id="category" placeholder="Category">
+
+<textarea id="description" placeholder="Description"></textarea>
+
+<button type="submit">Create Product</button>
+
+</form>
+
+<table class="orders-table">
+
+<thead>
+<tr>
+<th>OrderID</th>
+<th>CaptureID</th>
+<th>Status</th>
+<th>Amount</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody id="orders"></tbody>
+
+</table>
+
+</div>
+
+</body>
+</html>
 
 <div class="admin-container">
 

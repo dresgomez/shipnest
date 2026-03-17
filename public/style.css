@@ -463,3 +463,19 @@ footer .container {
     text-decoration: none;
     border-radius: 6px;
 }
+.admin-logout{
+
+background:var(--accent);
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+.admin-logout:hover{
+
+opacity:0.8;
+
+}
