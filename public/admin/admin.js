@@ -43,7 +43,7 @@ description: document.getElementById("description").value
 
 };
 
-await fetch("/api/products/create", {
+await fetch("/api/products/create.js", {
 
 method: "POST",
 
