@@ -18,9 +18,16 @@ card.className = "product-card";
 card.innerHTML = `
 <img src="${product.image}">
 <h3>${product.name}</h3>
-<p>$${product.price}</p>
+<p>$${(product.price / 100).toFixed(2)}</p>
 <button class="add-cart-btn">Add to cart</button>
 `;
+
+const btn = card.querySelector(".add-cart-btn");
+
+// 🔥 CONEXIÓN CLAVE
+btn.addEventListener("click", () => {
+  addToCart(product, btn);
+});
 
 container.appendChild(card);
 

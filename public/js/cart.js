@@ -34,6 +34,19 @@ function updateCartCount() {
 // Actions
 // =======================
 
+btn.addEventListener("click", () => {
+
+  const productForCart = {
+    id: product._id, // 🔥 importante
+    name: product.name,
+    price: product.price,
+    image: product.image
+  };
+
+  addToCart(productForCart, btn);
+
+});
+
 function addToCart(product, btn = null) {
   const cart = loadCart();
   const existing = cart.find(item => item.id === product.id);
