@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   try {
      console.log("🟢 CAPTURE HANDLER STARTED");
-    const { orderID } = req.body;
+    const { orderID, items } = req.body;
 
     // 🔐 Validación básica
     if (!orderID) {
@@ -61,6 +61,7 @@ await db.collection("orders").insertOne({
   orderID,
   captureID: capture.id,
   amount: capture.amount,
+  items, // 🔥 AQUÍ ESTÁ LA MAGIA
   status: "paid",
   provider: "paypal",
   createdAt: new Date(),
