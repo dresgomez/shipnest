@@ -11,6 +11,13 @@ export default async function handler(req, res) {
      console.log("🟢 CAPTURE HANDLER STARTED");
     const { orderID, items } = req.body;
 
+const cleanItems = items.map(item => ({
+  id: item.id,
+  name: item.name,
+  price: Number(item.price),
+  quantity: item.quantity
+}));
+
     // 🔐 Validación básica
     if (!orderID) {
       return res.status(400).json({ error: "Missing orderID" });
@@ -61,7 +68,7 @@ await db.collection("orders").insertOne({
   orderID,
   captureID: capture.id,
   amount: capture.amount,
-  items, // 🔥 AQUÍ ESTÁ LA MAGIA
+ items: cleanItems, // 🔥 AQUÍ ESTÁ LA MAGIA
   status: "paid",
   provider: "paypal",
   createdAt: new Date(),

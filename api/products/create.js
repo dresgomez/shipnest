@@ -14,7 +14,7 @@ const product = req.body;
 
 const newProduct = {
 name: product.name,
-price: product.price,
+price: parseInt(product.price),
 image: product.image,
 category: product.category || "general",
 description: product.description || "",
