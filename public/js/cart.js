@@ -34,19 +34,6 @@ function updateCartCount() {
 // Actions
 // =======================
 
-btn.addEventListener("click", () => {
-
-  const productForCart = {
-    id: product._id, // 🔥 importante
-    name: product.name,
-    price: product.price,
-    image: product.image
-  };
-
-  addToCart(productForCart, btn);
-
-});
-
 function addToCart(product, btn = null) {
   const cart = loadCart();
   const existing = cart.find(item => item.id === product.id);
@@ -84,6 +71,28 @@ function addToCartById(id) {
 // =======================
 // Exposición global
 // =======================
+function increaseQty(index) {
+  const cart = loadCart();
+  cart[index].quantity += 1;
+  saveCart(cart);
+  renderCart();
+  updateCartCount();
+}
+
+function decreaseQty(index) {
+  const cart = loadCart();
+
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+  } else {
+    cart.splice(index, 1);
+  }
+
+  saveCart(cart);
+  renderCart();
+  updateCartCount();
+}
+
 function removeItem(index) {
   if (!confirm("Remove this item from cart?")) return;
   const cart = loadCart();
@@ -137,7 +146,13 @@ function renderCart() {
         <img src="${item.image}">
         <div>
           <h3>${item.name}</h3>
-          <p>$${(item.price / 100).toFixed(2)} x ${item.quantity}</p>
+<p>$${(item.price / 100).toFixed(2)}</p>
+
+<div style="display:flex; align-items:center; gap:10px; margin:6px 0;">
+  <button onclick="decreaseQty(${index})">➖</button>
+  <span>${item.quantity}</span>
+  <button onclick="increaseQty(${index})">➕</button>
+</div>
           <p><strong>Total: $${(itemTotal / 100).toFixed(2)}</strong></p>
           <button onclick="removeItem(${index})">Remove</button>
         </div>
@@ -158,6 +173,8 @@ if (payBtn) {
 // Global exposure
 // =======================
 window.addToCart = addToCart;
+window.increaseQty = increaseQty;
+window.decreaseQty = decreaseQty;
 window.removeItem = removeItem;
 window.toggleSelect = toggleSelect;
 window.renderCart = renderCart;
