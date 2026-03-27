@@ -277,12 +277,12 @@ footer .container {
 
 /* Texto del producto */
 .cart-item h3 {
-  color: #1f2937;
+  color: var(--text-main);
   font-weight: 600;
 }
 
 .cart-item p {
-  color: #374151;
+  color: var(--text-muted);
 }
 
 /* Precio destacado */
@@ -292,22 +292,46 @@ footer .container {
 
 /* Hover */
 .cart-item:hover {
-   background: #eef3fb;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.03);
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
-
 .cart-item.selected {
-  background: #f0f7ff;
-  border-left: 4px solid #1e88e5;
+  background: rgba(56, 189, 248, 0.12); /* azul suave */
+  border-left: 4px solid var(--accent);
 }
 
-
-.cart-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+.cart-item span {
+  background: rgba(255,255,255,0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: var(--text-main);
+  font-weight: 600;
 }
 
+.cart-item button {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart-item button:hover {
+  background: var(--accent);
+  color: #020617;
+}
+
+.cart-item button:last-child {
+  background: #ef4444;
+  color: white;
+}
+
+.cart-item button:last-child:hover {
+  background: #c62828;
+}
 
 .item-subtotal {
   font-weight: bold;
