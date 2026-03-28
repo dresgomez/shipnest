@@ -67,9 +67,14 @@ try {
     const db = await getDb();
 
 for (const item of items) {
+
+  console.log("ITEM:", item);
+
   const product = await db.collection("products").findOne({
     _id: new ObjectId(item.id)
   });
+
+ console.log("PRODUCT:", product);
 
   if (!product) {
     return res.status(400).json({ error: "Product not found" });
