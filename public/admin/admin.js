@@ -15,6 +15,7 @@ row.innerHTML = `
 <td>${order.status}</td>
 <td>${order.amount?.value || "?"}</td>
 <td>${new Date(order.createdAt).toLocaleString()}</td>
+<td>${order.stock ?? "-"}</td>
 `;
 
 table.appendChild(row);
@@ -34,13 +35,12 @@ form.addEventListener("submit", async (e) => {
 e.preventDefault();
 
 const product = {
-
-name: document.getElementById("name").value,
-price: document.getElementById("price").value,
-image: document.getElementById("image").value,
-category: document.getElementById("category").value,
-description: document.getElementById("description").value
-
+  name: document.getElementById("name").value,
+  price: parseInt(document.getElementById("price").value),
+  image: document.getElementById("image").value,
+  category: document.getElementById("category").value,
+  description: document.getElementById("description").value,
+  stock: parseInt(document.getElementById("stock").value) || 0
 };
 
 await fetch("/api/products/create", {

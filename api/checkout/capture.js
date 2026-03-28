@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { getDb } from "../../lib/mongodb.js";
+import { ObjectId } from "mongodb";
 console.log("🟢 CAPTURE API LOADED");
 
 export default async function handler(req, res) {
@@ -62,7 +63,7 @@ const cleanItems = items.map(item => ({
     }
 
 // 🧠 Guardar orden en Mongo
-const db = await getDb();0
+const db = await getDb();
 
 await db.collection("orders").insertOne({
   orderID,
@@ -74,6 +75,15 @@ await db.collection("orders").insertOne({
   createdAt: new Date(),
 });
 
+for (const item of order.items) {
+  await db.collection("products").updateOne(
+    { _id: new ObjectId(item.id) },
+    {
+      $inc: { stock: -item.quantity }
+    }
+  );
+}
+
     // ✅ SOLO AQUÍ EL PAGO ES REAL
     return res.status(200).json({
       status: "COMPLETED",
@@ -81,7 +91,7 @@ await db.collection("orders").insertOne({
       captureID: capture.id,
       amount: capture.amount,
     });
-
+ 
   } catch (err) {
     console.error("❌ PayPal capture error:", err);
     return res.status(500).json({ error: "Capture failed" });

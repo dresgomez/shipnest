@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -61,6 +62,24 @@ try {
       (sum, item) => sum + item.price * item.quantity,
       0
     );
+
+    const db = await getDb();
+
+for (const item of items) {
+  const product = await db.collection("products").findOne({
+    _id: new ObjectId(item.id)
+  });
+
+  if (!product) {
+    return res.status(400).json({ error: "Product not found" });
+  }
+
+  if (product.stock < item.quantity) {
+    return res.status(400).json({
+      error: `Not enough stock for ${product.name}`
+    });
+  }
+}
 
     // 3️⃣ Crear orden PayPal
     const orderRes = await fetch(
