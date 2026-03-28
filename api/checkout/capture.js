@@ -75,7 +75,7 @@ await db.collection("orders").insertOne({
   createdAt: new Date(),
 });
 
-for (const item of order.items) {
+for (const item of cleanItems) {
   await db.collection("products").updateOne(
     { _id: new ObjectId(item.id) },
     {

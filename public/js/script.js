@@ -7,6 +7,8 @@ const data = await res.json();
 const container =
 document.getElementById("products-container");
 
+if (!container) return;
+
 container.innerHTML = "";
 
 data.products.forEach(product => {
