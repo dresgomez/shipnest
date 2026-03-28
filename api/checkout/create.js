@@ -1,3 +1,4 @@
+import { getDb } from "../../lib/mongodb.js";
 import { ObjectId } from "mongodb";
 export default async function handler(req, res) {
   if (req.method !== "POST") {

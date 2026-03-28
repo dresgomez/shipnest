@@ -18,6 +18,7 @@ price: parseInt(product.price),
 image: product.image,
 category: product.category || "general",
 description: product.description || "",
+stock: Number(product.stock) || 0,
 createdAt: new Date()
 };
 
