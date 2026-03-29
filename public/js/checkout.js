@@ -146,13 +146,20 @@ if (typeof paypal !== "undefined") {
         0
       );
 
+     const cleanItems = selectedItems.map(item => ({
+  id: item.id || item._id, // 🔥 solución híbrida
+  name: item.name,
+  price: Number(item.price),
+  quantity: item.quantity
+}));
+
       const res = await fetch("/api/checkout/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: selectedItems,
-          total: (total / 100).toFixed(2)
-        })
+       body: JSON.stringify({
+  items: cleanItems,
+  total: (total / 100).toFixed(2)
+}) 
       });
 
       const data = await res.json();

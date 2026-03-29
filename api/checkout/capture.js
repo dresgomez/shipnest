@@ -76,6 +76,12 @@ await db.collection("orders").insertOne({
 });
 
 for (const item of cleanItems) {
+
+  if (!ObjectId.isValid(item.id)) {
+    console.error("❌ Invalid ObjectId:", item.id);
+    continue;
+  }
+
   await db.collection("products").updateOne(
     { _id: new ObjectId(item.id) },
     {
