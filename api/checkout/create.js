@@ -71,7 +71,7 @@ for (const item of items) {
   console.log("ITEM:", item);
 
   const product = await db.collection("products").findOne({
-  id: product._id
+   _id: new ObjectId(item.id)
   });
 
  console.log("PRODUCT:", product);
