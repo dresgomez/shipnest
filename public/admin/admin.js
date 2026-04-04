@@ -77,3 +77,27 @@ window.location.href = "/admin/login.html";
 });
 
 }
+
+async function loadProducts() {
+  const res = await fetch("/api/products");
+  const data = await res.json();
+
+  const table = document.getElementById("products");
+  if (!table) return;
+
+  table.innerHTML = "";
+
+  data.products.forEach(product => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.price}</td>
+      <td>${product.stock}</td>
+    `;
+
+    table.appendChild(row);
+  });
+}
+
+loadProducts();

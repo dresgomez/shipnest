@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const { orderID, items } = req.body;
 
 const cleanItems = items.map(item => ({
-  id: item.id,
+    id: item.id || item._id, // 🔥 FIX REAL
   name: item.name,
   price: Number(item.price),
   quantity: item.quantity
@@ -77,17 +77,25 @@ await db.collection("orders").insertOne({
 
 for (const item of cleanItems) {
 
+  // 🧠 Debug antes de validar
+  console.log("UPDATING STOCK:", item.id, item.quantity);
+
+  // 🔒 Validación de ObjectId
   if (!ObjectId.isValid(item.id)) {
     console.error("❌ Invalid ObjectId:", item.id);
     continue;
   }
 
-  await db.collection("products").updateOne(
+  // 🔄 Update real
+  const result = await db.collection("products").updateOne(
     { _id: new ObjectId(item.id) },
     {
       $inc: { stock: -item.quantity }
     }
   );
+
+  // 🧠 Debug después del update
+  console.log("UPDATE RESULT:", result);
 }
 
     // ✅ SOLO AQUÍ EL PAGO ES REAL
