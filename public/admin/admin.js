@@ -94,10 +94,29 @@ async function loadProducts() {
       <td>${product.name}</td>
       <td>${product.price}</td>
       <td>${product.stock}</td>
+      <td><button onclick="deleteProduct('${product._id}')">🗑 Delete</button>
+  </td>
     `;
 
     table.appendChild(row);
   });
+}
+
+async function deleteProduct(id) {
+  if (!confirm("Delete this product?")) return;
+
+  const res = await fetch(`/api/products/delete?id=${id}`, {
+    method: "DELETE"
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Product deleted");
+    loadProducts(); // recargar tabla
+  } else {
+    alert("Error deleting product");
+  }
 }
 
 loadProducts();
