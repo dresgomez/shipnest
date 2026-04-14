@@ -1,3 +1,4 @@
+let editingProductId = null;
 async function loadOrders(){
 
 const res = await fetch("/api/orders");
@@ -24,41 +25,63 @@ table.appendChild(row);
 
 }
 
-function setupProductForm(){
+async function setupProductForm() {
+  const form = document.getElementById("productForm");
 
-const form = document.getElementById("productForm");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-if(!form) return;
+    const product = {
+      name: document.getElementById("name").value,
+      price: parseInt(document.getElementById("price").value),
+      image: document.getElementById("image").value,
+      category: document.getElementById("category").value,
+      description: document.getElementById("description").value,
+      stock: parseInt(document.getElementById("stock").value) || 0
+    };
 
-form.addEventListener("submit", async (e) => {
+    // 🔥 AQUI LA MAGIA
+    if (editingProductId) {
+      // UPDATE
+      await fetch(`/api/products/update?id=${editingProductId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product)
+      });
 
-e.preventDefault();
+      alert("Product updated");
+      editingProductId = null;
 
-const product = {
-  name: document.getElementById("name").value,
-  price: parseInt(document.getElementById("price").value),
-  image: document.getElementById("image").value,
-  category: document.getElementById("category").value,
-  description: document.getElementById("description").value,
-  stock: parseInt(document.getElementById("stock").value) || 0
-};
+    } else {
+      // CREATE
+      await fetch("/api/products/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product)
+      });
 
-await fetch("/api/products/create", {
+      alert("Product created");
+    }
 
-method: "POST",
+    form.reset();
+    loadProducts();
+  });
+}
 
-headers: {
-"Content-Type": "application/json"
-},
+function editProduct(id) {
+  const product = window.products.find(p => p._id === id);
+  if (!product) return;
 
-body: JSON.stringify(product)
+  document.getElementById("name").value = product.name;
+  document.getElementById("price").value = product.price;
+  document.getElementById("image").value = product.image;
+  document.getElementById("category").value = product.category;
+  document.getElementById("description").value = product.description;
+  document.getElementById("stock").value = product.stock;
 
-});
+  editingProductId = id;
 
-alert("Product created");
-
-});
-
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 loadOrders();
@@ -82,6 +105,8 @@ async function loadProducts() {
   const res = await fetch("/api/products");
   const data = await res.json();
 
+   window.products = data.products;
+
   const table = document.getElementById("products");
   if (!table) return;
 
@@ -91,12 +116,14 @@ async function loadProducts() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${product.name}</td>
-      <td>${product.price}</td>
-      <td>${product.stock}</td>
-      <td><button onclick="deleteProduct('${product._id}')">🗑 Delete</button>
+  <td>${product.name}</td>
+  <td>${product.price}</td>
+  <td>${product.stock}</td>
+  <td>
+    <button onclick="editProduct('${product._id}')">✏️ Edit</button>
+    <button onclick="deleteProduct('${product._id}')">🗑 Delete</button>
   </td>
-    `;
+`;
 
     table.appendChild(row);
   });
