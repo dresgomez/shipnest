@@ -1,5 +1,3 @@
-console.log("HEADER:", req.headers.authorization);
-console.log("EXPECTED:", `Bearer ${process.env.ADMIN_TOKEN}`);
 const token = localStorage.getItem("admin_token");
 
 if (!token) {

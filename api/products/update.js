@@ -3,6 +3,8 @@ import { ObjectId } from "mongodb";
 import { verifyAdmin } from "../../lib/auth.js";
 
 export default async function handler(req, res) {
+console.log("HEADER:", req.headers.authorization);
+console.log("EXPECTED:", `Bearer ${process.env.ADMIN_TOKEN}`);
 
    if (!verifyAdmin(req)) {
     return res.status(401).json({ error: "Unauthorized" });
