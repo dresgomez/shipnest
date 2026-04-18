@@ -144,18 +144,18 @@ async function loadProducts() {
 async function deleteProduct(id) {
   if (!confirm("Delete this product?")) return;
 
- await fetch(`/api/products/delete?id=${id}`, {
-  method: "DELETE",
-  headers: {
+  const res = await fetch(`/api/products/delete?id=${id}`, {
+    method: "DELETE",
+    headers: {
       Authorization: `Bearer ${token}`
-  },
-});
+    }
+  });
 
   const data = await res.json();
 
   if (data.success) {
     alert("Product deleted");
-    loadProducts(); // recargar tabla
+    loadProducts();
   } else {
     alert("Error deleting product");
   }
