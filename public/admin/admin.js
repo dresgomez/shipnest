@@ -53,7 +53,7 @@ async function setupProductForm() {
   method: "PUT",
   headers: {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+    Authorization: token // 👈 AQUÍ
   },
         body: JSON.stringify(product)
       });
@@ -67,7 +67,7 @@ async function setupProductForm() {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+    Authorization: token // 👈 AQUÍ
   },
         body: JSON.stringify(product)
       });
@@ -147,7 +147,7 @@ async function deleteProduct(id) {
  await fetch(`/api/products/delete?id=${id}`, {
   method: "DELETE",
   headers: {
-    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+       Authorization: token
   }
 });
 
