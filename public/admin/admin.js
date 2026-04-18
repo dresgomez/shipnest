@@ -1,3 +1,9 @@
+const token = localStorage.getItem("admin_token");
+
+if (!token) {
+  window.location.href = "/admin/login.html";
+}
+
 let editingProductId = null;
 async function loadOrders(){
 
@@ -44,8 +50,11 @@ async function setupProductForm() {
     if (editingProductId) {
       // UPDATE
       await fetch(`/api/products/update?id=${editingProductId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+  },
         body: JSON.stringify(product)
       });
 
@@ -55,8 +64,11 @@ async function setupProductForm() {
     } else {
       // CREATE
       await fetch("/api/products/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+  },
         body: JSON.stringify(product)
       });
 
@@ -132,9 +144,12 @@ async function loadProducts() {
 async function deleteProduct(id) {
   if (!confirm("Delete this product?")) return;
 
-  const res = await fetch(`/api/products/delete?id=${id}`, {
-    method: "DELETE"
-  });
+ await fetch(`/api/products/delete?id=${id}`, {
+  method: "DELETE",
+  headers: {
+    "Authorization": `Bearer ${token}` // 🔥 CLAVE
+  }
+});
 
   const data = await res.json();
 

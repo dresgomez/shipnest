@@ -1,7 +1,13 @@
 import { getDb } from "../../lib/mongodb.js";
 import { ObjectId } from "mongodb";
+import { verifyAdmin } from "../../lib/auth.js";
 
 export default async function handler(req, res) {
+
+   if (!verifyAdmin(req)) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   if (req.method !== "PUT") {
     return res.status(405).json({ error: "Method not allowed" });
   }
