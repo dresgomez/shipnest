@@ -4,13 +4,26 @@
   gap: 40px;
   padding: 40px;
   color: var(--text-main);
+  align-items: start;
+
+  background: var(--bg-card); /* 👈 CAMBIO AQUÍ */
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* 👈 efecto pro */
+}
+
+.product-info {
+  max-width: 400px;
 }
 
 .product-image img {
   width: 100%;
+  max-width: 400px;
+  height: auto;
   border-radius: 12px;
   background: #0f172a;
   padding: 10px;
+  object-fit: cover;
 }
 
 .product-info h1 {
