@@ -12,27 +12,35 @@ if (!container) return;
 container.innerHTML = "";
 
 data.products.forEach(product => {
+  const card = document.createElement("div");
+  card.className = "product-card";
 
-const card = document.createElement("div");
+  card.innerHTML = `
+    <img src="${product.image}">
+    <h3>${product.name}</h3>
+    <p>$${(product.price / 100).toFixed(2)}</p>
+    <button class="add-cart-btn">Add to cart</button>
+  `;
 
-card.className = "product-card";
+  // 👉 click en card = ir a product page
+  card.addEventListener("click", () => {
+    window.location.href = `/product.html?id=${product._id}`;
+  });
 
-card.innerHTML = `
-<img src="${product.image}">
-<h3>${product.name}</h3>
-<p>$${(product.price / 100).toFixed(2)}</p>
-<button class="add-cart-btn">Add to cart</button>
-`;
+  const btn = card.querySelector(".add-cart-btn");
 
-const btn = card.querySelector(".add-cart-btn");
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation(); // 🔥 CLAVE
 
-// 🔥 CONEXIÓN CLAVE
-btn.addEventListener("click", () => {
-  addToCart(product, btn);
-});
+    addToCart({
+      id: product._id, // 🔥 CLAVE
+      name: product.name,
+      price: product.price,
+      image: product.image
+    }, btn);
+  });
 
-container.appendChild(card);
-
+  container.appendChild(card);
 });
 
 }

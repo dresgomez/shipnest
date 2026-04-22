@@ -29,7 +29,6 @@ function updateCartCount() {
   badge.classList.add("bump");
 }
 
-
 // =======================
 // Actions
 // =======================
