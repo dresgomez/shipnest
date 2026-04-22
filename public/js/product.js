@@ -2,8 +2,15 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 async function loadProduct() {
-  const res = await fetch(`/api/products/${id}`);
-  const product = await res.json();
+  const res = await fetch("/api/products");
+  const data = await res.json();
+
+  const product = data.products.find(p => p._id === id);
+
+  if (!product) {
+    console.error("Product not found");
+    return;
+  }
 
   document.getElementById("product-image").src = product.image;
   document.getElementById("product-name").textContent = product.name;
@@ -26,7 +33,6 @@ async function loadProduct() {
     stockEl.className = "product-stock stock-out";
   }
 
-  // botón carrito
   const btn = document.getElementById("add-to-cart-btn");
 
   btn.addEventListener("click", () => {
@@ -38,4 +44,5 @@ async function loadProduct() {
     }, btn);
   });
 }
+
 loadProduct();
