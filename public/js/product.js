@@ -35,14 +35,17 @@ async function loadProduct() {
 
   const btn = document.getElementById("add-to-cart-btn");
 
-  btn.addEventListener("click", () => {
-    addToCart({
-      id: product._id,
-      name: product.name,
-      price: product.price,
-      image: product.image
-    }, btn);
-  });
+ btn.addEventListener("click", () => {
+  addToCart({
+    id: product._id,
+    name: product.name,
+    price: product.price,
+    image: product.image
+  }, btn);
+
+  updateCartCount();
+});
 }
 
 loadProduct();
+updateCartCount();
