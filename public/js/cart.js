@@ -25,13 +25,17 @@ function updateCartCount() {
   const badges = document.querySelectorAll(".cart-count");
 
   badges.forEach(badge => {
-    badge.textContent = count;
-  });
 
-  // ✨ trigger animación
-  badge.classList.remove("bump");
-  void badge.offsetWidth; // reset animación
-  badge.classList.add("bump");
+    badge.textContent = count;
+
+    // ✨ animación
+    badge.classList.remove("bump");
+
+    void badge.offsetWidth;
+
+    badge.classList.add("bump");
+
+  });
 }
 
 // =======================
