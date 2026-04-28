@@ -104,6 +104,8 @@ function renderProducts() {
 // =======================
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("SCRIPT LOADED");
+
   renderProducts();
 
   if (typeof renderCart === "function") {
@@ -111,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (typeof updateCartCount === "function") {
+    console.log("UPDATING CART");
     updateCartCount();
   }
 });
