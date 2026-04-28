@@ -47,30 +47,6 @@ data.products.forEach(product => {
 
 loadProducts();
 
-// =======================
-// Productos
-// =======================
-
-window.products = [
-  {
-    id: 1,
-    name: "Smart Watch Pro",
-    price: 2999,
-    image: "img/reloj.jpg"
-  },
-  {
-    id: 2,
-    name: "Wireless Earbuds",
-    price: 1999,
-    image: "img/earbuds.jpg"
-  },
-  {
-    id: 3,
-    name: "4K Action Camera",
-    price: 4999,
-    image: "img/camara.jpg"
-  }
-];
 
 // =======================
 // UI productos
