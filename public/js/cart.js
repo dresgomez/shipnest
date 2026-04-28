@@ -16,12 +16,17 @@ function saveCart(cart) {
 // =======================
 function updateCartCount() {
   const cart = loadCart();
-  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const badge = document.querySelector(".cart-count");
-  if (!badge) return;
+  const count = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
-  badge.textContent = count;
+  const badges = document.querySelectorAll(".cart-count");
+
+  badges.forEach(badge => {
+    badge.textContent = count;
+  });
 
   // ✨ trigger animación
   badge.classList.remove("bump");
