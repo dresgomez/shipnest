@@ -74,3 +74,21 @@
   margin-top: 20px;
   color: #cbd5f5;
 }
+
+.back-button {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 16px;
+
+  background: var(--bg-card);
+  color: var(--text-main);
+
+  border-radius: 8px;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.back-button:hover {
+  transform: translateX(-3px);
+}
