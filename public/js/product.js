@@ -17,6 +17,33 @@ async function loadProduct() {
   document.getElementById("product-price").textContent =
     "$" + (product.price / 100).toFixed(2);
 
+    const thumbs = [
+  document.getElementById("thumb-1"),
+  document.getElementById("thumb-2"),
+  document.getElementById("thumb-3")
+];
+
+thumbs.forEach((thumb) => {
+
+  thumb.src = product.image;
+
+  thumb.addEventListener("click", () => {
+
+    document.getElementById("product-image").src =
+      thumb.src;
+
+    document
+      .querySelectorAll(".thumb")
+      .forEach(t =>
+        t.classList.remove("active-thumb")
+      );
+
+    thumb.classList.add("active-thumb");
+
+  });
+
+});
+
   document.getElementById("product-description").textContent =
     product.description;
 
