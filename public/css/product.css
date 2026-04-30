@@ -142,3 +142,15 @@
 .back-button:hover {
   transform: translateX(-3px);
 }
+
+.product-meta {
+  margin: 20px 0;
+}
+
+.product-actions {
+  margin-top: 25px;
+}
+
+.product-actions button {
+  width: 220px;
+}
