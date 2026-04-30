@@ -154,3 +154,57 @@
 .product-actions button {
   width: 220px;
 }
+
+.related-products {
+  margin-top: 50px;
+}
+
+.related-products h2 {
+  margin-bottom: 20px;
+}
+
+#related-products-container {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+.related-card {
+
+  background: var(--bg-card);
+
+  border-radius: 12px;
+
+  padding: 15px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.related-card:hover {
+  transform: translateY(-5px);
+}
+
+.related-card img {
+  width: 100%;
+
+  height: 200px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+}
+
+.related-card h3 {
+  margin-top: 10px;
+}
+
+.related-card p {
+  color: var(--accent);
+
+  font-weight: bold;
+}
