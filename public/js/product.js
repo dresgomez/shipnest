@@ -51,6 +51,37 @@ thumbs.forEach((thumb) => {
 
   });
 
+  const relatedContainer =
+  document.getElementById(
+    "related-products-container"
+  );
+
+related.forEach(item => {
+
+  const card =
+    document.createElement("div");
+
+  card.className = "related-card";
+
+  card.innerHTML = `
+    <img src="${item.image}">
+    <h3>${item.name}</h3>
+    <p>
+      $${(item.price / 100).toFixed(2)}
+    </p>
+  `;
+
+  card.addEventListener("click", () => {
+
+    window.location.href =
+      `/product.html?id=${item._id}`;
+
+  });
+
+  relatedContainer.appendChild(card);
+
+});
+
 });
 
   document.getElementById("product-description").textContent =
@@ -82,37 +113,6 @@ thumbs.forEach((thumb) => {
   updateCartCount();
 });
 }
-
-const relatedContainer =
-  document.getElementById(
-    "related-products-container"
-  );
-
-related.forEach(item => {
-
-  const card =
-    document.createElement("div");
-
-  card.className = "related-card";
-
-  card.innerHTML = `
-    <img src="${item.image}">
-    <h3>${item.name}</h3>
-    <p>
-      $${(item.price / 100).toFixed(2)}
-    </p>
-  `;
-
-  card.addEventListener("click", () => {
-
-    window.location.href =
-      `/product.html?id=${item._id}`;
-
-  });
-
-  relatedContainer.appendChild(card);
-
-});
 
 loadProduct();
 updateCartCount();
