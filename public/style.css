@@ -544,7 +544,9 @@ opacity:0.8;
 
   gap: 10px;
 
-  padding: 10px;
+ padding: 0 5px;
+
+  margin: 0;
 }
 
 .product-card {
@@ -559,6 +561,8 @@ opacity:0.8;
     height: 140px;
 
     object-fit: cover;
+
+     width: 100%;
   }
 
   .product-card h3 {
