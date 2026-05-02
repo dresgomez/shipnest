@@ -15,12 +15,13 @@
 .product-gallery {
   display: flex;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .thumbnail-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .thumb {
