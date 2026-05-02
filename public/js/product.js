@@ -26,30 +26,55 @@ async function loadProduct() {
   document.getElementById("product-price").textContent =
     "$" + (product.price / 100).toFixed(2);
 
-    const thumbs = [
-  document.getElementById("thumb-1"),
-  document.getElementById("thumb-2"),
-  document.getElementById("thumb-3")
-];
+ const thumbnailList =
+  document.getElementById(
+    "thumbnail-list"
+  );
 
-thumbs.forEach((thumb) => {
+thumbnailList.innerHTML = "";
 
-  thumb.src = product.image;
+const images =
+  product.images?.length
+    ? product.images
+    : [product.image];
+
+images.forEach((img, index) => {
+
+  const thumb =
+    document.createElement("img");
+
+  thumb.src = img;
+
+  thumb.className = "thumb";
+
+  if (index === 0) {
+    thumb.classList.add("active-thumb");
+  }
 
   thumb.addEventListener("click", () => {
 
-    document.getElementById("product-image").src =
-      thumb.src;
+    document.getElementById(
+      "product-image"
+    ).src = img;
 
     document
       .querySelectorAll(".thumb")
-      .forEach(t =>
-        t.classList.remove("active-thumb")
-      );
+      .forEach(t => {
+        t.classList.remove(
+          "active-thumb"
+        );
+      });
 
-    thumb.classList.add("active-thumb");
+    thumb.classList.add(
+      "active-thumb"
+    );
 
   });
+
+  thumbnailList.appendChild(thumb);
+
+});
+
 
   const relatedContainer =
   document.getElementById(
@@ -79,8 +104,6 @@ related.forEach(item => {
   });
 
   relatedContainer.appendChild(card);
-
-});
 
 });
 
