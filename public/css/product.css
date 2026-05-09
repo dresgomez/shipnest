@@ -222,11 +222,11 @@
     0 8px 25px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 768px) {
-
   body {
   background: red !important;
 }
+
+@media (max-width: 768px) {
 
   .product-container {
     grid-template-columns: 1fr;
