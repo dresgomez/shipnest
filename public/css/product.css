@@ -264,4 +264,34 @@
     width: 100%;
   }
 
+    .product-info h1 {
+    font-size: 32px;
+  }
+
+  .product-price {
+    font-size: 28px;
+  }
+
+  .product-stock {
+    font-size: 18px;
+  }
+
+  #add-to-cart-btn {
+    font-size: 18px;
+    padding: 16px;
+    min-height: 52px;
+  }
+
+  #related-products-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .related-card img {
+    height: 140px;
+  }
+
+  .related-card h3 {
+    font-size: 14px;
+  }
 }
