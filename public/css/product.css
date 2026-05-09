@@ -225,61 +225,72 @@
 @media (max-width: 768px) {
 
   .product-container {
-
     grid-template-columns: 1fr;
-
     padding: 20px;
+    gap: 30px;
   }
 
   .product-gallery {
-
     flex-direction: column;
-
     align-items: center;
   }
 
   .thumbnail-list {
-
     flex-direction: row;
-
     justify-content: center;
-
     flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .thumb {
+    width: 80px;
+    height: 80px;
   }
 
   .main-image img {
-
     width: 100%;
-
-    max-width: 350px;
+    max-width: 320px;
   }
 
   .product-info {
-
     max-width: 100%;
+    text-align: center;
   }
 
-  .product-actions button {
-
-    width: 100%;
-  }
-
-    .product-info h1 {
+  .product-info h1 {
     font-size: 32px;
+    line-height: 1.2;
   }
 
   .product-price {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .product-stock {
-    font-size: 18px;
+    font-size: 20px;
   }
 
-  #add-to-cart-btn {
+  .product-description {
     font-size: 18px;
-    padding: 16px;
-    min-height: 52px;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .product-description h3 {
+    font-size: 24px;
+  }
+
+  .product-actions button,
+  #add-to-cart-btn {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+
+  .related-wrapper {
+    padding: 20px;
   }
 
   #related-products-container {
@@ -287,11 +298,20 @@
     gap: 15px;
   }
 
+  .related-card {
+    padding: 12px;
+  }
+
   .related-card img {
-    height: 140px;
+    height: 120px;
   }
 
   .related-card h3 {
-    font-size: 14px;
+    font-size: 15px;
   }
+
+  .related-card p {
+    font-size: 16px;
+  }
+
 }
