@@ -222,9 +222,6 @@
     0 8px 25px rgba(0,0,0,0.3);
 }
 
-  body {
-  background: red !important;
-}
 
 @media (max-width: 768px) {
 
