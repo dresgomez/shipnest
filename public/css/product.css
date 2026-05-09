@@ -224,6 +224,10 @@
 
 @media (max-width: 768px) {
 
+  body {
+  background: red !important;
+}
+
   .product-container {
     grid-template-columns: 1fr;
     padding: 20px;
