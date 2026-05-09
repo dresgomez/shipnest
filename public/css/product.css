@@ -314,5 +314,32 @@
   .related-card p {
     font-size: 16px;
   }
+  
+.navbar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 20px !important;
+}
+
+.logo {
+  font-size: 48px !important;
+  margin: 0 !important;
+}
+
+.header-icons {
+  display: flex !important;
+  gap: 20px !important;
+  align-items: center !important;
+}
+
+.back-button {
+  display: none !important;
+}
+
+.product-container {
+  margin-top: 20px !important;
+}
 
 }
