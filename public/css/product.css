@@ -342,4 +342,86 @@
   margin-top: 20px !important;
 }
 
+
+  /* Cada producto del carrito */
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  /* Imagen del producto */
+  .cart-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Información del producto */
+  .cart-item-info {
+    flex: 1;
+  }
+
+  /* Nombre del producto */
+  .cart-item-info h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  /* Precio */
+  .cart-item-info p {
+    font-size: 18px;
+  }
+
+  /* Controles de cantidad */
+  .quantity-controls {
+    display: flex;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .quantity-controls button {
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+    border-radius: 8px;
+  }
+
+  /* Número de cantidad */
+  .quantity-value {
+    min-width: 42px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  /* Botón Remove */
+  .remove-btn {
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  /* Total por producto */
+  .item-total {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Card del resumen */
+  .cart-summary {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  /* Botón Checkout */
+  .checkout-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+  }
 }
