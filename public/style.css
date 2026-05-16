@@ -574,84 +574,87 @@ main,
 
     width: 100%;
   }
+ .cart-item {
+    display: grid;
+    grid-template-columns: 30px 120px 1fr;
+    gap: 14px;
+    align-items: center;
 
-  
+    width: 100%;
+    padding: 18px;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
 
-  /* Card mucho más ancho, casi tocando los márgenes del celular */
-.cart-item {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
+  /* Checkbox */
+  .cart-item input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    justify-self: center;
+  }
 
-  width: 100% !important;
-  min-height: 260px !important; /* card más alto */
+  /* Imagen */
+  .cart-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
 
-  padding: 20px !important;
-  gap: 20px !important;
+  /* Información */
+  .cart-item-details {
+    min-width: 0;
+    width: 100%;
+  }
 
-  box-sizing: border-box;
-  border-radius: 16px;
-}
+  /* Nombre del producto */
+  .cart-item-details h3 {
+    font-size: 1.9rem;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    word-break: break-word;
+  }
 
-/* Imagen más grande */
-.cart-item img {
-  width: 170px !important;
-  height: 220px !important;
-  object-fit: cover;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
+  /* Precio */
+  .cart-item-details p {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
 
-/* Información ocupa todo el espacio restante */
-.cart-item-info {
-  flex: 1 !important;
-  min-width: 0;
-}
+  /* Controles + cantidad */
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
 
-/* Título */
-.cart-item-info h3 {
-  font-size: 28px;
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
+  .quantity-controls button {
+    width: 46px;
+    height: 46px;
+    font-size: 1.8rem;
+    border-radius: 10px;
+  }
 
-/* Precio */
-.cart-item-info p {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
+  .quantity-controls span {
+    font-size: 1.5rem;
+    min-width: 30px;
+    text-align: center;
+  }
 
-/* Controles */
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 16px 0;
-}
+  /* Total */
+  .item-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 8px;
+  }
 
-.quantity-controls button {
-  width: 50px;
-  height: 50px;
-  font-size: 28px;
-}
-
-.quantity-value {
-  min-width: 50px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Total */
-.item-total {
-  font-size: 26px;
-  margin-top: 10px;
-}
-
-/* Botón eliminar */
-.remove-btn {
-  padding: 12px 20px;
-  font-size: 18px;
-  margin-top: 12px;
-}
+  /* Botón eliminar */
+  .remove-btn {
+    margin-top: 12px;
+    padding: 10px 18px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+  }
 }
