@@ -344,21 +344,30 @@
 
 
   /* Cada producto del carrito */
- cart-item {
+ /* El card ocupa casi todo el ancho del celular */
+  .cart-item {
     display: flex;
-    flex-direction: column;   /* ahora todo va en vertical */
+    flex-direction: column;
     align-items: stretch;
 
     width: 100%;
-    padding: 20px;
-    gap: 16px;
+    padding: 24px;
+    gap: 20px;
     box-sizing: border-box;
   }
 
-  /* Imagen cuadrada y centrada */
+  /* Checkbox alineado a la izquierda */
+  .cart-item input[type="checkbox"] {
+    align-self: flex-start;
+    transform: scale(1.4);
+  }
+
+  /* Imagen grande y cuadrada */
   .cart-item img {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     object-fit: cover;
     border-radius: 12px;
     align-self: center;
@@ -370,45 +379,51 @@
   }
 
   .cart-item-info h3 {
-    font-size: 22px;
-    line-height: 1.3;
-    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 12px;
   }
 
   .cart-item-info p {
-    font-size: 18px;
+    font-size: 22px;
+    margin-bottom: 10px;
   }
 
-  /* Controles de cantidad centrados */
+  /* Controles de cantidad grandes y centrados */
   .quantity-controls {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin: 15px 0;
+    align-items: center;
+    gap: 14px;
+    margin: 20px 0;
   }
 
   .quantity-controls button {
-    width: 48px;
-    height: 48px;
-    font-size: 28px;
+    width: 56px;
+    height: 56px;
+    font-size: 30px;
+    border-radius: 10px;
   }
 
   .quantity-value {
-    min-width: 48px;
+    min-width: 56px;
     text-align: center;
-    font-size: 22px;
+    font-size: 26px;
+    font-weight: bold;
   }
 
+  /* Total destacado */
   .item-total {
-    font-size: 22px;
-    margin-top: 10px;
+    font-size: 28px;
     text-align: center;
+    margin-top: 10px;
   }
 
+  /* Botón eliminar ocupa todo el ancho */
   .remove-btn {
     width: 100%;
+    padding: 14px;
+    font-size: 20px;
     margin-top: 15px;
-    padding: 12px;
-    font-size: 18px;
   }
 }
