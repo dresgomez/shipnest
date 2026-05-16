@@ -343,45 +343,45 @@
 }
 
 
-  /* Cada producto del carrito */
- /* El card ocupa casi todo el ancho del celular */
+  /* Card mucho más ancho, casi tocando los márgenes del celular */
   .cart-item {
     display: flex;
     flex-direction: column;
     align-items: stretch;
 
     width: 100%;
-    padding: 24px;
+    padding: 20px;
     gap: 20px;
     box-sizing: border-box;
+
+    border-radius: 16px;
   }
 
-  /* Checkbox alineado a la izquierda */
+  /* Checkbox más grande */
   .cart-item input[type="checkbox"] {
     align-self: flex-start;
     transform: scale(1.4);
   }
 
-  /* Imagen grande y cuadrada */
+  /* Imagen cuadrada y más ancha */
   .cart-item img {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;   /* más grande */
     aspect-ratio: 1 / 1;
-    height: auto;
     object-fit: cover;
     border-radius: 12px;
     align-self: center;
   }
 
-  /* Información ocupa todo el ancho */
+  /* Toda la información ocupa el ancho completo */
   .cart-item-info {
     width: 100%;
   }
 
   .cart-item-info h3 {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.2;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .cart-item-info p {
@@ -389,13 +389,13 @@
     margin-bottom: 10px;
   }
 
-  /* Controles de cantidad grandes y centrados */
+  /* Controles centrados */
   .quantity-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 14px;
-    margin: 20px 0;
+    gap: 12px;
+    margin: 18px 0;
   }
 
   .quantity-controls button {
@@ -412,7 +412,7 @@
     font-weight: bold;
   }
 
-  /* Total destacado */
+  /* Total más destacado */
   .item-total {
     font-size: 28px;
     text-align: center;
@@ -425,5 +425,12 @@
     padding: 14px;
     font-size: 20px;
     margin-top: 15px;
+  }
+
+  /* Resumen y botón de pago más anchos */
+  .cart-summary,
+  .checkout-btn {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
