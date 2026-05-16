@@ -657,4 +657,53 @@ main,
     font-size: 1.2rem;
     border-radius: 10px;
   }
+
+   /* Card de cada producto */
+  .checkout-item,
+  .order-item,
+  .summary-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Imagen más pequeña */
+  .checkout-item img,
+  .order-item img,
+  .summary-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Información del producto */
+  .checkout-item-info,
+  .order-item-info,
+  .summary-item-info {
+    flex: 1;
+  }
+
+  /* Nombre del producto */
+  .checkout-item-info h3,
+  .order-item-info h3,
+  .summary-item-info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  /* Precio y cantidad */
+  .checkout-item-info p,
+  .order-item-info p,
+  .summary-item-info p {
+    font-size: 14px;
+    margin: 2px 0;
+  }
 }
