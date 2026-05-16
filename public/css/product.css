@@ -344,82 +344,83 @@
 
 
   /* Card mucho más ancho, casi tocando los márgenes del celular */
+ /* Card del producto */
   .cart-item {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
 
-    width: 100%;
-    padding: 20px;
-    gap: 20px;
+    width: 100% !important;
+    max-width: none !important;
+
+    padding: 24px !important;
+    gap: 20px !important;
     box-sizing: border-box;
 
     border-radius: 16px;
   }
 
-  /* Checkbox más grande */
+  /* Checkbox */
   .cart-item input[type="checkbox"] {
     align-self: flex-start;
     transform: scale(1.4);
   }
 
-  /* Imagen cuadrada y más ancha */
+  /* Imagen grande y cuadrada */
   .cart-item img {
-    width: 100%;
-    max-width: 320px;   /* más grande */
+    display: block;
+    width: 100% !important;
+    max-width: 320px !important;
     aspect-ratio: 1 / 1;
+    height: auto !important;
     object-fit: cover;
     border-radius: 12px;
-    align-self: center;
   }
 
-  /* Toda la información ocupa el ancho completo */
+  /* Información */
   .cart-item-info {
-    width: 100%;
+    width: 100% !important;
   }
 
   .cart-item-info h3 {
-    font-size: 26px;
+    font-size: 28px;
     line-height: 1.2;
     margin-bottom: 10px;
   }
 
   .cart-item-info p {
     font-size: 22px;
-    margin-bottom: 10px;
   }
 
-  /* Controles centrados */
+  /* Controles de cantidad */
   .quantity-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
     gap: 12px;
-    margin: 18px 0;
+    margin: 20px 0;
   }
 
   .quantity-controls button {
     width: 56px;
     height: 56px;
     font-size: 30px;
-    border-radius: 10px;
   }
 
   .quantity-value {
     min-width: 56px;
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
   }
 
-  /* Total más destacado */
+  /* Total */
   .item-total {
-    font-size: 28px;
     text-align: center;
+    font-size: 28px;
     margin-top: 10px;
   }
 
-  /* Botón eliminar ocupa todo el ancho */
+  /* Botón eliminar */
   .remove-btn {
     width: 100%;
     padding: 14px;
@@ -427,10 +428,17 @@
     margin-top: 15px;
   }
 
-  /* Resumen y botón de pago más anchos */
-  .cart-summary,
+  /* Resumen del carrito */
+  .cart-summary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Botón checkout */
   .checkout-btn {
     width: 100%;
     box-sizing: border-box;
+    padding: 16px;
+    font-size: 22px;
   }
 }
