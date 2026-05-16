@@ -344,101 +344,83 @@
 
 
   /* Card mucho más ancho, casi tocando los márgenes del celular */
- /* Card del producto */
+  /* Card más ancho, pero manteniendo el layout horizontal */
   .cart-item {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
 
     width: 100% !important;
     max-width: none !important;
 
-    padding: 24px !important;
-    gap: 20px !important;
+    padding: 20px 16px !important;
+    gap: 16px !important;
     box-sizing: border-box;
-
     border-radius: 16px;
   }
 
-  /* Checkbox */
-  .cart-item input[type="checkbox"] {
-    align-self: flex-start;
-    transform: scale(1.4);
-  }
-
-  /* Imagen grande y cuadrada */
+  /* Imagen más ancha y alta */
   .cart-item img {
-    display: block;
-    width: 100% !important;
-    max-width: 320px !important;
-    aspect-ratio: 1 / 1;
-    height: auto !important;
+    width: 140px !important;
+    height: 180px !important;
     object-fit: cover;
     border-radius: 12px;
+    flex-shrink: 0;
   }
 
-  /* Información */
+  /* Información aprovecha todo el espacio restante */
   .cart-item-info {
-    width: 100% !important;
+    flex: 1;
+    min-width: 0; /* evita desbordes */
   }
 
+  /* Nombre del producto */
   .cart-item-info h3 {
-    font-size: 28px;
+    font-size: 22px;
     line-height: 1.2;
+    margin-bottom: 10px;
+    word-break: break-word;
+  }
+
+  /* Precio */
+  .cart-item-info p {
+    font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .cart-item-info p {
-    font-size: 22px;
-  }
-
-  /* Controles de cantidad */
+  /* Controles */
   .quantity-controls {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 12px;
-    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    flex-wrap: wrap;
   }
 
   .quantity-controls button {
-    width: 56px;
-    height: 56px;
-    font-size: 30px;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
   }
 
   .quantity-value {
-    min-width: 56px;
+    min-width: 44px;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
   }
 
   /* Total */
   .item-total {
-    text-align: center;
-    font-size: 28px;
-    margin-top: 10px;
+    font-size: 22px;
+    margin-top: 8px;
   }
 
   /* Botón eliminar */
   .remove-btn {
     width: 100%;
-    padding: 14px;
-    font-size: 20px;
-    margin-top: 15px;
-  }
-
-  /* Resumen del carrito */
-  .cart-summary {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Botón checkout */
-  .checkout-btn {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 16px;
-    font-size: 22px;
+    padding: 12px;
+    font-size: 18px;
+    margin-top: 12px;
   }
 }
