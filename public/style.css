@@ -505,6 +505,24 @@ opacity:0.8;
 
 }
 
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.back-to-cart {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.back-to-cart:hover {
+  color: var(--accent);
+}
 
 /* =========================
    MOBILE RESPONSIVE
@@ -742,6 +760,16 @@ main,
     font-size: 14px;
     margin: 2px 0;
   }
+
+  .checkout-header {
+  padding: 16px 0;
+  margin-bottom: 20px;
+}
+
+.back-to-cart {
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
 
 /* Evita scroll horizontal */
 html,
