@@ -542,15 +542,9 @@ opacity:0.8;
   justify-content: center;
   align-items: center;
   gap: 24px;
-
-  /* No ocupar todo el ancho */
   width: auto;
   max-width: 100%;
-
-  /* Mover ligeramente a la izquierda */
   margin-right: 12px;
-
-  /* Mantener posición natural */
   overflow: visible;
 }
 
@@ -758,7 +752,6 @@ body {
 
 
 .navbar,
-.header-icons,
 .search-bar,
 nav,
 .products-grid,
