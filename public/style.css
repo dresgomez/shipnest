@@ -547,7 +547,9 @@ opacity:0.8;
 /* Barra de búsqueda */
 .search-bar {
   width: 100%;
-  max-width: none;
+  max-width: 280px; /* antes estaba demasiado ancha */
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .search-bar input {
@@ -737,77 +739,39 @@ main,
     margin: 2px 0;
   }
 
-.navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 16px;
-  box-sizing: border-box;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Logo */
-.logo {
-  font-size: 3rem;
-  margin: 0;
-  text-align: center;
-}
-
-/* Search bar más corta para que no rompa el layout */
-.search-bar {
-  width: 100%;
-  max-width: 280px; /* antes estaba demasiado ancha */
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-/* Menú */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-}
-
-nav a {
-  font-size: 1rem;
-}
-
-/* Iconos debajo del menú */
-.header-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-}
-
-.header-icon {
-  font-size: 1.8rem;
-  position: relative;
-}
-
-/* Badge del carrito */
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  font-size: 0.75rem;
-  min-width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Evita scroll horizontal */
 html,
 body {
   overflow-x: hidden;
   width: 100%;
+}
+
+
+/* Evita que cualquier elemento exceda el ancho */
+* {
+  box-sizing: border-box;
+}
+
+/* Bloquea scroll horizontal en toda la página */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Todos los contenedores principales */
+header,
+main,
+section,
+footer,
+.container,
+.products-section,
+.az-section,
+.products-grid {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 }
