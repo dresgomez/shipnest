@@ -539,9 +539,12 @@ opacity:0.8;
 /* Iconos a la derecha */
 .header-icons {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-left: auto;
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  margin-right: 12px;
 }
 
 /* Barra de búsqueda */
@@ -742,8 +745,21 @@ main,
 /* Evita scroll horizontal */
 html,
 body {
-  overflow-x: hidden;
-  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
+.header-icons {
+  margin-right: 12px;
+}
+
+.navbar,
+.header-icons,
+.search-bar,
+nav,
+.products-grid,
+.product-card {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 }
