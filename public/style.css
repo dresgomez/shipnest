@@ -514,14 +514,17 @@ opacity:0.8;
 }
 
 .back-to-cart {
+  margin-left: auto; /* Lo empuja completamente a la derecha */
+
   text-decoration: none;
-  color: var(--text-main);
+  color: var(--accent); /* Rojo/acento de tu tienda */
   font-weight: 600;
+
   transition: 0.2s;
 }
 
 .back-to-cart:hover {
-  color: var(--accent);
+  opacity: 0.8;
 }
 
 /* =========================
@@ -762,14 +765,14 @@ main,
   }
 
   .checkout-header {
-  padding: 16px 0;
-  margin-bottom: 20px;
-}
+    padding: 16px 0;
+    margin-bottom: 20px;
+  }
 
-.back-to-cart {
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
+  .back-to-cart {
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
 
 /* Evita scroll horizontal */
 html,
