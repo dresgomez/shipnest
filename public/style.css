@@ -544,10 +544,11 @@ opacity:0.8;
   margin-left: auto;
 }
 
-/* Buscador */
 .search-bar {
   width: 100%;
-  max-width: none;
+  max-width: 280px; /* antes estaba demasiado ancha */
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .search-bar input {
@@ -736,4 +737,11 @@ main,
     font-size: 14px;
     margin: 2px 0;
   }
+
+  /* Evita scroll horizontal */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
 }
