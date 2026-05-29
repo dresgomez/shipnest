@@ -515,24 +515,33 @@ opacity:0.8;
   padding: 20px 16px;
 }
 
-.back-to-cart {
-  text-decoration: none;
 
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 20px 16px;
+}
+
+/* Link específico del checkout */
+.checkout-header .back-to-cart {
   color: var(--accent) !important;
+
+  text-decoration: none !important;
 
   font-weight: 700;
 
-  transition: 0.2s;
+  white-space: nowrap;
 
   padding-right: 10px;
-
-  white-space: nowrap;
 }
 
-.back-to-cart:hover {
+.checkout-header .back-to-cart:hover {
   opacity: 0.8;
 }
-
 
 /* =========================
    MOBILE RESPONSIVE
