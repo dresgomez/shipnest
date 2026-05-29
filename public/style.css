@@ -506,29 +506,29 @@ opacity:0.8;
 }
 
 .checkout-header {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  padding: 20px 0;
-  margin-bottom: 30px;
+  width: 100%;
+
+  padding: 20px;
 }
 
 .back-to-cart {
-  margin-left: auto !important; /* Empuja el enlace a la derecha */
+  text-decoration: none;
 
-  text-decoration: none !important;
-  color: var(--accent) !important; /* Usa el rojo principal */
-  font-weight: 700 !important;
+  color: var(--accent);
 
-  display: inline-block !important;
-  white-space: nowrap !important;
+  font-weight: 700;
+
+  transition: 0.2s;
 }
 
 .back-to-cart:hover {
   opacity: 0.8;
 }
+
 
 /* =========================
    MOBILE RESPONSIVE
@@ -767,14 +767,15 @@ main,
     margin: 2px 0;
   }
 
- .checkout-header {
-    padding: 16px 0;
-    margin-bottom: 20px;
+ 
+  .checkout-header {
+    padding: 16px;
   }
 
   .back-to-cart {
-    font-size: 0.95rem !important;
+    font-size: 0.95rem;
   }
+
 
 /* Evita scroll horizontal */
 html,
