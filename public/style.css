@@ -505,16 +505,6 @@ opacity:0.8;
 
 }
 
-.checkout-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-
-  padding: 20px 16px;
-}
-
 
 .checkout-header {
   display: flex;
@@ -528,19 +518,24 @@ opacity:0.8;
 
 /* Link específico del checkout */
 .checkout-header .back-to-cart {
-  color: var(--accent) !important;
+  color: var(--accent);
 
-  text-decoration: none !important;
+  text-decoration: none;
 
   font-weight: 700;
 
+  font-size: 1rem;
+
   white-space: nowrap;
 
-  padding-right: 10px;
+  padding-right: 14px;
+
+  transition: 0.2s;
 }
 
 .checkout-header .back-to-cart:hover {
-  opacity: 0.8;
+  text-decoration: underline;
+  opacity: 0.9;
 }
 
 /* =========================
