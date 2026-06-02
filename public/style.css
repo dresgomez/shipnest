@@ -571,12 +571,9 @@ opacity:0.8;
 /* Iconos a la derecha */
 .header-icons {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 24px;
-  width: auto;
-  max-width: 100%;
-  margin-right: 12px;
+  gap: 20px;
+  margin-left: auto;
   overflow: visible;
 }
 
