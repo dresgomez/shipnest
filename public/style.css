@@ -554,14 +554,15 @@ opacity:0.8;
 
 /* Logo + iconos en la misma fila */
 .header-top {
-  display: flex;
+   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
 /* Logo a la izquierda */
 .logo {
+    text-decoration: none;
   margin: 0;
   font-size: 2.5rem;
   text-align: left;
@@ -572,9 +573,11 @@ opacity:0.8;
 .header-icons {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   margin-left: auto;
   overflow: visible;
+
+  transform: translateY(-8px);
 }
 
 /* Barra de búsqueda */
