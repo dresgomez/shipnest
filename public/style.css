@@ -510,10 +510,7 @@ opacity:0.8;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  width: 100%;
-
-  padding: 20px 16px;
+  padding: 20px;
 }
 
 /* Link específico del checkout */
@@ -536,6 +533,12 @@ opacity:0.8;
 .checkout-header .back-to-cart:hover {
   text-decoration: underline;
   opacity: 0.9;
+}
+
+.checkout-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* =========================
@@ -577,7 +580,7 @@ opacity:0.8;
   margin-left: auto;
   overflow: visible;
 
-  transform: translateY(-8px);
+  transform: translateY(-5px);
 }
 
 /* Barra de búsqueda */
