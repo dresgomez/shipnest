@@ -538,7 +538,13 @@ opacity:0.8;
 .checkout-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
+}
+
+.checkout-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
 }
 
 /* =========================
@@ -580,7 +586,7 @@ opacity:0.8;
   margin-left: auto;
   overflow: visible;
 
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 }
 
 /* Barra de búsqueda */
