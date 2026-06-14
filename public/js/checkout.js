@@ -86,16 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
-    itemsContainer.innerHTML += `
-      <div class="checkout-item">
-        <img src="${item.image}" alt="${item.name}" />
-        <div>
-          <h4>${item.name}</h4>
-          <p>$${(item.price / 100).toFixed(2)} × ${item.quantity}</p>
-          <p><strong>$${(itemTotal / 100).toFixed(2)}</strong></p>
-        </div>
-      </div>
-    `;
+   itemsContainer.innerHTML += `
+  <div class="checkout-item">
+    <img src="${item.image}" alt="${item.name}" />
+
+    <div class="checkout-item-info">
+      <h4>${item.name}</h4>
+
+      <p>
+        Price:
+        $${(item.price / 100).toFixed(2)}
+      </p>
+
+      <p>
+        Quantity:
+        ${item.quantity}
+      </p>
+    </div>
+  </div>
+`;
   });
 
   totalText.textContent = "$" + (total / 100).toFixed(2);
