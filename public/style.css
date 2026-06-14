@@ -17,11 +17,22 @@ body {
 /* --- HEADER / NAVBAR --- */
 .navbar {
   background: var(--bg-card);
-  padding: 16px 32px;
+  padding: 20px 32px;
+
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+
+  gap: 18px;
+
   border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
 }
 
  .logo {
@@ -31,12 +42,21 @@ body {
 }
 
 .search-bar {
-    flex: 1;
-    max-width: 400px;
-    margin: 0 20px;
-    padding: 10px 15px;
-    border: 2px solid #eee;
-    border-radius: 30px;
+  width: 100%;
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  padding: 12px 18px;
+
+  border-radius: 30px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
 }
 
  nav a {
