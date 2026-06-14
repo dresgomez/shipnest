@@ -541,6 +541,19 @@ opacity:0.8;
     padding: 40px;
 }
 
+.checkout-layout {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .checkout-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+}
+
 .checkout-section {
     padding: 30px;
 }
@@ -621,7 +634,7 @@ opacity:0.8;
   margin-left: auto;
   overflow: visible;
 
-  transform: translateY(-10px);
+  transform: translateY(-20px);
 }
 
 /* Barra de búsqueda */

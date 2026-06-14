@@ -31,16 +31,34 @@
 <section class="checkout-section">
   <div class="checkout-wrapper">
 
-  <h2>Checkout</h2>
+    <h2>Checkout</h2>
 
-  <!-- Productos seleccionados -->
-  <div id="checkout-items"></div>
+    <div class="checkout-layout">
 
-  <!-- Total -->
-  <div class="checkout-total">
-    <h3>Total:</h3>
-    <p id="checkout-total">$0.00</p>
+      <!-- Columna izquierda -->
+      <div class="checkout-products">
+        <div id="checkout-items"></div>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="checkout-summary">
+
+        <div class="checkout-total">
+          <h3>Total:</h3>
+          <p id="checkout-total">$0.00</p>
+        </div>
+
+        <div id="paypal-button-container"></div>
+
+        <div id="payment-status"></div>
+
+      </div>
+
+    </div>
+
   </div>
+
+    </div>
 
 <div id="paypal-button-container" style="margin-top: 20px;"></div>
 <div id="payment-status" style="margin-top:12px;"></div>
