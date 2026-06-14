@@ -95,13 +95,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <p>
         Price:
-        $${(item.price / 100).toFixed(2)}
+        $${(item.preço / 100).toFixed(2)}
       </p>
 
       <p>
         Quantity:
         ${item.quantity}
       </p>
+      
+      <p>
+  Subtotal:
+  $${(itemTotal / 100).toFixed(2)}
+</p>
     </div>
   </div>
 `;
