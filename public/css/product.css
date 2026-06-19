@@ -232,7 +232,7 @@
 }
 
 .breadcrumb a {
-  color: lime !important;
+  color: #38bdf8 !important;
 }
 
 @media (max-width: 768px) {
