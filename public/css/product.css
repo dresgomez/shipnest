@@ -227,6 +227,13 @@
     0 8px 25px rgba(0,0,0,0.3);
 }
 
+.breadcrumb {
+  border: 2px solid red !important;
+}
+
+.breadcrumb a {
+  color: lime !important;
+}
 
 @media (max-width: 768px) {
 
@@ -366,14 +373,6 @@
 .breadcrumb a:active {
   color: var(--accent);
   text-decoration: none;
-}
-
-.breadcrumb a,
-.breadcrumb a:link,
-.breadcrumb a:visited,
-.breadcrumb a:hover,
-.breadcrumb a:active {
-  color: #00d4ff !important;
 }
 
 .breadcrumb {
