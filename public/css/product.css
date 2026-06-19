@@ -368,6 +368,14 @@
   text-decoration: none;
 }
 
+.breadcrumb a,
+.breadcrumb a:link,
+.breadcrumb a:visited,
+.breadcrumb a:hover,
+.breadcrumb a:active {
+  color: #00d4ff !important;
+}
+
 .breadcrumb {
   max-width: 1200px;
   margin: 20px auto;
