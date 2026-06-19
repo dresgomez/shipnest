@@ -228,8 +228,7 @@
 }
 
 .breadcrumb {
-  max-width: 1200px;
-  margin: 20px auto;
+  margin: 20px 0;
   padding: 0 20px;
 
   display: flex;
