@@ -83,14 +83,19 @@
 }
 
 .product-price {
-  font-size: 24px;
+  font-size: 2.4rem;
+  font-weight: 800;
   color: var(--accent);
-  font-weight: bold;
+
+  margin: 16px 0;
 }
 
 .product-stock {
-  margin: 10px 0;
+  font-size: 1rem;
+  color: #22c55e;
   font-weight: 600;
+
+  margin-bottom: 20px;
 }
 
 /* estados de stock */
@@ -342,6 +347,11 @@
   margin-top: 20px !important;
 }
 
+.breadcrumb a,
+.breadcrumb a:visited {
+  color: var(--accent);
+  text-decoration: none;
+}
 .breadcrumb {
   max-width: 1200px;
   margin: 20px auto;
