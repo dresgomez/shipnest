@@ -227,14 +227,6 @@
     0 8px 25px rgba(0,0,0,0.3);
 }
 
-.breadcrumb {
-  border: 2px solid red !important;
-}
-
-.breadcrumb a {
-  color: #38bdf8 !important;
-}
-
 @media (max-width: 768px) {
 
   .product-container {
@@ -368,10 +360,8 @@
 
 .breadcrumb a,
 .breadcrumb a:link,
-.breadcrumb a:visited,
-.breadcrumb a:hover,
-.breadcrumb a:active {
-  color: var(--accent);
+.breadcrumb a:visited {
+  color: #38bdf8;
   text-decoration: none;
 }
 
