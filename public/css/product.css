@@ -348,10 +348,12 @@
 }
 
 .breadcrumb a,
+.breadcrumb a:link,
 .breadcrumb a:visited {
-  color: var(--accent);
+  color: var(--accent) !important;
   text-decoration: none;
 }
+
 .breadcrumb {
   max-width: 1200px;
   margin: 20px auto;

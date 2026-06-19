@@ -26,7 +26,7 @@ async function loadProduct() {
   document.getElementById("breadcrumb-product").textContent =
   product.name;
   document.getElementById("product-price").textContent =
-    "$" + (product.price / 100).toFixed(2);
+    "R$ " + (product.price / 100).toFixed(2);
 
  const thumbnailList =
   document.getElementById(
