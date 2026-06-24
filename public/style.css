@@ -416,7 +416,14 @@ footer .container {
     font-size: 1.4rem;
   }
 
+  .cart-item input[type="checkbox"] {
+    width: 32px;
+    height: 32px;
+    transform: scale(1.05);
+  }
+
 }
+
 
 
 .cart-info {
