@@ -369,10 +369,29 @@ footer .container {
     color: var(--text-main);
 }
 
-.cart-item img {
-    width: 80px;
-    border-radius: 5px;
+@media (min-width: 769px) {
+
+  .cart-item img {
+    width: 140px;
+    height: 140px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    flex-shrink: 0;
+  }
+
+  .cart-info {
+    padding-left: 24px;
+  }
+
+  .cart-item h3 {
+    font-size: 1.4rem;
+  }
+
 }
+
 
 .cart-info {
     flex: 1;
