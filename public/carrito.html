@@ -40,21 +40,32 @@
 
 </header>
 
-    <section class="cart-section">
-        <h2>Your Cart</h2>
+ <section class="cart-section">
 
-        <!-- Aquí se mostrará el carrito -->
-        <div id="cart-container"></div>
+    <h2>Your Cart</h2>
 
-        <!-- Total -->
-        <div class="cart-total-box">
-            <h3>Total:</h3>
-            <p id="cart-total">$0.00</p>
+    <div class="cart-layout">
+
+        <div class="cart-products">
+            <div id="cart-container"></div>
         </div>
 
-        <!-- Botón de pago -->
-        <button class="pay-btn" id="pay-button">Proceed to Payment</button>
-    </section>
+        <div class="cart-summary">
+
+            <div class="cart-total-box">
+                <h3>Total:</h3>
+                <p id="cart-total">$0.00</p>
+            </div>
+
+            <button class="pay-btn" id="pay-button">
+                Proceed to Payment
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
     
     <div id="paypal-button-container" style="margin-top: 30px;"></div>

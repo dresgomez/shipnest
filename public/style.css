@@ -246,6 +246,27 @@ footer .container {
     padding: 40px;
 }
 
+.cart-layout {
+  display: block;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 769px) {
+
+  .cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 320px;
+    gap: 32px;
+    align-items: start;
+  }
+
+}
+
 .cart-item {
   display: flex;
   gap: 12px;
