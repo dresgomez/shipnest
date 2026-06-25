@@ -416,15 +416,15 @@ footer .container {
     font-size: 1.4rem;
   }
 
-  .cart-item input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    transform: scale(1.05);
-        display: flex;
-    align-items: center;
+.cart-item input[type="checkbox"] {
+    width: 32px;
+    height: 32px;
+    align-self: center;
   }
 
 }
+
+
 
 
 
