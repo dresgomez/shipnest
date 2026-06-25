@@ -703,9 +703,9 @@ opacity:0.8;
 
 /* Logo + iconos en la misma fila */
 .header-top {
-   display: flex;
+  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
@@ -725,8 +725,6 @@ opacity:0.8;
   gap: 24px;
   margin-left: auto;
   overflow: visible;
-
-  transform: translateY(-12px);
 }
 
 /* Barra de búsqueda */
