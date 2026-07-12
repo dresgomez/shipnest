@@ -139,5 +139,28 @@ related.forEach(item => {
 });
 }
 
+const toggleBtn = document.getElementById("toggle-description");
+const wrapper = document.getElementById("description-wrapper");
+
+toggleBtn.addEventListener("click", () => {
+
+    wrapper.classList.toggle("description-expanded");
+
+    if (wrapper.classList.contains("description-expanded")) {
+
+        wrapper.classList.remove("description-collapsed");
+
+        toggleBtn.textContent = "Show less";
+
+    } else {
+
+        wrapper.classList.add("description-collapsed");
+
+        toggleBtn.textContent = "Read more";
+
+    }
+
+});
+
 loadProduct();
 updateCartCount();
