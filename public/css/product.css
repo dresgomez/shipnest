@@ -131,6 +131,10 @@
   color: #cbd5f5;
 }
 
+.product-description p {
+    white-space: pre-line;
+}
+
 .back-button {
   display: inline-block;
   margin: 20px;
