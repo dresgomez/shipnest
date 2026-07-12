@@ -253,6 +253,50 @@
   color: var(--text-muted);
 }
 
+.seller-card{
+
+    margin-top:30px;
+
+    padding-top:24px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.seller-card h3{
+
+    margin-bottom:16px;
+
+    font-size:1.1rem;
+
+    color:var(--text-main);
+
+}
+
+.seller-name{
+
+    font-weight:700;
+
+    color:var(--accent);
+
+    margin-bottom:12px;
+
+}
+
+.seller-feature{
+
+    color:var(--text-muted);
+
+    margin-bottom:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
 @media (max-width: 768px) {
 
   .product-container {
