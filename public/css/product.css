@@ -131,7 +131,7 @@
   color: #cbd5f5;
 }
 
-.product-description p {
+#product-description {
     white-space: pre-line;
 }
 
