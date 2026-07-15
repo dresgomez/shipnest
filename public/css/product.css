@@ -127,8 +127,9 @@
 }
 
 .product-description {
-  margin-top: 20px;
-  color: #cbd5f5;
+    margin-top: 0;
+    line-height: 1.7;
+    color: #cbd5f5;
 }
 
 #product-description {
@@ -365,6 +366,39 @@
 
     box-shadow:0 10px 30px rgba(0,0,0,.25);
 
+}
+
+.product-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.product-details-card,
+.product-reviews-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.product-details-card h2,
+.product-reviews-card h2 {
+
+    margin-bottom: 18px;
+
+    font-size: 1.5rem;
+
+    font-weight: 700;
+}
+
+.product-reviews-card p {
+
+    margin-top: 12px;
+
+    color: var(--text-muted);
+
+    line-height: 1.6;
 }
 
 .section-divider{
