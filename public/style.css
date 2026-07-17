@@ -166,15 +166,6 @@ footer .container {
   color: var(--text-muted);
 }
 
-    nav {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    nav a {
-        margin: 0 10px;
-    }
   }
 
 /* --- PRODUCT CARDS --- */
@@ -734,11 +725,19 @@ opacity:0.8;
 
 /* Menú */
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+
+    gap: 14px 24px;
 }
+  nav a {
+        margin: 0 10px;
+    }
 
 
 .products-grid {
