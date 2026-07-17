@@ -153,21 +153,6 @@ footer .container {
     border-top: 1px solid #444;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-
-    .search-bar {
-  background: #020617;
-  color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.search-bar::placeholder {
-  color: var(--text-muted);
-}
-
-  }
-
 /* --- PRODUCT CARDS --- */
 .products-section {
     padding: 40px;
@@ -240,28 +225,6 @@ footer .container {
   top: 20px;
 }
 
-.cart-item {
-  display: flex;
-  gap: 12px;
-  padding: 14px;
-  border-radius: 12px;
-
-  background: rgba(30, 136, 229, 0.06); /* azul MUY suave */
-  
-  box-shadow: 0 4px 14px rgba(30,136,229,0.08);
-  margin-bottom: 12px;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-/* animación de entrada */
-.cart-item {
-  animation: slideIn 0.25s ease;
-}
-
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -283,10 +246,6 @@ footer .container {
   color: var(--text-muted);
 }
 
-/* Precio destacado */
-.cart-item strong {
-  color: #1e88e5;
-}
 
 /* Hover */
 .cart-item:hover {
@@ -380,16 +339,30 @@ footer .container {
     padding-left: 20px;
 }
 .cart-item {
-    display: flex;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+  display: flex;
+
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  border-radius: 12px;
+
+  background: rgba(30, 136, 229, 0.06);
+
+  box-shadow: 0 4px 14px rgba(30,136,229,0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  animation: slideIn 0.25s ease;
 }
 
 .cart-item strong {
-    display: block;
-    margin: 8px 0;
+  display: block;
+  margin: 8px 0;
+  color: #1e88e5;
 }
 
 .empty-cart {
@@ -510,7 +483,9 @@ footer .container {
     border-radius: 6px;
 }
 
-/* --- ADM --- */
+/* =========================
+          ADM
+========================= */
 .admin-logout{
 
 background:var(--accent);
@@ -528,7 +503,9 @@ opacity:0.8;
 
 }
 
-/* --- Checkout --- */
+/* =========================
+   CHeckout
+========================= */
 
 .checkout-header {
   display: flex;
@@ -622,6 +599,10 @@ opacity:0.8;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
+/* =========================
+   PC RESPONSIVE
+========================= */
+
 @media (min-width: 769px) {
 
   .cart-item img {
@@ -710,9 +691,17 @@ opacity:0.8;
 /* Barra de búsqueda */
 .search-bar {
   width: 100%;
-  max-width: 280px; /* antes estaba demasiado ancha */
+  max-width: 280px;
   margin: 0 auto;
   box-sizing: border-box;
+
+  background: #020617;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.search-bar::placeholder {
+  color: var(--text-muted);
 }
 
 .search-bar input {
