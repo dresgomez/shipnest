@@ -507,6 +507,24 @@ opacity:0.8;
    CHeckout
 ========================= */
 
+/* ---------- Layout ---------- */
+
+.checkout-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.checkout-layout {
+  display: block;
+}
+
+.checkout-section {
+    padding: 30px;
+}
+
+/* ---------- Header ---------- */
+
 .checkout-header {
   display: flex;
   justify-content: space-between;
@@ -514,7 +532,6 @@ opacity:0.8;
   padding: 20px;
 }
 
-/* Link específico del checkout */
 .checkout-header .back-to-cart {
   color: var(--accent);
 
@@ -536,19 +553,7 @@ opacity:0.8;
   opacity: 0.9;
 }
 
-.checkout-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px;
-}
-
-.checkout-layout {
-  display: block;
-}
-
-.checkout-section {
-    padding: 30px;
-}
+/* ---------- Products ---------- */
 
 .checkout-item {
   display: flex;
@@ -570,7 +575,6 @@ opacity:0.8;
 .checkout-item img {
   width: 120px;
   height: 120px;
-
   object-fit: cover;
 
   border-radius: 12px;
@@ -586,6 +590,8 @@ opacity:0.8;
 .checkout-item p {
   margin: 4px 0;
 }
+
+/* ---------- Summary ---------- */
 
 .checkout-summary {
   background: var(--bg-card);
