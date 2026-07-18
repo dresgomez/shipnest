@@ -772,6 +772,7 @@ main,
 
     width: 100%;
   }
+  
  .cart-item {
     display: grid;
     grid-template-columns: 30px 120px 1fr;
