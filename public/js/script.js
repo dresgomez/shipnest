@@ -45,8 +45,6 @@ data.products.forEach(product => {
 
 }
 
-loadProducts();
-
 // =======================
 // Inicialización
 // =======================

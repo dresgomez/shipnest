@@ -1,0 +1,343 @@
+/* =========================
+          CLIENT
+========================= */
+
+/* ---------- Layout ---------- */
+
+.client-container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px;
+}
+
+.client-header{
+    margin-bottom:32px;
+}
+
+.client-header h1{
+    margin-bottom:8px;
+}
+
+.client-header p{
+    color:var(--text-muted);
+}
+
+/* ---------- Summary ---------- */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+    margin-bottom:40px;
+}
+
+.summary-card{
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    padding:24px;
+
+    text-align:center;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+
+    transition:.2s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.summary-card h3{
+
+    margin-bottom:12px;
+
+    color:var(--text-muted);
+
+}
+
+.summary-card p{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--accent);
+
+}
+
+/* ---------- Quick Actions ---------- */
+
+.quick-actions{
+    margin-bottom:40px;
+}
+
+.quick-actions h2{
+    margin-bottom:20px;
+}
+
+.actions-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+/* ---------- Card ---------- */
+.action-card{
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    padding:28px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+/* ---------- States ---------- */
+
+.action-card:focus{
+
+    outline:2px solid var(--accent);
+
+    outline-offset:4px;
+
+}
+
+.action-card:active{
+
+    transform:scale(.98);
+
+}
+
+/* ---------- Hover ---------- */
+
+.action-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+}
+
+/* ---------- Icons ---------- */
+
+.action-card i{
+
+    font-size:2rem;
+
+    color:var(--accent);
+
+    margin-bottom:16px;
+
+}
+
+.action-card h3{
+
+    color:var(--text-main);
+
+    font-size:1.1rem;
+
+}
+
+/* ---------- Recent Orders ---------- */
+
+.recent-orders{
+
+    margin-top:40px;
+
+}
+
+/* ---------- Title ---------- */
+
+.recent-orders h2{
+
+    margin-bottom:20px;
+
+}
+
+/* ---------- Container ---------- */
+
+.orders-container{
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+
+}
+
+.no-orders{
+
+    text-align:center;
+
+    color:var(--text-muted);
+
+    padding:30px 0;
+
+    font-size:1rem;
+
+}
+
+/* ---------- Order Card ---------- */
+
+.order-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.order-card:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ---------- Order Info ---------- */
+
+.order-info h3{
+
+    margin-bottom:6px;
+
+    color:var(--text-main);
+
+}
+
+.order-info p{
+
+    color:var(--text-muted);
+
+    font-size:.95rem;
+
+}
+
+.order-status{
+
+    font-weight:700;
+
+    color:var(--success);
+
+}
+
+/* ---------- Order Status ---------- */
+
+.status-pending{
+    color:#f59e0b;
+}
+
+.status-processing{
+    color:#38bdf8;
+}
+
+.status-shipped{
+    color:#6366f1;
+}
+
+.status-delivered{
+    color:#22c55e;
+}
+
+.status-cancelled{
+    color:#ef4444;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+}
+
+/* ---------- Animation Usage ---------- */
+
+.summary-card,
+.action-card,
+.orders-container{
+
+    animation:fadeUp .35s ease;
+
+}
+
+
+
+/* =========================
+      PC RESPONSIVE
+========================= */
+
+@media (min-width: 769px) {
+
+    .actions-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+}
+
+/* =========================
+      MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+    .order-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.order-status{
+
+    align-self:flex-start;
+
+}
+
+}
