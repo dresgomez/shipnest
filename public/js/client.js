@@ -10,6 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const favoritesCard = document.getElementById("favorites-card");
     const settingsCard = document.getElementById("settings-card");
 
+
+ordersCard.addEventListener("click", () => {
+    console.log("Abrir Mis pedidos");
+});
+
+profileCard.addEventListener("click", () => {
+    console.log("Abrir Mi perfil");
+});
+
+favoritesCard.addEventListener("click", () => {
+    console.log("Abrir Favoritos");
+});
+
+settingsCard.addEventListener("click", () => {
+    console.log("Abrir Configuración");
+});
+
     console.log(clientName);
     console.log(clientEmail);
 
