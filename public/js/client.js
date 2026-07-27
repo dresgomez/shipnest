@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 ordersCard.addEventListener("click", () => {
-    console.log("Abrir Mis pedidos");
+    console.log("Abrir Mis pedidos");  
+    ordersCard.style.background = "red";
+  ordersCard.onclick = () => alert("Hola");
+
 });
 
 profileCard.addEventListener("click", () => {
@@ -35,7 +38,5 @@ settingsCard.addEventListener("click", () => {
     console.log(favoritesCard);
     console.log(settingsCard);
 
-    ordersCard.style.border = "4px solid red";
-    ordersCard.onclick = () => alert("Hola");
 
 });
