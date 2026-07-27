@@ -35,4 +35,7 @@ settingsCard.addEventListener("click", () => {
     console.log(favoritesCard);
     console.log(settingsCard);
 
+    ordersCard.style.border = "4px solid red";
+    ordersCard.onclick = () => alert("Hola");
+
 });
