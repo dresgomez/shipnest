@@ -12,22 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 ordersCard.addEventListener("click", () => {
-    console.log("Abrir Mis pedidos");  
-    ordersCard.style.background = "red";
-  ordersCard.onclick = () => alert("Hola");
-
+    window.location.href = "orders.html";
 });
 
 profileCard.addEventListener("click", () => {
-    console.log("Abrir Mi perfil");
+    window.location.href = "profile.html";
 });
 
 favoritesCard.addEventListener("click", () => {
-    console.log("Abrir Favoritos");
+    window.location.href = "favorites.html";
 });
 
 settingsCard.addEventListener("click", () => {
-    console.log("Abrir Configuración");
+    window.location.href = "settings.html";
 });
 
     console.log(clientName);
