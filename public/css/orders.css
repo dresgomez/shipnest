@@ -1,0 +1,207 @@
+/* =========================
+          ORDERS
+========================= */
+
+/* ---------- Layout ---------- */
+
+.orders-container{
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:40px;
+
+}
+
+
+/* ---------- Header ---------- */
+
+.orders-header{
+
+    margin-bottom:32px;
+
+}
+
+.orders-header h1{
+
+    margin-bottom:8px;
+
+}
+
+.orders-header p{
+
+    color:var(--text-muted);
+
+}
+
+/* ---------- Orders List ---------- */
+
+.orders-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ---------- Order Card ---------- */
+
+.order-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.order-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+}
+
+/* ---------- Order Info ---------- */
+
+.order-info h3{
+
+    margin-bottom:10px;
+
+    color:var(--text-main);
+
+}
+
+.order-info p{
+
+    color:var(--text-muted);
+
+    margin-bottom:6px;
+
+    font-size:.95rem;
+
+}
+
+/* ---------- status ---------- */
+
+.order-status{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    font-weight:700;
+
+}
+
+.status-pending{
+    color:#f59e0b;
+}
+
+.status-processing{
+    color:#38bdf8;
+}
+
+.status-shipped{
+    color:#6366f1;
+}
+
+.status-delivered{
+    color:#22c55e;
+}
+
+.status-cancelled{
+    color:#ef4444;
+}
+
+
+/* ---------- Details Button ---------- */
+
+.details-btn{
+
+    background:var(--accent);
+
+    color:#020617;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.details-btn:hover{
+
+    transform:scale(1.03);
+
+}
+
+.details-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* =========================
+      PC RESPONSIVE
+========================= */
+
+@media (min-width:769px){
+
+}
+
+/* =========================
+      MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+    /* ---------- Order Card ---------- */
+
+.order-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:16px;
+
+}
+
+.details-btn{
+
+    width:100%;
+
+}
+
+.order-status{
+
+    align-self:flex-start;
+
+}
+
+}
