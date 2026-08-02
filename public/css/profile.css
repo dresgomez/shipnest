@@ -86,11 +86,73 @@
 
 /* ---------- User Details ---------- */
 
+.profile-details{
 
+    flex:1;
+
+}
+
+.profile-details h2{
+
+    margin-bottom:8px;
+
+    color:var(--text-main);
+
+}
+
+.profile-details p{
+
+    color:var(--text-muted);
+
+    margin-bottom:6px;
+
+}
 
 /* ---------- Actions ---------- */
 
+.profile-actions{
 
+    display:flex;
+
+    gap:16px;
+
+    margin-bottom:30px;
+
+}
+
+.profile-btn{
+
+    background:var(--accent);
+
+    color:#020617;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 20px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+
+}
+
+.profile-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.profile-btn:active{
+
+    transform:scale(.97);
+
+}
 
 /* ---------- Account Info ---------- */
 
