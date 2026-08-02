@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const editProfileBtn = document.getElementById("edit-profile-btn");
     const changePasswordBtn = document.getElementById("change-password-btn");
 
+    const profileName = document.getElementById("profile-name");
+const profileEmail = document.getElementById("profile-email");
+const profilePhone = document.getElementById("profile-phone");
+
     /* ---------- Data ---------- */
 
     const currentUser = {
@@ -33,9 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    /* ---------- Render ---------- */
+
     function renderProfile(){
 
         console.log(currentUser);
+
+            profileName.textContent = currentUser.name;
+
+    profileEmail.textContent = currentUser.email;
+
+    profilePhone.textContent = currentUser.phone;
+
 
     }
 
