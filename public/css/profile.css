@@ -290,4 +290,34 @@
 
 @media (max-width:768px){
 
+    .profile-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.profile-actions{
+
+    flex-direction:column;
+
+}
+
+.info-row{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:6px;
+
+}
+
+.profile-btn{
+
+    width:100%;
+
+}
+
 }
