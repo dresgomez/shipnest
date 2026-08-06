@@ -4,29 +4,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ---------- Elements ---------- */
 
+
+        /* ---------- Buttons ---------- */
     const editProfileBtn = document.getElementById("edit-profile-btn");
     const changePasswordBtn = document.getElementById("change-password-btn");
+
+    /* ---------- User Data ---------- */
 
     const profileName = document.getElementById("profile-name");
 const profileEmail = document.getElementById("profile-email");
 const profilePhone = document.getElementById("profile-phone");
 const profileRole = document.getElementById("profile-role");
+const profileStatus = document.getElementById("profile-status");
+
+const profileMemberSince = document.getElementById("profile-member-since");
 
     /* ---------- Data ---------- */
 
-    const currentUser = {
+const currentUser = {
 
-        name: "Invitado",
+    name: "Invitado",
 
-        email: "Sin iniciar sesión",
+    email: "Sin iniciar sesión",
 
-        phone: "No disponible",
+    phone: "No disponible",
 
-         role: "Cliente"
+    role: "Cliente",
 
-    };
+    status: "Activo",
 
+    memberSince: "--/--/----"
 
+};
 
     /* ---------- Functions ---------- */
 
