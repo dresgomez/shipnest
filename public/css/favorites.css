@@ -1,0 +1,97 @@
+/* =========================
+        FAVORITES PAGE
+========================= */
+
+.favorites-page{
+
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+
+}
+
+.favorites-page h1{
+
+    margin-bottom: 15px;
+
+}
+
+.favorites-page p{
+
+    color: #666;
+
+    margin-bottom: 30px;
+
+}
+
+/* =========================
+    FAVORITES CONTENT
+========================= */
+
+.favorites-content{
+
+}
+
+/* =========================
+    FAVORITES EMPTY
+========================= */
+
+.favorites-empty{
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    background: #fff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.favorites-empty i{
+
+    font-size: 4rem;
+
+    color: crimson;
+
+    margin-bottom: 20px;
+
+}
+
+.favorites-empty h2{
+
+    margin-bottom: 15px;
+
+}
+
+.favorites-empty p{
+
+    max-width: 500px;
+
+    margin: 0 auto 30px;
+
+    color: #666;
+
+    line-height: 1.6;
+
+}
+
+/* =========================
+    FAVORITES LIST
+========================= */
+
+.favorites-list{
+
+}
+
+/* =========================
+    RECOMMENDATIONS
+========================= */
+
+.recommendations{
+
+}

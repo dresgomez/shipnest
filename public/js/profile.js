@@ -53,7 +53,7 @@ const currentUser = {
 
     /* ---------- Render ---------- */
 
-  function renderProfile(){
+function renderProfile(){
 
     profileName.textContent = currentUser.name;
 
@@ -61,9 +61,13 @@ const currentUser = {
 
     profilePhone.textContent = currentUser.phone;
 
-    console.log("Current User:", currentUser);
-
     profileRole.textContent = currentUser.role;
+
+    profileStatus.textContent = currentUser.status;
+
+    profileMemberSince.textContent = currentUser.memberSince;
+
+    console.log("Current User:", currentUser);
 
 }
 
