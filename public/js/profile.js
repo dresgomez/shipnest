@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileName = document.getElementById("profile-name");
 const profileEmail = document.getElementById("profile-email");
 const profilePhone = document.getElementById("profile-phone");
+const profileRole = document.getElementById("profile-role");
 
     /* ---------- Data ---------- */
 
@@ -19,9 +20,13 @@ const profilePhone = document.getElementById("profile-phone");
 
         email: "Sin iniciar sesión",
 
-        phone: "No disponible"
+        phone: "No disponible",
+
+         role: "Cliente"
 
     };
+
+
 
     /* ---------- Functions ---------- */
 
@@ -39,18 +44,19 @@ const profilePhone = document.getElementById("profile-phone");
 
     /* ---------- Render ---------- */
 
-    function renderProfile(){
+  function renderProfile(){
 
-        console.log(currentUser);
-
-            profileName.textContent = currentUser.name;
+    profileName.textContent = currentUser.name;
 
     profileEmail.textContent = currentUser.email;
 
     profilePhone.textContent = currentUser.phone;
 
+    console.log("Current User:", currentUser);
 
-    }
+    profileRole.textContent = currentUser.role;
+
+}
 
     /* ---------- Events ---------- */
 
