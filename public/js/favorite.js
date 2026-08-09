@@ -29,11 +29,65 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
 
-    function renderFavorites() {
+function renderFavorites() {
 
-        console.log("Renderizando favoritos:", favorites);
+    favoritesList.innerHTML = "";
 
-    }
+    if (favorites.length === 0) {
+
+    favoritesEmpty.style.display = "block";
+
+    favoritesList.style.display = "none";
+
+    return;
+}
+
+favoritesEmpty.style.display = "none";
+
+favoritesList.style.display = "flex";
+
+    favorites.forEach((favorite) => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("favorite-card");
+
+        card.innerHTML = `
+
+            <img 
+                src="https://placehold.co/120x120" 
+                alt="${favorite.name}"
+            >
+
+            <div class="favorite-info">
+
+                <h3>${favorite.name}</h3>
+
+                <p>${favorite.price}</p>
+
+                <span>${favorite.seller}</span>
+
+            </div>
+
+            <div class="favorite-actions">
+
+                <button class="details-btn">
+                    Ver producto
+                </button>
+
+                <button class="remove-favorite">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+        `;
+
+        favoritesList.appendChild(card);
+
+    });
+
+}
 
 
     renderFavorites();
