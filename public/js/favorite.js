@@ -19,4 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
         recommendationsContainer
     );
 
+
+    const favorites = [
+        {
+            name: "Producto de ejemplo",
+            price: "R$ 000,00",
+            seller: "Vendedor de ejemplo"
+        }
+    ];
+
+
+    function renderFavorites() {
+
+        console.log("Renderizando favoritos:", favorites);
+
+    }
+
+
+    renderFavorites();
+
 });
