@@ -85,6 +85,14 @@ favoritesList.style.display = "flex";
 
         favoritesList.appendChild(card);
 
+               const removeButton = card.querySelector(".remove-favorite");
+
+        removeButton.addEventListener("click", () => {
+
+    console.log("Eliminar favorito:", favorite.name);
+
+});
+
     });
 
 }
