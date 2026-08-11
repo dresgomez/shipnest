@@ -38,6 +38,19 @@ const favorites = [
     }
 ];
 
+const recommendations = [
+    {
+        name: "Producto recomendado",
+        price: "R$ 149,90",
+        seller: "Vendedor recomendado",
+        shipping: "Envío nacional"
+    }
+];
+
+// =======================
+// Favorites
+// =======================
+
 function renderFavorites() {
 
     favoritesList.innerHTML = "";
@@ -122,6 +135,57 @@ function renderFavorites() {
 
 }
 
+// =======================
+// Recomendations
+// =======================
+
+function renderRecommendations() {
+
+    recommendationsContainer.innerHTML = "";
+
+    recommendations.forEach((product) => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("recommendation-card");
+
+        card.innerHTML = `
+
+            <img
+                src="https://placehold.co/120x120"
+                alt="${product.name}"
+            >
+
+            <div class="recommendation-info">
+
+                <h3>${product.name}</h3>
+
+                <p>${product.price}</p>
+
+                <span>${product.seller}</span>
+
+                <small>${product.shipping}</small>
+
+            </div>
+
+            <div class="recommendation-actions">
+
+                <button class="details-btn">
+                    Ver producto
+                </button>
+
+            </div>
+
+        `;
+
+        recommendationsContainer.appendChild(card);
+
+    });
+
+}
+
 renderFavorites();
+
+renderRecommendations();
 
 });
