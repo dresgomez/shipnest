@@ -28,89 +28,90 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-
 function renderFavorites() {
 
     favoritesList.innerHTML = "";
 
     if (favorites.length === 0) {
 
-    favoritesEmpty.style.display = "block";
+        favoritesEmpty.style.display = "block";
 
-    favoritesList.style.display = "none";
+        favoritesList.style.display = "none";
 
-    return;
-}
+        return;
+    }
 
-favoritesEmpty.style.display = "none";
+    favoritesEmpty.style.display = "none";
 
-favoritesList.style.display = "flex";
-
- favorites.forEach((favorite) => {
-
-    const card = document.createElement("div");
-
-    card.classList.add("favorite-card");
-
-    card.innerHTML = `
-
-        <img 
-            src="https://placehold.co/120x120" 
-            alt="${favorite.name}"
-        >
-
-        <div class="favorite-info">
-
-            <h3>${favorite.name}</h3>
-
-            <p>${favorite.price}</p>
-
-            <span>${favorite.seller}</span>
-
-        </div>
-
-        <div class="favorite-actions">
-
-            <button class="details-btn">
-                Ver producto
-            </button>
-
-            <button class="remove-favorite">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-
-        </div>
-
-    `;
-
-    favoritesList.appendChild(card);
+    favoritesList.style.display = "flex";
 
 
-    const removeButton = card.querySelector(".remove-favorite");
+    favorites.forEach((favorite) => {
 
-    const detailsButton = card.querySelector(".details-btn");
+        const card = document.createElement("div");
+
+        card.classList.add("favorite-card");
+
+        card.innerHTML = `
+
+            <img 
+                src="https://placehold.co/120x120" 
+                alt="${favorite.name}"
+            >
+
+            <div class="favorite-info">
+
+                <h3>${favorite.name}</h3>
+
+                <p>${favorite.price}</p>
+
+                <span>${favorite.seller}</span>
+
+            </div>
+
+            <div class="favorite-actions">
+
+                <button class="details-btn">
+                    Ver producto
+                </button>
+
+                <button class="remove-favorite">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+        `;
+
+        favoritesList.appendChild(card);
 
 
-    removeButton.addEventListener("click", () => {
+        const removeButton = card.querySelector(".remove-favorite");
 
-        const index = favorites.indexOf(favorite);
+        const detailsButton = card.querySelector(".details-btn");
 
-        favorites.splice(index, 1);
 
-        renderFavorites();
+        removeButton.addEventListener("click", () => {
+
+            const index = favorites.indexOf(favorite);
+
+            favorites.splice(index, 1);
+
+            renderFavorites();
+
+        });
+
+
+        detailsButton.addEventListener("click", () => {
+
+            console.log("Ver producto:", favorite.name);
+
+        });
 
     });
 
-
-    detailsButton.addEventListener("click", () => {
-
-        console.log("Ver producto:", favorite.name);
-
-    });
-
-
-});
-
 }
+
+renderFavorites();
 
 });
