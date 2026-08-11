@@ -89,7 +89,12 @@ favoritesList.style.display = "flex";
 
         removeButton.addEventListener("click", () => {
 
-    console.log("Eliminar favorito:", favorite.name);
+    const index = favorites.indexOf(favorite);
+
+    favorites.splice(index, 1);
+
+    renderFavorites();
+
 
 });
 
