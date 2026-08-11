@@ -180,6 +180,14 @@ function renderRecommendations() {
 
         recommendationsContainer.appendChild(card);
 
+        const detailsButton = card.querySelector(".details-btn");
+
+detailsButton.addEventListener("click", () => {
+
+    console.log("Ver recomendación:", product.name);
+
+});
+
     });
 
 }
