@@ -20,13 +20,23 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    const favorites = [
-        {
-            name: "Producto de ejemplo",
-            price: "R$ 000,00",
-            seller: "Vendedor de ejemplo"
-        }
-    ];
+const favorites = [
+    {
+        name: "Producto A",
+        price: "R$ 100,00",
+        seller: "Vendedor A"
+    },
+    {
+        name: "Producto B",
+        price: "R$ 200,00",
+        seller: "Vendedor B"
+    },
+    {
+        name: "Producto C",
+        price: "R$ 300,00",
+        seller: "Vendedor C"
+    }
+];
 
 function renderFavorites() {
 
