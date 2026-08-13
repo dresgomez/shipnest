@@ -39,12 +39,9 @@ const favorites = [
 ];
 
 const recommendations = [
-    {
-        name: "Producto recomendado",
-        price: "R$ 149,90",
-        seller: "Vendedor recomendado",
-        shipping: "Envío nacional"
-    }
+
+    
+
 ];
 
 // =======================
