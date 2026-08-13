@@ -143,6 +143,25 @@ function renderRecommendations() {
 
     recommendationsContainer.innerHTML = "";
 
+    if (recommendations.length === 0) {
+
+    recommendationsContainer.innerHTML = `
+    
+        <div class="recommendations-empty">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <p>
+                Por ahora no tenemos recomendaciones para ti.
+            </p>
+
+        </div>
+
+    `;
+
+    return;
+}
+
     recommendations.forEach((product) => {
 
         const card = document.createElement("div");

@@ -273,3 +273,33 @@
     color:var(--text-secondary);
 
 }
+
+.recommendations-empty{
+
+    padding:30px;
+
+    text-align:center;
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    color:var(--text-secondary);
+
+}
+
+.recommendations-empty i{
+
+    font-size:2rem;
+
+    margin-bottom:12px;
+
+    color:var(--accent);
+
+}
+
+.recommendations-empty p{
+
+    margin:0;
+
+}
