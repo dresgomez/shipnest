@@ -10,16 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ".recommendations-container"
     );
 
-    console.log("Favorites List:", favoritesList);
-
-    console.log("Favorites Empty:", favoritesEmpty);
-
-    console.log(
-        "Recommendations Container:",
-        recommendationsContainer
-    );
-
-
 const favorites = [
     {
         name: "Producto A",
@@ -40,7 +30,12 @@ const favorites = [
 
 const recommendations = [
 
-    
+        {
+        name: "Producto recomendado",
+        price: "R$ 149,90",
+        seller: "Vendedor recomendado",
+        shipping: "Envío nacional"
+    }
 
 ];
 

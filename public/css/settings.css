@@ -1,0 +1,211 @@
+/* =========================
+        SETTINGS PAGE
+========================= */
+
+.settings-page{
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+.settings-page h1{
+
+    margin-bottom:15px;
+
+}
+
+.settings-page > p{
+
+    color:var(--text-secondary);
+
+    margin-bottom:40px;
+
+}
+
+
+/* =========================
+    SETTINGS SECTION
+========================= */
+
+.settings-section{
+
+    margin-bottom:30px;
+
+}
+
+.settings-section h2{
+
+    margin-bottom:15px;
+
+    color:var(--text-primary);
+
+}
+
+
+/* =========================
+    SETTINGS CARD
+========================= */
+
+.settings-card{
+
+    background:var(--bg-card);
+
+    border-radius:16px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+}
+
+
+/* =========================
+    SETTINGS OPTION
+========================= */
+
+.settings-option{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    padding:24px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.settings-option:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================
+    SETTINGS OPTION INFO
+========================= */
+
+.settings-option-info{
+
+    flex:1;
+
+}
+
+.settings-option-info h3{
+
+    margin-bottom:8px;
+
+    color:var(--text-primary);
+
+}
+
+.settings-option-info p{
+
+    margin:0;
+
+    color:var(--text-secondary);
+
+    line-height:1.5;
+
+}
+
+
+/* =========================
+    SETTINGS ACTION
+========================= */
+
+.settings-action{
+
+    flex-shrink:0;
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-weight:600;
+
+    transition:opacity .2s ease;
+
+}
+
+.settings-action:hover{
+
+    opacity:.85;
+
+}
+
+
+/* =========================
+    SELLER SETTINGS
+========================= */
+
+.settings-seller{
+
+    display:none;
+
+}
+
+
+/* =========================
+    DANGER ZONE
+========================= */
+
+.settings-danger .settings-card{
+
+    border:1px solid crimson;
+
+}
+
+.settings-danger h2{
+
+    color:crimson;
+
+}
+
+.danger-action{
+
+    background:crimson;
+
+}
+
+
+/* =========================
+    RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+    .settings-option{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .settings-action{
+
+        width:100%;
+
+    }
+
+}
