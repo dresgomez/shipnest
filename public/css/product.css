@@ -489,7 +489,7 @@
 
     padding: 25px;
 
-    background: var(--bg-card);
+    background: var(--bg-main);
 
     border-radius: 12px;
 
@@ -527,7 +527,7 @@
 
 .related-card {
 
-    background: var(--bg-secondary);
+    background: var(--bg-card);
 
     border-radius: 12px;
 
