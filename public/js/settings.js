@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =======================
 
     const currentUser = {
-        role: "seller"
+        role: "client"
     };
 
 
