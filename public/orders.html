@@ -54,37 +54,45 @@
     </section>
 
 
-     <!-- ---------- Orders List ---------- -->
+<section class="orders-list">
 
-    <section class="orders-list">
+    <!-- =========================
+         EMPTY STATE
+    ========================= -->
 
-<div class="order-card">
+    <div class="orders-empty">
 
-    <div class="order-info">
+        <i class="fa-solid fa-box-open"></i>
 
-        <h3>Pedido #1001</h3>
+        <h2>
+            Todavía no tienes pedidos
+        </h2>
 
-        <p>Fecha: 01/08/2026</p>
+        <p>
+            Cuando realices una compra, tus pedidos aparecerán aquí.
+        </p>
 
-        <p>Total: R$ 259,90</p>
-
-        <span class="order-status status-processing">
-            En preparación
-        </span>
+        <a href="index.html" class="btn">
+            Explorar productos
+        </a>
 
     </div>
 
-    <button class="details-btn">
-        Ver detalles
-    </button>
 
-</div>
+    <!-- =========================
+         ORDERS
+    ========================= -->
 
-        <!-- Aquí aparecerán los pedidos -->
+    <div class="orders-container">
 
-    </section>
+        <!--
+            Los pedidos serán renderizados
+            dinámicamente mediante orders.js.
+        -->
 
-</main>
+    </div>
+
+</section>
 
 <!-- =========================
          FOOTER
