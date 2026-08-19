@@ -6,14 +6,25 @@
 
 .orders-container{
 
-    max-width:1200px;
+    display: flex;
 
-    margin:0 auto;
+    flex-direction: column;
 
-    padding:40px;
+    gap: 20px;
 
 }
 
+/* ---------- order page ---------- */
+
+.orders-page {
+
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+
+}
 
 /* ---------- Header ---------- */
 
@@ -163,6 +174,52 @@
 .details-btn:active{
 
     transform:scale(.97);
+
+}
+
+/* ---------- Empty State ---------- */
+
+.orders-empty {
+
+    background: var(--bg-card);
+
+    border-radius: 16px;
+
+    padding: 50px 20px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+
+    text-align: center;
+
+}
+
+.orders-empty i {
+
+    font-size: 4rem;
+
+    color: var(--accent);
+
+    margin-bottom: 25px;
+
+}
+
+.orders-empty h2 {
+
+    color: var(--text-main);
+
+    margin-bottom: 20px;
+
+}
+
+.orders-empty p {
+
+    max-width: 500px;
+
+    margin: 0 auto 35px;
+
+    color: var(--text-muted);
+
+    line-height: 1.6;
 
 }
 
