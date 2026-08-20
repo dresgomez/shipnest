@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ordersEmpty =
         document.querySelector(".orders-empty");
 
+
     const orders = [
 
         {
@@ -36,91 +37,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ];
 
-  function renderOrders() {
 
-    ordersContainer.innerHTML = "";
+    function renderOrders() {
 
-    if (orders.length === 0) {
+        ordersContainer.innerHTML = "";
 
-        ordersEmpty.style.display = "block";
+        if (orders.length === 0) {
 
-        ordersContainer.style.display = "none";
+            ordersEmpty.style.display = "block";
 
-        return;
-    }
+            ordersContainer.style.display = "none";
 
-    ordersEmpty.style.display = "none";
+            return;
+        }
 
-    ordersContainer.style.display = "flex";
+        ordersEmpty.style.display = "none";
 
-
-    orders.forEach((order) => {
-
-        const card = document.createElement("div");
-
-        card.classList.add("order-card");
-
-        card.innerHTML = `
-
-            <div class="order-info">
-
-                <h3>
-                    Pedido #${order.id}
-                </h3>
-
-                <p>
-                    Fecha: ${order.date}
-                </p>
-
-                <p>
-                    Total: ${order.total}
-                </p>
-
-                <span class="order-status ${order.statusClass}">
-                    ${order.status}
-                </span>
-
-            </div>
-
-            <button class="details-btn">
-                Ver detalles
-            </button>
-
-        `;
-
-        ordersContainer.appendChild(card);
-
-});
+        ordersContainer.style.display = "flex";
 
 
-function initializeOrders(){
+        orders.forEach((order) => {
 
-    const orderCards = document.querySelectorAll(".order-card");
-    const detailsButtons = document.querySelectorAll(".details-btn");
+            const card = document.createElement("div");
 
-    console.log(orderCards);
-    console.log(detailsButtons);
+            card.classList.add("order-card");
 
-    setupDetailsButtons(detailsButtons);
+            card.innerHTML = `
 
-}
+                <div class="order-info">
 
-function setupDetailsButtons(buttons){
+                    <h3>
+                        Pedido #${order.id}
+                    </h3>
 
-    buttons.forEach((button)=>{
+                    <p>
+                        Fecha: ${order.date}
+                    </p>
 
-        button.addEventListener("click", ()=>{
+                    <p>
+                        Total: ${order.total}
+                    </p>
 
-            console.log("Abrir detalles del pedido");
+                    <span class="order-status ${order.statusClass}">
+                        ${order.status}
+                    </span>
+
+                </div>
+
+                <button class="details-btn">
+                    Ver detalles
+                </button>
+
+            `;
+
+            ordersContainer.appendChild(card);
 
         });
 
-    });
+    }
 
-}
 
-renderOrders();
-
-}  
+    renderOrders();
 
 });
