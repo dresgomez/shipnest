@@ -92,8 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ordersContainer.appendChild(card);
 
-        });
-
+            
                 const detailsButton = card.querySelector(".details-btn");
 
 detailsButton.addEventListener("click", () => {
@@ -101,6 +100,10 @@ detailsButton.addEventListener("click", () => {
     console.log("Ver detalles:", order.id);
 
 });
+
+
+        });
+
 
     }
 
