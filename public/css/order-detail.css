@@ -1,0 +1,216 @@
+/* =========================
+   ORDER DETAIL
+========================= */
+
+.order-detail-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+
+/* =========================
+   ORDER HEADER
+========================= */
+
+.order-detail-header {
+    margin-bottom: 30px;
+}
+
+.back-to-orders {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.2s ease;
+}
+
+.back-to-orders:hover {
+    color: var(--accent);
+}
+
+.order-header-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.order-label {
+    margin: 0 0 5px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.order-header-info h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.order-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--success);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.order-date {
+    margin: 10px 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+
+/* =========================
+   ORDER CONTENT
+========================= */
+
+.order-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-section {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-title i {
+    color: var(--accent);
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+/* =========================
+   SHIPPING INFORMATION
+========================= */
+
+.shipping-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.shipping-item {
+    padding: 15px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.info-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.shipping-item p {
+    margin: 0;
+    font-size: 15px;
+}
+
+
+/* =========================
+   ORDER PRODUCTS
+========================= */
+
+.order-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.order-summary {
+    max-width: 500px;
+    margin-left: auto;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 8px 0;
+}
+
+.summary-row span:first-child {
+    color: var(--text-muted);
+}
+
+.summary-divider {
+    height: 1px;
+    background: var(--text-muted);
+    opacity: 0.2;
+    margin: 10px 0;
+}
+
+.summary-total {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.summary-total span:last-child {
+    color: var(--accent);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .order-detail-container {
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .order-header-info {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .shipping-info {
+        grid-template-columns: 1fr;
+    }
+
+    .order-section {
+        padding: 20px;
+    }
+
+    .order-summary {
+        max-width: none;
+    }
+
+}
+

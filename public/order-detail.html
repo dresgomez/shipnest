@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aigo</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/order-detail.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- JS -->
+  <script src="/js/order-detail.js" defer></script>
+  <script src="/js/auth.js" defer></script>
+  <script src="/js/script.js" defer></script>
+</head>
+
+
+<!-- =========================
+         HEADER
+========================= -->
+
+<header
+    
+    class="navbar">
+ <div class="header-top">
+    <a href="index.html" class="logo">Aigo</a>
+
+   <div class="header-icons">
+
+  <a href="index.html" class="header-icon">
+    <i class="fas fa-home"></i>
+  </a>
+
+  <a href="client.html" class="header-icon  user-link">
+    <i class="fas fa-user"></i>
+  </a>
+
+  <a href="carrito.html" class="header-icon cart-link">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </a>
+
+</div>
+
+</header>
+
+<!-- =========================
+         MAIN
+========================= -->
+
+<main>
+
+    <div class="order-detail-container">
+
+        <!-- ORDER HEADER -->
+        <section class="order-detail-header">
+
+            <a href="orders.html" class="back-to-orders">
+                <i class="fas fa-arrow-left"></i>
+                Back to Orders
+            </a>
+
+            <div class="order-header-info">
+
+                <div>
+                    <p class="order-label">Order</p>
+                    <h1 id="order-id">#000000</h1>
+                </div>
+
+                <span id="order-status" class="order-status">
+                    Processing
+                </span>
+
+            </div>
+
+            <p class="order-date">
+                Placed on <span id="order-date">--/--/----</span>
+            </p>
+
+        </section>
+
+
+        <!-- ORDER CONTENT -->
+        <div class="order-detail-content">
+
+            <!-- SHIPPING INFORMATION -->
+            <section class="order-section shipping-section">
+
+                <div class="section-title">
+                    <i class="fas fa-truck"></i>
+                    <h2>Shipping Information</h2>
+                </div>
+
+                <div class="shipping-info">
+
+                    <div class="shipping-item">
+                        <span class="info-label">Name</span>
+                        <p id="shipping-name">---</p>
+                    </div>
+
+                    <div class="shipping-item">
+                        <span class="info-label">Address</span>
+                        <p id="shipping-address">---</p>
+                    </div>
+
+                    <div class="shipping-item">
+                        <span class="info-label">City</span>
+                        <p id="shipping-city">---</p>
+                    </div>
+
+                    <div class="shipping-item">
+                        <span class="info-label">Postal Code</span>
+                        <p id="shipping-postal-code">---</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ORDER PRODUCTS -->
+            <section class="order-section products-section">
+
+                <div class="section-title">
+                    <i class="fas fa-box"></i>
+                    <h2>Products</h2>
+                </div>
+
+                <div id="order-products" class="order-products">
+
+                    <!-- Products will be rendered by order-detail.js -->
+
+                </div>
+
+            </section>
+
+
+            <!-- ORDER SUMMARY -->
+            <section class="order-section order-summary-section">
+
+                <div class="section-title">
+                    <i class="fas fa-receipt"></i>
+                    <h2>Order Summary</h2>
+                </div>
+
+                <div class="order-summary">
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="order-subtotal">R$ 0.00</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="order-shipping">R$ 0.00</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="order-total">R$ 0.00</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =========================
+         Footer
+========================= -->
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-column">
+                    <h3>Aigo</h3>
+                    <p>Your trusted marketplace for premium dropshipping products.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Home & Kitchen</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Beauty</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Aigo. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
