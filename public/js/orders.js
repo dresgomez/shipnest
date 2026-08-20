@@ -94,6 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+                const detailsButton = card.querySelector(".details-btn");
+
+detailsButton.addEventListener("click", () => {
+
+    console.log("Ver detalles:", product.name);
+
+});
+
     }
 
 
