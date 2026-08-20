@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 detailsButton.addEventListener("click", () => {
 
-    console.log("Ver detalles:", product.name);
+    console.log("Ver detalles:", order.id);
 
 });
 
