@@ -32,11 +32,15 @@ const orderTotalElement = document.querySelector("#order-total");
 // =========================
 
 if (!orderId) {
+
     console.error("No order ID provided.");
 
     orderIdElement.textContent = "Order not found";
+
 } else {
+
     loadOrder(orderId);
+
 }
 
 
@@ -61,9 +65,11 @@ async function loadOrder(id) {
         const order = orders.find(order => order._id === id);
 
         if (!order) {
+
             console.error("Order not found:", id);
 
             orderIdElement.textContent = "Order not found";
+
             return;
         }
 
@@ -74,7 +80,9 @@ async function loadOrder(id) {
         console.error("Error loading order:", error);
 
         orderIdElement.textContent = "Error loading order";
+
     }
+
 }
 
 
@@ -84,40 +92,65 @@ async function loadOrder(id) {
 
 function renderOrder(order) {
 
-    // Order information
-    orderIdElement.textContent = `#${order._id}`;
+    // =========================
+    // ORDER INFORMATION
+    // =========================
 
-    orderStatusElement.textContent = order.status || "Processing";
+    orderIdElement.textContent =
+        `#${order.orderID || order._id}`;
 
-    orderDateElement.textContent = formatDate(order.createdAt);
+    orderStatusElement.textContent =
+        order.status || "Processing";
 
-
-    // Shipping information
-    shippingNameElement.textContent =
-        order.shippingAddress?.name || "---";
-
-    shippingAddressElement.textContent =
-        order.shippingAddress?.address || "---";
-
-    shippingCityElement.textContent =
-        order.shippingAddress?.city || "---";
-
-    shippingPostalCodeElement.textContent =
-        order.shippingAddress?.postalCode || "---";
+    orderDateElement.textContent =
+        formatDate(order.createdAt);
 
 
-    // Products
+    // =========================
+    // SHIPPING INFORMATION
+    // =========================
+
+    // Shipping information is not currently
+    // stored in the order document.
+
+    shippingNameElement.textContent = "---";
+
+    shippingAddressElement.textContent = "---";
+
+    shippingCityElement.textContent = "---";
+
+    shippingPostalCodeElement.textContent = "---";
+
+
+    // =========================
+    // PRODUCTS
+    // =========================
+
     renderProducts(order.items || []);
 
 
-    // Summary
-    const subtotal = order.subtotal || 0;
-    const shipping = order.shipping || 0;
-    const total = order.total || subtotal + shipping;
+    // =========================
+    // ORDER TOTAL
+    // =========================
 
-    orderSubtotalElement.textContent = formatPrice(subtotal);
-    orderShippingElement.textContent = formatPrice(shipping);
-    orderTotalElement.textContent = formatPrice(total);
+    const currency =
+        order.amount?.currency_code || "BRL";
+
+    const total =
+        order.amount?.value || "0.00";
+
+    orderTotalElement.textContent =
+        formatAmount(total, currency);
+
+
+    // =========================
+    // CURRENTLY UNAVAILABLE
+    // =========================
+
+    orderSubtotalElement.textContent = "---";
+
+    orderShippingElement.textContent = "---";
+
 }
 
 
@@ -128,6 +161,7 @@ function renderOrder(order) {
 function renderProducts(products) {
 
     orderProductsElement.innerHTML = "";
+
 
     if (!products.length) {
 
@@ -143,19 +177,16 @@ function renderProducts(products) {
 
     products.forEach(item => {
 
-        const product = document.createElement("div");
+        const productElement =
+            document.createElement("div");
 
-        product.className = "order-product";
+        productElement.className =
+            "order-product";
 
-        product.innerHTML = `
+
+        productElement.innerHTML = `
+
             <div class="order-product-info">
-
-                <div class="order-product-image">
-                    <img
-                        src="${item.image || "images/placeholder.png"}"
-                        alt="${item.name || "Product"}"
-                    >
-                </div>
 
                 <div class="order-product-details">
 
@@ -173,20 +204,44 @@ function renderProducts(products) {
             <div class="order-product-price">
                 ${formatPrice(item.price || 0)}
             </div>
+
         `;
 
-        orderProductsElement.appendChild(product);
+
+        orderProductsElement.appendChild(productElement);
+
     });
+
 }
 
 
 // =========================
-// FORMAT PRICE
+// FORMAT INTERNAL PRICE
 // =========================
 
 function formatPrice(price) {
 
     return `R$ ${(price / 100).toFixed(2)}`;
+
+}
+
+
+// =========================
+// FORMAT PAYPAL AMOUNT
+// =========================
+
+function formatAmount(value, currency) {
+
+    const amount = Number(value);
+
+    return new Intl.NumberFormat("pt-BR", {
+
+        style: "currency",
+
+        currency: currency
+
+    }).format(amount);
+
 }
 
 
@@ -200,10 +255,15 @@ function formatDate(date) {
         return "---";
     }
 
-    return new Date(date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
-}
 
+    return new Date(date).toLocaleDateString("en-US", {
+
+        year: "numeric",
+
+        month: "long",
+
+        day: "numeric"
+
+    });
+
+}
