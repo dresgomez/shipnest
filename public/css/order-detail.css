@@ -219,26 +219,6 @@
 
 
 /* =========================
-   PRODUCT RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-    .order-product {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .order-product-price {
-        align-self: flex-end;
-    }
-
-}
-
-
-
-/* =========================
    ORDER SUMMARY
 ========================= */
 
@@ -305,4 +285,16 @@
     }
 
 }
+
+    .order-product {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-product-price {
+        align-self: flex-end;
+    }
+
+
 

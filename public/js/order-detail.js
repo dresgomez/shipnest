@@ -128,6 +128,21 @@ function renderOrder(order) {
 
     renderProducts(order.items || []);
 
+    renderProducts(items);
+
+
+const subtotal = items.reduce((total, item) => {
+    
+    const price = Number(item.price) || 0;
+     const quantity = Number(item.quantity) || 1;
+     
+     return total + (price * quantity);
+    
+    }, 0); 
+    
+    orderSubtotalElement.textContent = 
+    formatPrice(subtotal);
+
 
     // =========================
     // ORDER TOTAL
@@ -142,6 +157,12 @@ function renderOrder(order) {
     orderTotalElement.textContent =
         formatAmount(total, currency);
 
+
+    // =========================
+    // Shipping
+    // =========================
+
+orderShippingElement.textContent = "---";
 
     // =========================
     // CURRENTLY UNAVAILABLE
