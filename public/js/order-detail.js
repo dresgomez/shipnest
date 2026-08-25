@@ -126,22 +126,27 @@ function renderOrder(order) {
     // PRODUCTS
     // =========================
 
-    renderProducts(order.items || []);
+    const items = order.items || [];
 
     renderProducts(items);
 
 
-const subtotal = items.reduce((total, item) => {
-    
-    const price = Number(item.price) || 0;
-     const quantity = Number(item.quantity) || 1;
-     
-     return total + (price * quantity);
-    
-    }, 0); 
-    
-    orderSubtotalElement.textContent = 
-    formatPrice(subtotal);
+    // =========================
+    // ORDER SUBTOTAL
+    // =========================
+
+    const subtotal = items.reduce((total, item) => {
+
+        const price = Number(item.price) || 0;
+
+        const quantity = Number(item.quantity) || 1;
+
+        return total + (price * quantity);
+
+    }, 0);
+
+    orderSubtotalElement.textContent =
+        formatPrice(subtotal);
 
 
     // =========================
@@ -159,10 +164,13 @@ const subtotal = items.reduce((total, item) => {
 
 
     // =========================
-    // Shipping
+    // SHIPPING
     // =========================
 
-orderShippingElement.textContent = "---";
+    orderShippingElement.textContent = "---";
+
+}
+
 
     // =========================
     // CURRENTLY UNAVAILABLE
@@ -172,7 +180,6 @@ orderShippingElement.textContent = "---";
 
     orderShippingElement.textContent = "---";
 
-}
 
 
 // =========================
