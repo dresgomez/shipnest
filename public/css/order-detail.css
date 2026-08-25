@@ -135,6 +135,7 @@
 }
 
 
+
 /* =========================
    ORDER PRODUCTS
 ========================= */
@@ -144,6 +145,97 @@
     flex-direction: column;
     gap: 15px;
 }
+
+
+/* =========================
+   ORDER PRODUCT
+========================= */
+
+.order-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 18px;
+
+    background: var(--bg-secondary);
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.order-product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    min-width: 0;
+}
+
+.order-product-details {
+    min-width: 0;
+}
+
+.order-product-details h3 {
+    margin: 0 0 6px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: var(--text-main);
+
+    word-break: break-word;
+}
+
+.order-product-details p {
+    margin: 0;
+
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.order-product-price {
+    flex-shrink: 0;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: var(--accent);
+}
+
+
+/* =========================
+   EMPTY PRODUCTS
+========================= */
+
+.empty-order-products {
+    margin: 0;
+
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* =========================
+   PRODUCT RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .order-product {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-product-price {
+        align-self: flex-end;
+    }
+
+}
+
 
 
 /* =========================
