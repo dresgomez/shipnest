@@ -249,7 +249,15 @@ function renderProducts(products) {
 
 function formatPrice(price) {
 
-    return `R$ ${(price / 100).toFixed(2)}`;
+    const amount = Number(price) / 100;
+
+    return new Intl.NumberFormat("pt-BR", {
+
+        style: "currency",
+
+        currency: "BRL"
+
+    }).format(amount);
 
 }
 
