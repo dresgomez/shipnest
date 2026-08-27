@@ -294,9 +294,7 @@
         max-width: none;
     }
 
-}
-
-    .order-product {
+        .order-product {
         align-items: flex-start;
         flex-direction: column;
         gap: 10px;
@@ -305,6 +303,10 @@
     .order-product-price {
         align-self: flex-end;
     }
+
+
+
+}
 
 
 
