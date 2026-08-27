@@ -188,6 +188,8 @@ function renderOrder(order) {
 
 function renderProducts(products) {
 
+    console.log("ORDER PRODUCTS:", products);
+
     orderProductsElement.innerHTML = "";
 
 
