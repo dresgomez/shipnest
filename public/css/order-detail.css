@@ -8,6 +8,15 @@
     padding: 0 20px;
 }
 
+.order-product-details h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.order-product-details h3 a:hover {
+    text-decoration: underline;
+}
+
 
 /* =========================
    ORDER HEADER
@@ -104,6 +113,7 @@
     margin: 0;
     font-size: 20px;
 }
+
 
 
 /* =========================

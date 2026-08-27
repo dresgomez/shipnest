@@ -188,8 +188,6 @@ function renderOrder(order) {
 
 function renderProducts(products) {
 
-    console.log("ORDER PRODUCTS:", products);
-
     orderProductsElement.innerHTML = "";
 
 
@@ -220,7 +218,11 @@ function renderProducts(products) {
 
                 <div class="order-product-details">
 
-                    <h3>${item.name || "Product"}</h3>
+                   <h3>
+    <a href="product.html?id=${item.id}">
+        ${item.name || "Product"}
+    </a>
+</h3>
 
                     <p>
                         Quantity:
