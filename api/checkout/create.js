@@ -58,26 +58,34 @@ try {
       return res.status(500).json({ error: "Failed to get PayPal token" });
     }
 
-    // 2️⃣ Calcular total (centavos → reales)
-    const total = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+// =========================
+// VALIDATE PRODUCTS
+// =========================
 
-    const db = await getDb();
+const db = await getDb();
+
+const validatedItems = [];
 
 for (const item of items) {
 
   console.log("ITEM:", item);
 
   const product = await db.collection("products").findOne({
-   _id: new ObjectId(item.id)
+    _id: new ObjectId(item.id)
   });
 
- console.log("PRODUCT:", product);
+  console.log("PRODUCT:", product);
 
   if (!product) {
-    return res.status(400).json({ error: "Product not found" });
+    return res.status(400).json({
+      error: "Product not found"
+    });
+  }
+
+  if (!item.quantity || item.quantity <= 0) {
+    return res.status(400).json({
+      error: "Invalid item quantity"
+    });
   }
 
   if (product.stock < item.quantity) {
@@ -85,7 +93,24 @@ for (const item of items) {
       error: `Not enough stock for ${product.name}`
     });
   }
+
+  validatedItems.push({
+    id: item.id,
+    name: product.name,
+    price: product.price,
+    quantity: item.quantity
+  });
 }
+
+
+// =========================
+// CALCULATE TOTAL
+// =========================
+
+const total = validatedItems.reduce(
+  (sum, item) => sum + item.price * item.quantity,
+  0
+);
 
     // 3️⃣ Crear orden PayPal
     const orderRes = await fetch(
