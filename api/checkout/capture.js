@@ -12,12 +12,11 @@ export default async function handler(req, res) {
      console.log("🟢 CAPTURE HANDLER STARTED");
     const { orderID, items } = req.body;
 
-const cleanItems = items.map(item => ({
-    id: item.id || item._id, // 🔥 FIX REAL
-  name: item.name,
-  price: Number(item.price),
-  quantity: item.quantity
-}));
+    if (!items || !Array.isArray(items) || items.length === 0) {
+  return res.status(400).json({
+    error: "Invalid items"
+  });
+}
 
     // 🔐 Validación básica
     if (!orderID) {
@@ -65,17 +64,53 @@ const cleanItems = items.map(item => ({
 // 🧠 Guardar orden en Mongo
 const db = await getDb();
 
+const validatedItems = [];
+
+for (const item of items) {
+
+  const productId = item.id || item._id;
+
+  if (!productId || !ObjectId.isValid(productId)) {
+    return res.status(400).json({
+      error: "Invalid product ID"
+    });
+  }
+
+  if (!item.quantity || item.quantity <= 0) {
+    return res.status(400).json({
+      error: "Invalid item quantity"
+    });
+  }
+
+  const product = await db.collection("products").findOne({
+    _id: new ObjectId(productId)
+  });
+
+  if (!product) {
+    return res.status(400).json({
+      error: "Product not found"
+    });
+  }
+
+  validatedItems.push({
+    id: productId,
+    name: product.name,
+    price: product.price,
+    quantity: item.quantity
+  });
+}
+
 await db.collection("orders").insertOne({
   orderID,
   captureID: capture.id,
   amount: capture.amount,
- items: cleanItems, // 🔥 AQUÍ ESTÁ LA MAGIA
+ items: validatedItems, // 🔥 AQUÍ ESTÁ LA MAGIA
   status: "paid",
   provider: "paypal",
   createdAt: new Date(),
 });
 
-for (const item of cleanItems) {
+for (const item of validatedItems) {
 
   // 🧠 Debug antes de validar
   console.log("UPDATING STOCK:", item.id, item.quantity);
@@ -87,12 +122,23 @@ for (const item of cleanItems) {
   }
 
   // 🔄 Update real
-  const result = await db.collection("products").updateOne(
-    { _id: new ObjectId(item.id) },
-    {
-      $inc: { stock: -item.quantity }
-    }
-  );
+ const result = await db.collection("products").updateOne(
+  {
+    _id: new ObjectId(item.id),
+    stock: { $gte: item.quantity }
+  },
+  {
+    $inc: { stock: -item.quantity }
+  }
+);
+
+if (result.modifiedCount !== 1) {
+  console.error("❌ Stock update failed:", item.id);
+
+  return res.status(400).json({
+    error: `Could not update stock for ${item.name}`
+  });
+}
 
   // 🧠 Debug después del update
   console.log("UPDATE RESULT:", result);
