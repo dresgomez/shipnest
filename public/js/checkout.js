@@ -209,6 +209,16 @@ if (typeof paypal !== "undefined") {
       saveCart(cart.filter(item => !item.selected));
       updateCartCount();
       renderCart();
+
+
+  if (result.orderMongoId) {
+    setTimeout(() => {
+      window.location.href =
+        `order-detail.html?id=${result.orderMongoId}`;
+    }, 1500);
+  }
+
+
     } else {
       mostrarError();
     }
