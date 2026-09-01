@@ -100,7 +100,7 @@ for (const item of items) {
   });
 }
 
-await db.collection("orders").insertOne({
+const insertedOrder = await db.collection("orders").insertOne({
   orderID,
   captureID: capture.id,
   amount: capture.amount,
@@ -145,12 +145,13 @@ if (result.modifiedCount !== 1) {
 }
 
     // ✅ SOLO AQUÍ EL PAGO ES REAL
-    return res.status(200).json({
-      status: "COMPLETED",
-      orderID,
-      captureID: capture.id,
-      amount: capture.amount,
-    });
+return res.status(200).json({
+  status: "COMPLETED",
+  orderID,
+  orderMongoId: insertedOrder.insertedId.toString(),
+  captureID: capture.id,
+  amount: capture.amount,
+});
  
   } catch (err) {
     console.error("❌ PayPal capture error:", err);
