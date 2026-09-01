@@ -215,7 +215,7 @@ if (typeof paypal !== "undefined") {
     setTimeout(() => {
       window.location.href =
         `order-detail.html?id=${result.orderMongoId}`;
-    }, 1500);
+    }, 2500);
   }
 
 
