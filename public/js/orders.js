@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("Orders Page Loaded");
 
@@ -9,106 +9,154 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".orders-empty");
 
 
-    const orders = [
+    // =========================
+    // LOAD ORDERS
+    // =========================
 
-        {
-            id: "1001",
-            date: "01/08/2026",
-            total: "R$ 259,90",
-            status: "En preparación",
-            statusClass: "status-processing"
-        },
+    try {
 
-        {
-            id: "1002",
-            date: "03/08/2026",
-            total: "R$ 149,90",
-            status: "Enviado",
-            statusClass: "status-shipped"
-        },
+        const response = await fetch("/api/orders");
 
-        {
-            id: "1003",
-            date: "05/08/2026",
-            total: "R$ 399,90",
-            status: "Entregado",
-            statusClass: "status-delivered"
+        if (!response.ok) {
+            throw new Error("Failed to fetch orders.");
         }
 
-    ];
+        const data = await response.json();
+
+        const orders = data.orders || [];
 
 
-    function renderOrders() {
+        // =========================
+        // RENDER ORDERS
+        // =========================
 
-        ordersContainer.innerHTML = "";
+        function renderOrders() {
 
-        if (orders.length === 0) {
+            ordersContainer.innerHTML = "";
 
-            ordersEmpty.style.display = "block";
+            if (orders.length === 0) {
 
-            ordersContainer.style.display = "none";
+                ordersEmpty.style.display = "block";
 
-            return;
+                ordersContainer.style.display = "none";
+
+                return;
+            }
+
+            ordersEmpty.style.display = "none";
+
+            ordersContainer.style.display = "flex";
+
+
+            orders.forEach((order) => {
+
+                const card =
+                    document.createElement("div");
+
+                card.classList.add("order-card");
+
+
+                const total =
+                    order.amount?.value || "0.00";
+
+                const currency =
+                    order.amount?.currency_code || "BRL";
+
+
+                const formattedTotal =
+                    new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: currency
+                    }).format(Number(total));
+
+
+                card.innerHTML = `
+
+                    <div class="order-info">
+
+                        <h3>
+                            Pedido #${order.orderID}
+                        </h3>
+
+                        <p>
+                            Fecha:
+                            ${formatDate(order.createdAt)}
+                        </p>
+
+                        <p>
+                            Total:
+                            ${formattedTotal}
+                        </p>
+
+                        <span class="order-status">
+                            ${order.status || "Processing"}
+                        </span>
+
+                    </div>
+
+                    <button class="details-btn">
+                        Ver detalles
+                    </button>
+
+                `;
+
+
+                ordersContainer.appendChild(card);
+
+
+                // =========================
+                // DETAILS BUTTON
+                // =========================
+
+                const detailsButton =
+                    card.querySelector(".details-btn");
+
+
+                detailsButton.addEventListener("click", () => {
+
+                    window.location.href =
+                        `/order-detail.html?id=${order._id}`;
+
+                });
+
+            });
+
         }
 
-        ordersEmpty.style.display = "none";
 
-        ordersContainer.style.display = "flex";
+        // =========================
+        // FORMAT DATE
+        // =========================
 
+        function formatDate(date) {
 
-        orders.forEach((order) => {
+            if (!date) {
+                return "---";
+            }
 
-            const card = document.createElement("div");
+            return new Date(date).toLocaleDateString(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
 
-            card.classList.add("order-card");
-
-            card.innerHTML = `
-
-                <div class="order-info">
-
-                    <h3>
-                        Pedido #${order.id}
-                    </h3>
-
-                    <p>
-                        Fecha: ${order.date}
-                    </p>
-
-                    <p>
-                        Total: ${order.total}
-                    </p>
-
-                    <span class="order-status ${order.statusClass}">
-                        ${order.status}
-                    </span>
-
-                </div>
-
-                <button class="details-btn">
-                    Ver detalles
-                </button>
-
-            `;
-
-            ordersContainer.appendChild(card);
+        }
 
 
-                const detailsButton = card.querySelector(".details-btn");
-
-detailsButton.addEventListener("click", () => {
-
-window.location.href =
-    `/order-detail.html?id=${order.id}`;
-
-});
+        renderOrders();
 
 
-        });
+    } catch (error) {
 
+        console.error("Error loading orders:", error);
+
+        ordersEmpty.style.display = "block";
+
+        ordersContainer.style.display = "none";
 
     }
-
-
-    renderOrders();
 
 });
