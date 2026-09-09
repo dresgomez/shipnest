@@ -2,9 +2,7 @@
   "name": "aigo",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "vercel dev"
-  },
+  "scripts": {},
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "mongodb": "^7.1.0",
