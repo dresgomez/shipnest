@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Client Panel Loaded");
 
-updateCartCount();
 
     const clientName = document.getElementById("client-name");
     const clientEmail = document.getElementById("client-email");
